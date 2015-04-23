@@ -27,9 +27,17 @@
 
 
         <script>
-            userID = 94017;
-            dashID = "connectome";
-           
+          try {
+                userID = window.parent.document.getElementById("userID").value;
+                dashID = window.parent.document.getElementById("dashID").value;
+                
+                console.log(userID);
+                console.log(dashID); 
+            }
+            catch (e) {
+
+                console.log(e);
+            }
 
 
             function renderLineMixedChart(data, theme, bgColor ) {

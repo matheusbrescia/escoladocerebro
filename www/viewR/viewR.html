@@ -9,28 +9,28 @@
         <meta name="keywords" content="" /> 
         <meta name="description" content="" />    
         <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  
+
         <link href="/assets/css/escola-do-cerebro-ranking.css" rel="stylesheet" type="text/css"/>
 
     </head>
     <body>
- 
+
         <div class="container">
 
             <div id="slider_ec_container" style="display: none; position: relative; margin: 0 auto; width: 1140px; height: 512px; overflow: hidden;">
- 
+
                 <div u="loading" style="position: absolute; top: 0px; left: 0px;">
                     <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block; background-color: #000; top: 0px; left: 0px;width: 100%; height:100%;">
                     </div>
                     <div style="position: absolute; display: block; background: url(/assets/img/loading.png) no-repeat center center;  top: 0px; left: 0px;width: 100%;height:100%;">
                     </div>
                 </div>
- 
+
                 <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1140px; height: 512px; overflow: hidden;">
                     <div>
-                         <iframe  id="chart_ajaxPieChart" u="image" src="viewR_1.html"></iframe>  
+                        <iframe  id="chart_ajaxPieChart" u="image" src="viewR_1.html"></iframe>  
                     </div>
-                     <div>
+                    <div>
                         <iframe  id="chart_ajaxStockChart" u="image" src="viewR_2.html"></iframe> 
                     </div>
                     <div>
@@ -42,24 +42,24 @@
                     <div> 
                         <iframe  id="chart_ajaxRealTimePieChart" u="image" src="viewR_5.html"></iframe> 
                     </div>
-                    
+
                     <div>
-                         <iframe  id="chart_ajaxBarHabilidades" u="image" src="viewR_6.html"></iframe> 
+                        <iframe  id="chart_ajaxBarHabilidades" u="image" src="viewR_6.html"></iframe> 
                     </div>
-                     <div>
+                    <div>
                         <iframe  id="chart_ajaxLineAllPoints" u="image" src="viewR_7.html"></iframe> 
                     </div>
-                   
-                    
+
+
                 </div> 
                 <style> 
-                   
+
                 </style> 
                 <div u="navigator" class="jssorb05" style="bottom: 16px; right: 6px;"> 
                     <div u="prototype"></div>
                 </div> 
                 <style> 
-                    
+
                 </style>
 
                 <span u="arrowleft" class="jssora11l" style="top: 20%; left: 0%;">
@@ -71,14 +71,29 @@
             </div>
 
         </div> 
- 
+        <input id="userID" type="hidden"> 
+        <input id="dashID" type="hidden"> 
         <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script> 
         <script src="/bower_components/jssor-slider/js/jssor.slider.mini.js" type="text/javascript"></script>
-       
+
         <script>
 
             jQuery(document).ready(function ($) {
+
+                try {
+                    userID = window.parent.document.getElementById("userID").value;
+                    dashID = window.parent.document.getElementById("dashID").value;
+                    $("#userID").val(userID);
+                    $("#dashID").val(dashID);
+                    console.log(userID);
+                    console.log(dashID);
+                }
+                catch (e) {
+
+                    console.log(e);
+                }
+
                 var options = {
                     $AutoPlay: false, //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                     $AutoPlaySteps: 1, //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
@@ -117,10 +132,10 @@
                         $Scale: false                                   //Scales bullets navigator or not while slider scale
                     }
                 };
- 
+
                 $("#slider_ec_container").css("display", "block");
                 var jssor_slider_ec = new $JssorSlider$("slider_ec_container", options);
- 
+
                 function ScaleSlider() {
                     var parentWidth = jssor_slider_ec.$Elmt.parentNode.clientWidth;
                     if (parentWidth) {
@@ -129,10 +144,10 @@
                     else
                         window.setTimeout(ScaleSlider, 30);
                 }
-                ScaleSlider(); 
+                ScaleSlider();
                 $(window).bind("load", ScaleSlider);
                 $(window).bind("resize", ScaleSlider);
-                $(window).bind("orientationchange", ScaleSlider); 
+                $(window).bind("orientationchange", ScaleSlider);
             });
         </script>
     </body>

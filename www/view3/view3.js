@@ -86,7 +86,51 @@ angular.module('myApp.view3', ['ngRoute'])
                         });
 
             };
+            
+            $scope.syncData = function () {
 
+                $scope.showAlert("Sincronizando...");
+                if ($scope.logToSend > 0) {
+                    var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
+                    var i = 0;
+                    $.each(logArr, function (key, value) {
+                        var localData = JSON.parse(value);
+                        localData.playerId = $scope.user.playerId;
+                        localData.adminId = $scope.user.adminId;
+
+                        $.getJSON($scope.ec_log_games, {log: JSON.stringify(localData)})
+                                .done(function (rjson) {
+                                    if (rjson !== null) {
+                                        var obj = JSON.parse(rjson);
+                                        i++;
+                                        $scope.$apply(function () {
+                                            $scope.showAlert("Enviando... " + i);
+                                            if (logArr.length === i) {
+                                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = "";
+                                                $scope.points = [];
+                                                $scope.logToSend = 0;
+                                                $scope.statePoints = false;
+
+                                                $scope.showAlert("Parabéns, todos os " + logArr.length + " dados enviados!");
+                                                $timeout(function () { 
+                                                    $scope.checkDash($scope.user.playerId);
+                                                }, 300);
+                                            }
+                                        });
+
+                                    }
+                                })
+                                .fail(function (jqxhr, textStatus, error) {
+
+                                    $scope.showAlert("Você parece estar off-line!");
+                                });
+                    });
+
+                } else {
+
+                    $scope.showAlert("Você não tem dados para sincronizar! Jogue algum game!");
+                }
+            };
             $scope.cleanUser = function () {
                 $scope.statePlayer = false;
                 $scope.user = {
@@ -179,50 +223,6 @@ angular.module('myApp.view3', ['ngRoute'])
                 $scope.baloon.playPause();
             }, 300);
 
-            $scope.syncData = function () {
-
-                $scope.showAlert("Sincronizando...");
-                if ($scope.logToSend > 0) {
-                    var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
-                    var i = 0;
-                    $.each(logArr, function (key, value) {
-                        var localData = JSON.parse(value);
-                        localData.playerId = $scope.user.playerId;
-                        localData.adminId = $scope.user.adminId;
-
-                        $.getJSON($scope.ec_log_games, {log: JSON.stringify(localData)})
-                                .done(function (rjson) {
-                                    if (rjson !== null) {
-                                        var obj = JSON.parse(rjson);
-                                        i++;
-                                        $scope.$apply(function () {
-                                            $scope.showAlert("Enviando... " + i);
-                                            if (logArr.length === i) {
-                                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = "";
-                                                $scope.points = [];
-                                                $scope.logToSend = 0;
-                                                $scope.statePoints = false;
-
-                                                $scope.showAlert("Parabéns, todos os " + logArr.length + " dados enviados!");
-                                                $timeout(function () { 
-                                                    $scope.checkDash($scope.user.playerId);
-                                                }, 300);
-                                            }
-                                        });
-
-                                    }
-                                })
-                                .fail(function (jqxhr, textStatus, error) {
-
-                                    $scope.showAlert("Você parece estar off-line!");
-                                });
-                    });
-
-                } else {
-
-                    $scope.showAlert("Você não tem dados para sincronizar! Jogue algum game!");
-                }
-            };
         })
         .directive('barssum', function ($parse) {
             return {

@@ -42,6 +42,8 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
                 }, 500);
 
             };
+
+
             if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {
                 $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
                 if ($scope.user.playerId > 0) {
@@ -50,17 +52,53 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
 
                 } else {
                     $scope.statePlayer = false;
-                    $scope.showAlert("Nenhum jogador definido.");
-
+                    $scope.cleanUser();
                 }
 
             } else {
+                $scope.cleanUser();
                 $scope.statePlayer = false;
-                $scope.showAlert("Nenhum jogador definido.");
 
             }
+            if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr && localStorage.brComCognisenseEscolaDoCerebroLogObjectArr != 0) {
+                var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
+                $scope.logToSend = 0;
+                $.each(logArr, function (key, value) {
+                    //console.log('DashboardCtrl:' + key + ' = ' + value);
+
+                    var localData = JSON.parse(value);
+                    console.log(localData);
+                    //localData.playerId = $scope.user.playerId;
+                    $scope.logToSend++;
+                    $scope.points.push(localData);
+                    $scope.statePoints = true;
+                    $.each(localData, function (k, v) {
+                        // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
+                    });
+                });
+
+                $scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
+            } else {
+                $scope.logToSend = 0;
+              //  $scope.showAlert("Parabéns, todos seus dados estão sincronizados!");
+            }
+            if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
+                $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
+                if ($scope.dashboard.ngames > 0) {
+                    $scope.stateGamer = true;
+                } else {
+                    $scope.stateGamer = false;
+                }
+
+            } else {
+                $scope.stateGamer = false;
+            }
+
+
             $timeout(function () {
                 $scope.baloon.playPause();
-            }, 300);
+
+            }, 100);
+
         });
  

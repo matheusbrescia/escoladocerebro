@@ -14,7 +14,7 @@
 
         <script src="/bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script> 
         <script src="/bower_components/amcharts/dist/amcharts/pie.js" type="text/javascript"></script>
-         
+
         <script src="/bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
 
         <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
@@ -26,10 +26,18 @@
 
 
         <script>
-            userID = 94017;
-            dashID = "connectome";
-            
-            function renderPieChart(data, theme, bgColor  ) {
+            try {
+                userID = window.parent.document.getElementById("userID").value;
+                dashID = window.parent.document.getElementById("dashID").value;
+                
+                console.log(userID);
+                console.log(dashID); 
+            }
+            catch (e) {
+
+                console.log(e);
+            }
+            function renderPieChart(data, theme, bgColor) {
                 var chart;
                 if (chart) {
                     chart.clear();
@@ -39,7 +47,7 @@
                     //  document.body.style.backgroundColor = bgColor;
                     //  document.body.style.backgroundImage = "url(" + bgImage + ")";
                 }
-                AmCharts.makeChart("chart_dashboard"  , {
+                AmCharts.makeChart("chart_dashboard", {
                     "type": "pie",
                     "theme": theme,
                     "dataProvider": data,
@@ -59,13 +67,13 @@
             }
 
             function ajaxPieChart() {
- 
+
                 $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "ranking", idgame: dashID})
                         .done(function (json) {
                             if (json !== null) {
                                 var data = JSON.parse(json);
                                 if (data !== null) {
-                                    renderPieChart(data, 'chalk', '#516e5b' );
+                                    renderPieChart(data, 'chalk', '#516e5b');
                                     $('a').hide(); //discomment after buy 
                                 } else {
 
@@ -79,6 +87,7 @@
             }
 
             $(document).ready(function ($) {
+
                 ajaxPieChart();
 
                 console.log("ajaxPieChart");

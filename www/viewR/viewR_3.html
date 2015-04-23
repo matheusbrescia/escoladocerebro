@@ -26,9 +26,17 @@
         <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
 
         <script>
-            userID = 94017;
-            dashID = "connectome";
-           
+           try {
+                userID = window.parent.document.getElementById("userID").value;
+                dashID = window.parent.document.getElementById("dashID").value;
+                
+                console.log(userID);
+                console.log(dashID); 
+            }
+            catch (e) {
+
+                console.log(e);
+            }
             function renderStockPointsChart(dataset, theme, bgColor ) {
                 var chart;
                 if (chart) {
