@@ -1,0 +1,279 @@
+<html>	
+	<head>
+		<meta charset="utf-8">
+		<title>Forca - Cognisense</title>
+							
+		<style>
+			
+			body
+			{
+				margin: 0px;
+				padding: 0px;
+				background: #597964; /* Old browsers */ 
+                                 overflow:hidden;
+			}
+			
+			#game-display
+			{
+				position: relative;
+				overflow:hidden;
+				background-color: #fff;
+			}
+			
+			#game-container
+			{
+				position: absolute;
+				width: 800px;
+				height: 480px;
+				background-color: #fff;
+			}
+			
+			#game
+			{
+				position: absolute;
+				
+				width: 800px;
+				height: 480px;
+				
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			
+			#game-ui
+			{				
+				position: absolute;
+				
+				border: solid 1px #333;
+				
+				top:0px;
+				left:640px;
+				
+				width: 100px;
+				height: 100px;
+			}
+			
+			.key-normal
+			{
+				position: absolute;
+				width: 51px;
+				height: 51px;
+				background-image: url('assets/key_normal.png');
+				cursor:hand;
+				font-family:'Courier';
+				font-size:32;
+				color: #999;
+				font-style: italic;
+			}
+			
+			.key-correct
+			{
+				position: absolute;
+				width: 51px;
+				height: 51px;
+				background-image: url('assets/key_correct.png');
+				font-family:'Courier';
+				font-size:32;
+				color: #090;
+				font-style: italic;
+			}
+			
+			.key-wrong
+			{
+				position: absolute;
+				width: 51px;
+				height: 51px;
+				background-image: url('assets/key_wrong.png');
+				font-family:'Courier';
+				font-size:32;
+				color: #999;
+				font-style: italic;
+			}
+			
+			.glyph-display
+			{
+				position: absolute;
+				width: 40px;
+				height: 50px;
+				background-image: url('assets/glyph_display.png');
+				font-family:'Courier';
+				font-size:42;
+				color: #333;
+				font-weight: bold;
+				font-style: italic;
+			}
+			
+		</style>
+		
+		<script type="text/javascript" src="script/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="script/jquery-migrate-1.1.1.js"></script>
+		<script type="text/javascript" src="script/jquery.ba-resize.min.js"></script>	
+		
+		<script type="text/javascript" src="script/forca.js"></script>
+		
+		<script type="text/javascript">
+			
+			var game;
+			/*
+			var words = ['quadro',{'value':'garrafa','tips':['objeto utilizado para o armazenamento de liquidos']},'copo','flor','folha','mesa','cadeira',{'value':'vaso','tips':['objeto utilizado para se colocar plantas']},'prato','talher','garfo','faca', 'planta', 'maçã', 'coração', 'invenção', 'intervenção', 'interação', 'inversão', 'paçoca', 'palhoça', 'sãojosé','floripa', 'garça', 'garçonete','tapeçaria','mamão','limão', 'manhã',
+						'tapete', 'televisao', 'radio', 'sofa', 'sala', 'cozinha', 'quarto', 'rosa', 'cama', 'cortina', 'armario',
+						'gaveta', 'cabide', 'animal', 'peixe', 'cachorro', 'gato', 'vaca', {'value':'porco','tips':['é um animal', 'fornece carne']}, 'boi', 'touro', 'coelho'];
+			*/
+			
+			var words = ['são-paulo'];
+			
+			$(function()
+			{
+				initTouchHandler();
+				
+				$('#game').empty();
+				
+				game = new ForcaGame();
+				$('#game').append(game.content);
+				$('#game-ui').append(game.ui);
+				
+				setZoom(1);
+				
+				$('#txtZoom').keypress(function(e)
+				{
+					if(e.which == 13)
+					{
+						var text = $('#txtZoom').val();
+						
+						var clipMode = undefined;
+						if(text.indexOf('[all]') == 0)
+						{
+							text = text.replace('[all]','');
+							clipMode = 'all';
+						}
+						else if(text.indexOf('[clip]') == 0)
+						{
+							text = text.replace('[clip]','');
+							clipMode = 'clip';
+						}
+						
+						if(text.indexOf('x') > 0)
+						{
+							text = text.split('x');
+							var width = parseFloat(text[0]);
+							var height = parseFloat(text[1]);
+							if(width && height)
+								setDisplaySize(width, height, clipMode);
+						}
+						else
+						{
+							var zoom = parseFloat(text);
+							if(zoom)
+								setZoom(zoom);
+						}
+						$('#txtZoom').val('');
+					}
+				});
+				
+				startGame();
+			});
+			
+			function startGame()
+			{			
+				var index = Math.floor(Math.random() * words.length);
+				var word = words[index];
+				game.initializeWord(word);
+				game.maxErrorCount = 11;
+			}
+			
+			function touchHandler(event) 
+			{
+				var touch = event.changedTouches[0];
+
+				var simulatedEvent = document.createEvent("MouseEvent");
+					simulatedEvent.initMouseEvent({
+					touchstart: "mousedown",
+					touchmove: "mousemove",
+					touchend: "mouseup"
+				}[event.type], true, true, window, 1,
+					touch.screenX, touch.screenY,
+					touch.clientX, touch.clientY, false,
+					false, false, false, 0, null);
+
+				touch.target.dispatchEvent(simulatedEvent);
+				event.preventDefault();
+			}
+
+			function initTouchHandler() 
+			{
+				document.getElementById('game-display').addEventListener("touchstart", touchHandler, true);
+				document.getElementById('game-display').addEventListener("touchmove", touchHandler, true);
+				document.getElementById('game-display').addEventListener("touchend", touchHandler, true);
+				document.getElementById('game-display').addEventListener("touchcancel", touchHandler, true);
+			}
+			
+			function setZoom(zoom)
+			{
+				var width = $('#game-container').width();
+				var height = $('#game-container').height();
+				
+				var newWidth = width * zoom;
+				var newHeight = height * zoom;
+				
+				var tx = (newWidth - width)/2;
+				var ty = (newHeight - height)/2;
+				
+				$('#game-container').css('left',tx+'px');
+				$('#game-container').css('top',ty+'px');
+				
+				$('#game-container').css('transform','scale('+zoom+','+zoom+')');
+				$('#game-container').css('-ms-transform','scale('+zoom+','+zoom+')');
+				$('#game-container').css('-webkit-transform','scale('+zoom+','+zoom+')');
+				
+				$('#game-display').width(newWidth);
+				$('#game-display').height(newHeight);
+			}
+			
+			function setDisplaySize(newWidth, newHeight, fitMode)
+			{
+				var width = $('#game-container').width();
+				var height = $('#game-container').height();
+				
+				var scaleX = newWidth / width;
+				var scaleY = newHeight / height;
+				
+				if(fitMode && (fitMode == 'all' || fitMode == 'clip'))
+				{
+					var scale = Math[(fitMode == 'all') ? 'min' : 'max'].call(null,scaleX,scaleY);
+					scaleX = scale;
+					scaleY = scale;
+				}
+				
+				var tx = (newWidth - width)/2;
+				var ty = (newHeight - height)/2;
+				
+				$('#game-container').css('left',tx+'px');
+				$('#game-container').css('top',ty+'px');
+								
+				$('#game-container').css('transform','scale('+scaleX+','+scaleY+')');
+				$('#game-container').css('-ms-transform','scale('+scaleX+','+scaleY+')');
+				$('#game-container').css('-webkit-transform','scale('+scaleX+','+scaleY+')');
+				
+				$('#game-display').width(newWidth);
+				$('#game-display').height(newHeight);
+			}
+			
+		</script>
+	
+	</head>
+	<body>
+		<h2>Forca - Cognisense</h2>
+		<div id="game-display">
+			<div id="game-container">
+				<div id="game">
+				</div>
+				<div id="game-ui">
+				</div>
+			</div>
+		</div>
+		<input id="txtZoom" type="text" placeholder="zoom"/>
+	</body>
+</html>

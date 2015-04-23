@@ -1,0 +1,48 @@
+<article id="home" class="activity"> 
+    <div class="cnt"> 
+        <div class="jumbotron ">
+            <section class="quadro_negro"> 
+                <div class="login-section">
+                    <div> 
+                        <form >  
+                            <label >JOGADOR</label>
+                            <input class="form-control" onkeyup="probable()" name="target" id="target" type="text" value="" placeholder="Jogador"/> 
+                        </form> 
+                    </div>
+                    <div id="response" style="display:none"> </div>  
+                    <div> 
+                        <div class="control-group"> 
+                            <label >SENHA</label>  
+                            <div id="btns_pass" class="controls">  
+                                <table>
+                                    <tr>
+                                        <td><button id="target1" class="key btn-lg btn-primary fa fa-plane">1</button></td>
+                                        <td><button id="target2" class="key btn-lg btn-primary fa fa-gift">2</button> </td>
+                                        <td><button id="target3" class="key btn-lg btn-primary fa fa-heart">3</button> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><button id="target4" class="key btn-lg btn-primary fa fa-money">4</button> </td>
+                                        <td><button id="target5" class="key btn-lg btn-primary fa fa-briefcase">5</button></td>
+                                        <td><button id="target6" class="key btn-lg btn-primary fa fa-bug">6</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><button id="target7" class="key btn-lg btn-primary fa fa-cloud">7</button></td>
+                                        <td><button id="target8" class="key btn-lg btn-primary fa fa-code">8</button></td>
+                                        <td><button id="target9" class="key btn-lg btn-primary fa fa-cogs">9</button></td>
+                                    </tr> 
+                                </table>
+                            </div>
+                        </div>  
+                    </div>   
+                    <div>
+                        <button onclick="MyCtrlLogin()" class="btn btn-lg btn-primary  btn-login " role="button">LOGIN</button> 
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div> 
+
+</article>
+<script>
+    MyCtrlHome();
+</script>

@@ -1,0 +1,27 @@
+{
+    "name": "EscolaDoCerebro",
+    "description": "Escola do Cérebro",
+    "version": "15.0.3",
+    "homepage": "https://github.com/escoladocerebro",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "jquery": "latest",
+        "jquery-ui": "latest",
+        "modernizr": "latest",
+        "bootstrap": "latest",
+        "bootstrap-datepicker": "latest",
+        "amcharts": "latest",
+        "amcharts-stock": "latest",
+        "jssor-slider": "latest",
+        "d3": "latest",
+        "nvd3": "latest", 
+        "angular": "latest",
+        "angular-route": "latest",
+        "angular-loader": "latest",
+        "angular-mocks": "latest",
+        "angular-media-player": "latest",
+        "font-awesome": "latest"
+
+    }
+} 

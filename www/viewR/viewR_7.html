@@ -1,0 +1,141 @@
+<!DOCTYPE html> 
+<html>
+    <head> 
+
+        <title>Bem Vindos ao Ranking Escola do Cérebro</title> 
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    
+        <meta name="author" content="Cognisense Tecnologia Ltda">  
+        <meta name="keywords" content="" /> 
+        <meta name="description" content="" />    
+
+        <link href="/assets/css/escola-do-cerebro-charts.css" rel="stylesheet" type="text/css"/>
+
+        <script src="/bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="/bower_components/amcharts-stock/dist/amcharts/serial.js" type="text/javascript"></script>
+
+        <script src="/bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
+        <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+
+    </head> 
+    <body> 
+        <section>  
+            <div id="chart_dashboard" >  </div>  
+        </section>    
+
+
+        <script>
+            userID = 94017;
+            dashID = "connectome";
+          
+
+            function renderLineAllPoints(data, theme, bgColor ) {
+
+                var chart = AmCharts.makeChart("chart_dashboard", {
+                    "type": "serial",
+                    "theme": theme,
+                    "marginRight": 30,
+                    "pathToImages": "/bower_components/amcharts-stock/dist/amcharts/images/",
+                    "legend": {
+                        "equalWidths": false,
+                        "periodValueText": "total: [[value.sum]]",
+                        "position": "top",
+                        "valueAlign": "left",
+                        "valueWidth": 100
+                    },
+                    "dataProvider": data,
+                    "valueAxes": [{
+                            "stackType": "regular",
+                            "gridAlpha": 0.07,
+                            "position": "left",
+                            "title": "Minha evolução"
+                        }],
+                    "graphs": [{
+                            "balloonText": "<img src='/assets/img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+                            "fillAlphas": 0.6,
+                            "lineAlpha": 0.4,
+                            "title": "Minha pontuação",
+                            "valueField": "value1"
+                        }, {
+                            "balloonText": "<img src='/assets/img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+                            "fillAlphas": 0.6,
+                            "lineAlpha": 0.4,
+                            "title": "Outros jogadores",
+                            "valueField": "value2"
+                        }, {
+                            "balloonText": "<img src='/assets/img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+                            "fillAlphas": 0.6,
+                            "lineAlpha": 0.4,
+                            "hidden": true,
+                            "title": "Pontuação acumulada",
+                            "valueField": "value3"
+                        }],
+                    "plotAreaBorderAlpha": 0,
+                    "marginTop": 10,
+                    "marginLeft": 0,
+                    "marginBottom": 0,
+                    "chartScrollbar": {},
+                    "chartCursor": {
+                        "cursorAlpha": 0
+                    },
+                    "categoryField": "date",
+                    "categoryAxis": {
+                        "startOnAxis": true,
+                        "axisColor": "#00CCFF",
+                        "gridAlpha": 0.07,
+                        "minPeriod": "hh",
+                        "parseDates": true
+                    },
+                    "export": {
+                        "enabled": true,
+                        "libs": {
+                            "path": "/bower_components/amcharts-stock/dist/amcharts/plugins/export/libs/"
+                        }
+                    }
+                });
+            }
+
+
+            function ajaxLineAllPoints() {
+
+                $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "allpoints", idusers: userID, idgame: dashID})
+                        .done(function (json) {
+                            if (json !== null) {
+                                var obj = JSON.parse(json);
+                                var data = [];
+                                var acum = 0;
+                                $.each(obj, function (i, val) {
+                                    acum += Number(obj[i].mypontuacao);
+                                    data.push({
+                                        date: obj[i].timestamp,
+                                        value1: Number(obj[i].mypontuacao),
+                                        value2: Number(obj[i].mypontuacao - obj[i].pontuacao),
+                                        value3: Number(acum)
+                                    });
+
+                                    //console.log(i + " " + val + " " + obj[i].timestamp + " " + obj[i].acuracia + " " + obj[i].velocidade);
+                                    $.each(val, function (u, wv) {
+                                        //   console.log(u + " " + wv);
+                                    });
+                                });
+                                renderLineAllPoints(data, 'chalk', '#516e5b');
+                                $('a').hide(); //discomment after buy  
+                            }
+                        })
+                        .fail(function (jqxhr, textStatus, error) {
+                            console.log("Você parece estar off-line!");
+                        });
+
+                return true;
+
+            }
+
+            $(document).ready(function ($) {
+                ajaxLineAllPoints();
+
+                console.log("ajaxLineAllPoints");
+            });
+        </script>
+    </body>  
+</html>

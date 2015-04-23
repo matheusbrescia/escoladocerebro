@@ -1,0 +1,118 @@
+<article id="profile" class="off"> 
+    <div class="cnt">
+
+        <div class="jumbotron">
+            <section  class="quadro_azul">   
+                <div class="row perfil-section">
+                    <table>
+                        <tbody> 
+                            <tr>
+                                <td>
+                                    <label>Nome</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" id="fullname" type="text"  size="30" name="fullname" placeholder="Nome Completo"/>
+                                </td> 
+                                <td>
+                                    <label>Data de Nascimento</label>
+                                </td> 
+                                <td>
+                                    <div style="width:120px;">  
+                                        <div id="birthday-date" class="input-group date"> 
+                                            <input id="birthday-select" size="30" type="text" class="form-control">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div> 
+                                    </div>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td> 
+                                    <label>Cidade  </label> 
+                                </td>
+                                <td>
+                                    <input class="form-control" id="city" type="text" size="30"  name="cidade" placeholder="Cidade"/>
+                                </td> 
+
+
+
+                                <td>
+                                    <label>Série</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <select class="form-control" name="serie-select" id="serie-select"></select> 
+                                    </div>
+                                </td> 
+                            </tr>  
+                            <tr>
+                                <td>
+                                    <label>Estado</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" id="state" type="text" size="30" name="estado" placeholder="Estado"/>
+                                </td> 
+
+                                <td>
+                                    <label>Escola</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <select class="form-control" name="type-select" id="type-select">  </select>
+                                    </div>
+                                </td>
+
+
+                            </tr> 
+
+                            <tr>
+                                <td>
+                                    <label>País</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" id="country" type="text"  size="30" name="pais" placeholder="País"/>
+                                </td> 
+
+                                <td>
+                                    <label>Grupo</label>
+                                </td>
+                                <td>
+                                    <div> 
+                                        <input class="form-control" onkeyup="groups()" name="group-select" id="group-select" type="text" value="" placeholder="Grupo"/> 
+                                    </div>
+                                    <div id="group-response" style="display:none"> </div> 
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>E-Mail</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input class="form-control" id="email" type="text"  size="30" name="email" placeholder="E-Mail"/>
+                                    </div>
+                                </td> 
+                                <td>
+                                    <div><button id="sex0" class="sex0 btn btn-lg btn-primary">Menino</button> </div> 
+                                    <div><button  id="sex1" class="sex1 btn btn-lg  btn-primary">Menina</button>  </div> 
+
+                                </td>
+                                <td>
+
+                                    <button id="partner" class="btn btn-primary active fa fa-check">Aceito participar <br>do Ranking Geral</button>   
+
+                                </td>
+                            </tr> 
+
+                        </tbody>
+                    </table>   
+                </div>
+            </section>
+        </div>
+
+    </div> 
+</article>
+<script>
+    MyCtrlProfile();
+</script>

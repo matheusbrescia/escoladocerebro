@@ -1,0 +1,20 @@
+<nav class="nav"> 
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" > 
+            <button class="btn-back">  <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/> </button>
+            
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
+            <img class="title-img" src="assets/img/tittle.png" alt=""/>
+            <span class="title-label">  
+                 {{gameId}}
+            </span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar">   
+            <button class="btn stat_runningTime_display"> <img class="left-bar-img" src="assets/img/icone_times.png" alt=""/> TEMPO </button>
+        </div>
+    </div> 
+</nav> 
+<section class="view view-6">   
+    <iframe iframe-onload="iframeLoadedCallBack()" id="{{gameId}}" src="{{gameUrl}}"></iframe> 
+</section>  

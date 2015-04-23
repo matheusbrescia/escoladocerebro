@@ -1,0 +1,87 @@
+<nav class="nav"> 
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" > 
+            <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/> 
+
+            <div class="trophy"> 
+                <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>
+                <span class="trophy-label">  
+                    {{dashboard.ngames}} 
+                </span>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
+            <img class="title-img" src="assets/img/tittle.png" alt=""/>
+            <span class="title-label">  
+                {{title}}
+            </span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar"> 
+
+            <button class="btn fa fa-user" ng-click="goPath('view5')">  </button>
+            <button class="btn fa fa-refresh "  ng-click="syncData()"></button>  
+            <div class="baloon-header  {{hidden}}" > 
+                <div class="baloon-baloon" >  
+                    <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
+
+                    <span class="baloon-label">  
+                        {{message}}
+
+                    </span>
+
+                    <button class="btn fa fa-refresh " ng-show="statePoints" ng-click="syncData()">Sincronizar</button>  
+
+                    <button class="btn fa fa-gamepad " ng-show="!statePoints" ng-click="goPath('view1')">Jogar</button>  
+                </div> 
+
+            </div>
+        </div>
+    </div> 
+</nav>
+
+<section class="view view-3 container" >
+    <div class="row">
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100"> 
+            <span class="control-label" ng-show="statePoints">Você precisa sincronizar {{logToSend}} dados. </span>
+            <span class="control-label" ng-show="!statePoints">Você não possuí dados no dashboard. </span>
+            <div class="list_points" ng-show="statePoints"> 
+                <div ng-repeat="point in points" class="form-group"> 
+
+                    <span class="control-label">{{point.gameId}}  </span>
+                    <img src="assets/img/icone_moves.png" alt=""/>
+                    <span class="control-label "> {{point.velocidade * point.time / 1000| number: 0}} movimentos</span>
+                    <img src="assets/img/icone_times.png" alt=""/>
+                    <span class="control-label"> {{point.time / 60| number:0}} segundos</span>
+                    <p>{{point.fullname}} tem {{point.pontuacao| number:2}} pontos nessa sessão</p>
+
+                </div>  
+            </div> 
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-show="stateGamer"> 
+            Métricas
+            <barssum data="{{dashboard.barssum}}"></barssum>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-show="stateGamer"> 
+            Médias
+            <barsavg data="{{dashboard.barsavg}}"></barsavg>
+        </div> 
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100"> 
+            <span class="control-label">Login:</span>
+            <p> {{user.login}}</p>
+            <span class="control-label">Nome Completo:</span>
+            <p> {{user.fullname}}</p> 
+            <span class="control-label">Grupo:</span>
+            <p> {{user.group}}</p>
+
+
+
+        </div> 
+        <!--        <div ng-app="chartApp" ng-controller="SalesController">
+        
+                    <div linear-chart chart-data="salesData"></div>
+                </div>-->
+    </div>  
+
+</section> 

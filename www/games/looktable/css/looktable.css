@@ -1,0 +1,279 @@
+html {
+    font-size: 100%; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    background: #597964; /* Old browsers */ 
+    height:100%; 
+    background-image: url('../img/como_jogar_looktable.png');  
+    background-repeat:no-repeat; 
+    background-position:center center; 
+} 
+
+#btPlay{
+    position: absolute; 
+    cursor: pointer; 
+    left: 50px; 
+    top: 250px; 
+
+    z-index: 10000;
+    /* text-align: center; */
+    /* margin: 0 auto; */
+}
+#divLevels{ 
+    cursor: pointer;  
+    margin-top: 50px;   
+    text-align: center;
+}
+.clevels{
+    display: none;  
+}
+.container {
+    background:
+        radial-gradient(#284f73 15%, transparent 16%) 0 0,
+        radial-gradient(#284f73 15%, transparent 16%) 8px 8px,
+        radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+        radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#284f73;
+    background-size:16px 16px;
+    border-radius: 3px;
+
+}
+
+.layout {
+    height: 100%;
+
+}
+
+.looktable {
+    height: 100%; 
+}
+
+.lines {
+    display:table;
+    padding-bottom: 2px;
+    width: 100%;  
+    height: 100%;
+}
+
+.acellbtn {
+    display: table-cell; 
+    cursor: pointer;  
+    vertical-align: middle; 
+    font-weight:bold;  
+    color: #bd5532; 
+    text-align:center;  
+}
+
+.acellbtn:hover {
+    color: #2591b0;
+
+}
+
+.acellbtn span {
+    border: 15px solid hsla(0,0%,0%,0); 
+    border-radius: 8px;
+    font-weight:bold;  
+    color: #bd5532; 
+    text-align:center;
+    background: #eeeeee;
+    font-size: larger;
+
+}
+
+.ProgressCircleInfo {
+    font-weight: bold;  
+    text-shadow:0 1px 0 rgba(53, 52, 50, 0.8);
+    font-size: 1.2em;
+    text-align: center;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -webkit-transition: all .5s;
+    transition: all .5s; 
+    /* Internet Explorer 10 */
+    display:-ms-flexbox;
+    -ms-flex-pack:center;
+    -ms-flex-align:center;
+
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari, Chrome, and Opera */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
+
+}
+
+#console.busy {
+    opacity: .85;
+    display: block;
+} 
+
+#console {
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    position: fixed;
+    height: 42px;
+    font-family: monospace;
+    line-height: 32px;
+    text-align: center;
+    background: #597964;
+    color: white;
+    z-index: 100;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    opacity: 0;
+    display: none;
+}
+
+#logo {
+    /*background: url('../img/print_logo.png') no-repeat 0 -4px;*/
+    display: block;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    float: right;
+    height: 42px;
+    margin: 0 0 0 60px;
+    opacity: 0.5;
+    padding-bottom: 12px;
+    text-indent: -9999em;
+    width: 77px;
+    padding:0px 10px 0px 10px;
+}
+
+#wrap {
+    width:100%;
+    margin:0 auto; 
+    visibility: hidden;
+    -webkit-transition: All 1s ease-in-out;
+    -moz-transition: All 1s ease-in-out;
+    -ms-transition: All 1s ease-in-out;
+    -o-transition: All 1s ease-in-out;
+    transition: All 1s ease-in-out;
+}
+
+#wrap_menu {
+    float:left;
+    width:20%; 
+    vertical-align:middle;
+    background-image: url(../img/white_carbon.png);
+}
+
+#wrap_table {
+    float:right;
+    width:78%;
+    -webkit-transition: All 1s ease-in-out;
+    -moz-transition: All 1s ease-in-out;
+    -ms-transition: All 1s ease-in-out;
+    -o-transition: All 1s ease-in-out;
+    transition: All 1s ease-in-out;
+} 
+
+.wrap_side{ 
+    vertical-align:middle;
+    width:90%;
+    padding-left: 5%;
+
+}
+
+#wrap_bonus_title{  
+    vertical-align:middle;
+    display: table;
+    margin: 0 auto;
+    alignment-adjust: central;
+    text-shadow:0 1px 0 rgba(53, 52, 50, 0.8);
+    font-size: 1.3em; 
+    font-weight: bold;  
+    color: #353432;
+}
+
+#wrap_bonus_plus{ 
+    vertical-align:middle;
+    color: #2591b0 ; 
+    text-shadow:0 1px 0 rgba(24, 24, 24, 0.8);
+    font-size: 1em;
+    font-weight:bold;
+    opacity: 0;
+}
+
+#wrap_bonus_minus{ 
+    color: #d90004; 
+    text-shadow:0 1px 0 rgba(24, 24, 24, 0.8);
+    font-size: 1em;
+    font-weight:bold;  
+    opacity: 0;
+}
+
+#wrap_bonus_element{ 
+    color: #bd5532; 
+    width: 24px; 
+    height: 24px; 
+    margin:0px; 
+    bottom:0;
+    background: url(../img/caveira.svg) no-repeat top left;
+    background-size: contain; 
+    display:none;
+}
+
+#wrap_bonus{
+
+    border:2px solid #4c4c4c;
+    border-radius: 5px;
+    background-color: #fff; 
+    margin:0px;
+    padding:3px;
+    vertical-align:middle; 
+    float:right;
+    height:100px;
+    width:100%;
+}
+
+#wrap_vertical_progress{
+    border-radius:2px; 
+
+    margin:0px; 
+    vertical-align:middle; 
+    float:right;
+    height:100%;
+    width:100%; 
+    background-color: #1a82f7;
+
+    background-repeat: repeat-x;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727));
+    background: -webkit-linear-gradient(top, #2F2727, #1a82f7); 
+    background: -moz-linear-gradient(top, #2F2727, #1a82f7); 
+    background: -ms-linear-gradient(top, #2F2727, #1a82f7); 
+    background: -o-linear-gradient(top, #2F2727, #1a82f7);
+}
+
+#wrap_progresse{ 
+    margin:0px; 
+    bottom:0;
+    background: url(../img/circulocronometro.svg) no-repeat top left;
+    background-size: contain; 
+} 
+
+.rt-block{
+    padding:12px;
+    margin:8px;
+    position:relative;
+}
+
+// ┌────────────────────────────────────────────────────────────────────�? \\
+// │ Escola do Cérebro 1.0.0 - Educational Game Library                 │ \\
+// ├────────────────────────────────────────────────────────────────────┤ \\
+// │ Copyright © 2013-2014 Cognisense Tecnologia Ltda                   │ \\
+// │ Copyright © 2014 EduSCADA Labs (http://eduscada.com)               │ \\
+// ├────────────────────────────────────────────────────────────────────┤ \\
+// │ Licensed under the MIT (http://cognisense.com.br/license.html)     │ \\
+// └──

@@ -1,0 +1,425 @@
+<ul id="nav">              
+    <!--            <li class="home_li" style="display: none"><a href="javascript:goTo('home');" class="home"> </a></li> -->
+    <li class="games_li"><a href="javascript:goTo('games');" class="games"> </a></li> 
+    <li class="ranking_li"><a href="javascript:goTo('ranking');" class="ranking"> </a></li> 
+    <li class="dashboard_li"><a href="javascript:goTo('dashboard');" class="dashboard"> </a></li> 
+    <li class="profile_li"><a href="javascript:goTo('profile');" class="profile"> </a></li>
+</ul>
+<div class="navbar-points"> 
+    <div class="user-controls">  
+        <button id="btn-logout" class=" btn exit fa fa-times-circle-o">  SAÍDA </button>   
+    </div>
+
+    <div id="points"> 
+        <div id="page-tittle">Escola do Cérebro</div>
+        <div class="points moves" id="stat_numMoves_display_bg">&nbsp;</div>
+        <div class="points" id="stat_numMoves_display">&nbsp;</div>  
+        <div class="points time" id="stat_runningTime_display_bg">&nbsp;</div>
+        <div class="points" id="stat_runningTime_display">&nbsp;</div>
+    </div>  
+
+</div>
+<section id="content">
+    <article id="home" class="activity"> 
+        <div class="cnt"> 
+            <div class="jumbotron ">
+                <section class="quadro_negro"> 
+                    <div class="login-section">
+                        <div> 
+                            <form >  
+                                <label >JOGADOR</label>
+                                <input class="form-control" onkeyup="probable()" name="target" id="target" type="text" value="" placeholder="Jogador"/> 
+                            </form> 
+                        </div>
+                        <div id="response" style="display:none"> </div>  
+                        <div> 
+                            <div class="control-group"> 
+                                <label >SENHA</label>  
+                                <div id="btns_pass" class="controls">  
+                                    <table>
+                                        <tr>
+                                            <td><button id="target1" class="key btn-lg btn-primary fa fa-plane">1</button></td>
+                                            <td><button id="target2" class="key btn-lg btn-primary fa fa-gift">2</button> </td>
+                                            <td><button id="target3" class="key btn-lg btn-primary fa fa-heart">3</button> </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button id="target4" class="key btn-lg btn-primary fa fa-money">4</button> </td>
+                                            <td><button id="target5" class="key btn-lg btn-primary fa fa-briefcase">5</button></td>
+                                            <td><button id="target6" class="key btn-lg btn-primary fa fa-bug">6</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td><button id="target7" class="key btn-lg btn-primary fa fa-cloud">7</button></td>
+                                            <td><button id="target8" class="key btn-lg btn-primary fa fa-code">8</button></td>
+                                            <td><button id="target9" class="key btn-lg btn-primary fa fa-cogs">9</button></td>
+                                        </tr> 
+                                    </table>
+                                </div>
+                            </div>  
+                        </div>   
+                        <div>
+                            <button onclick="MyCtrlLogin()" class="btn btn-lg btn-primary  btn-login " role="button">LOGIN</button> 
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> 
+
+    </article> 
+    <article id="games" class="off"> 
+        <div class="cnt"> 
+            <div class="jumbotron">    
+                <section class="quadro_negro">  
+                    <div class="row games-section">
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_connectome " data-toggle="modal" id="connectome" data-target="#modal" > 
+                                <div class="caption"> 
+                                    <p> 
+                                        CONNECTOME
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_joaninha" data-toggle="modal"  id="joaninha" data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        JOANINHA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_breakout" data-toggle="modal" id="breakout" data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        BREAKOUT
+                                    </p>
+                                </div>
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="row games-section">
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_looktable" id="looktable" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        LOOKTABLE
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_forca" id="forca" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        FORCA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_genius" id="genius" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        GENIUS
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> 
+
+    </article> 
+    <article id="ranking" class="off"> 
+        <div class="cnt"> 
+            <div class="jumbotron">    
+                <section class="quadro_amarelo">  
+                    <div class="row games-section">
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_connectome " data-toggle="modal" id="connectome" data-target="#modal" > 
+                                <div class="caption"> 
+                                    <p> 
+                                        CONNECTOME
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_joaninha" data-toggle="modal"  id="joaninha" data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        JOANINHA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_breakout" data-toggle="modal" id="breakout" data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        BREAKOUT
+                                    </p>
+                                </div>
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="row games-section">
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_looktable" id="looktable" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        LOOKTABLE
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_forca" id="forca" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        FORCA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_genius" id="genius" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        GENIUS
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> 
+
+    </article> 
+    <article id="dashboard" class="off"> 
+        <div class="cnt"> 
+            <div class="jumbotron">    
+                <section class="quadro_cerebro">  
+                    <div class="row games-section">
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_connectome " data-toggle="modal" id="connectome" data-target="#modal" > 
+                                <div class="caption"> 
+                                    <p> 
+                                        CONNECTOME
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_joaninha" data-toggle="modal"  id="joaninha" data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        JOANINHA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_breakout" data-toggle="modal" id="breakout" data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        BREAKOUT
+                                    </p>
+                                </div>
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="row games-section">
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_looktable" id="looktable" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        LOOKTABLE
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_forca" id="forca" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        FORCA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <div class="thumbnail icone_genius" id="genius" data-toggle="modal"  data-target="#modal"> 
+                                <div class="caption"> 
+                                    <p>
+                                        GENIUS
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> 
+
+    </article> 
+    <article id="profile" class="off"> 
+        <div class="cnt">
+
+            <div class="jumbotron">
+                <section  class="quadro_azul">   
+                    <div class="row perfil-section">
+                        <table>
+                            <tbody> 
+                                <tr>
+                                    <td>
+                                        <label>Nome</label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="fullname" type="text"  size="30" name="fullname" placeholder="Nome Completo"/>
+                                    </td> 
+                                    <td>
+                                        <label>Data de Nascimento</label>
+                                    </td> 
+                                    <td>
+                                        <div style="width:120px;">  
+                                            <div id="birthday-date" class="input-group date"> 
+                                                <input id="birthday-select" size="30" type="text" class="form-control">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div> 
+                                        </div>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td> 
+                                        <label>Cidade  </label> 
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="city" type="text" size="30"  name="cidade" placeholder="Cidade"/>
+                                    </td> 
+
+
+
+                                    <td>
+                                        <label>Série</label>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <select class="form-control" name="serie-select" id="serie-select"></select> 
+                                        </div>
+                                    </td> 
+                                </tr>  
+                                <tr>
+                                    <td>
+                                        <label>Estado</label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="state" type="text" size="30" name="estado" placeholder="Estado"/>
+                                    </td> 
+
+                                    <td>
+                                        <label>Escola</label>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <select class="form-control" name="type-select" id="type-select">  </select>
+                                        </div>
+                                    </td>
+
+
+                                </tr> 
+
+                                <tr>
+                                    <td>
+                                        <label>País</label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" id="country" type="text"  size="30" name="pais" placeholder="País"/>
+                                    </td> 
+
+                                    <td>
+                                        <label>Grupo</label>
+                                    </td>
+                                    <td>
+                                        <div> 
+                                            <input class="form-control" onkeyup="groups()" name="group-select" id="group-select" type="text" value="" placeholder="Grupo"/> 
+                                        </div>
+                                        <div id="group-response" style="display:none"> </div> 
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>E-Mail</label>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <input class="form-control" id="email" type="text"  size="30" name="email" placeholder="E-Mail"/>
+                                        </div>
+                                    </td> 
+                                    <td>
+                                        <div><button id="sex0" class="sex0 btn btn-lg btn-primary">Menino</button> </div> 
+                                        <div><button  id="sex1" class="sex1 btn btn-lg  btn-primary">Menina</button>  </div> 
+
+                                    </td>
+                                    <td>
+
+                                        <button id="partner" class="btn btn-primary active fa fa-check">Aceito participar <br>do Ranking Geral</button>   
+
+                                    </td>
+                                </tr> 
+
+                            </tbody>
+                        </table>   
+                    </div>
+                </section>
+            </div>
+
+        </div> 
+    </article> 
+</section> 
+<div class="menino"> </div>
+<div class="menina"> </div>    
+<div id="console"> </div> 
+<input id="userID" style="display: none;">
+<input id="userLogin" style="display: none;">
+<input id="dashID" style="display: none;">
+<input id="EDUSCADA_ACTION" style="display: none;">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content quadro_negro">
+            <div class="modal-header">
+                <button type="button" class="btn exit fa fa-times-circle-o" data-dismiss="modal" aria-hidden="true"> </button>
+                <h4 class="modal-title" id="ModalLabel"></h4>
+                <div class="dash-controls">   
+
+                </div>
+            </div>
+            <div class="modal-body">
+
+            </div>  
+        </div> 
+    </div>
+</div>   
+
+<script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-5156382-22', 'escoladocerebro.org');
+    ga('send', 'pageview');
+
+</script>

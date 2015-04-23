@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="br.com.cognisense.escoladocerebro" version="15.0.3">
+    <name>EscolaDoCerebro</name>
+    <description>
+        Games da Escola do Cérebro.
+    </description>
+    <author email="contato@cognisense.com.br" href="http://escoladocerebro.org">
+        Contato Cognisense Tecnologia LTDA
+    </author>
+    <content src="index.html"/>
+    <access origin="*"/>
+</widget>
