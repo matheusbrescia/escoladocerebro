@@ -9,6 +9,7 @@ angular.module('myApp.view4', ['ngRoute'])
             }])
         .controller('RankingCtrl', function ($scope, $http, SettingsService, $location, $timeout, BackgroundService) {
             BackgroundService.setCurrentBg("view-4-background");
+
             $scope.hidden = "hidden";
             $scope.title = "Ranking";
             $scope.stateAdmin = false;
@@ -32,13 +33,16 @@ angular.module('myApp.view4', ['ngRoute'])
                 $scope.hidden = "hidden";
 
             };
-
+            $scope.syncDash = function ( ) {
+                $scope.showAlert("Momentinho, vamos atualizar o ranking...");
+                $scope.dashUrl = "viewR/viewR.html";
+                $timeout(function () {
+                    $scope.showAlert("Pronto, aqui você pode ver sobre o seu desempenho!");
+                }, 300);
+            };
             $scope.goPath = function (view) {
 
-                $timeout(function () {
-                    $location.path(view);
-                }, 500);
-
+                 $location.path(view);
             };
 
             $scope.iframeLoadedCallBack = function () {
@@ -132,6 +136,7 @@ angular.module('myApp.view4', ['ngRoute'])
             } else {
                 $scope.stateGamer = false;
             }
+            $scope.syncDash();
             $timeout(function () {
                 $scope.baloon.playPause();
             }, 300);

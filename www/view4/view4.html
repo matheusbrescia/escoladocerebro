@@ -2,17 +2,18 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" > 
-             <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/> 
+             <img src="/assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/> 
            
             <div class="trophy"> 
-                <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>
+                <img class="trophy-img" src="/assets/img/icone_trofeu.png" alt=""/>
                 <span class="trophy-label">  
                     {{dashboard.ngames}} 
                 </span>
             </div>
+             
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
-            <img class="title-img" src="assets/img/tittle.png" alt=""/>
+            <img class="title-img" src="/assets/img/tittle.png" alt=""/>
             <span class="title-label">  
                 {{title}}
             </span>
@@ -20,7 +21,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar"> 
 
             <button class="btn fa fa-user" ng-click="goPath('view5')">  </button>
-            <button class="btn fa fa-refresh "  ng-click="syncData()"></button>  
+            <button class="btn fa fa-refresh "  ng-click="syncDash()"></button>  
             <div class="baloon-header  {{hidden}}" > 
                 <div class="baloon-baloon" >  
                     <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
@@ -45,5 +46,5 @@
 
 <section class="view view-4 container" > 
    
-    <iframe iframe-onload="iframeLoadedCallBack()" src="viewR/viewR.html"></iframe>  
+    <iframe iframe-onload="iframeLoadedCallBack()" src="{{dashUrl}}"></iframe>  
 </section> 

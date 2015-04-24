@@ -66,11 +66,12 @@ section{
 
 }
 .container{
-    padding-right: 4%;
+    padding-right: 2%;
     height: 100%; 
 
     padding-left: rgba(148, 106, 106, 0.48);
-    padding-left: 4%;
+    padding-left: 2%;
+    /* width: 100%; */
 }
 .row{
     /* height: 100%; */
@@ -263,7 +264,7 @@ iframe{
 
 } 
 .icone-games{
-    background-image: url(assets/img/games.png); 
+    background-image: url(/assets/img/games.png); 
 
     background-repeat: no-repeat; 
 
@@ -273,7 +274,7 @@ iframe{
 
 }
 .icone-ranking{
-    background-image: url(assets/img/ranking.png); 
+    background-image: url(/assets/img/ranking.png); 
 
     background-repeat: no-repeat; 
 
@@ -282,7 +283,7 @@ iframe{
 
 }
 .icone-dashboard{
-    background-image: url(assets/img/dashboard.png); 
+    background-image: url(/assets/img/dashboard.png); 
 
     background-repeat: no-repeat; 
 
@@ -291,7 +292,7 @@ iframe{
 
 }
 .icone-person{
-    background-image: url(assets/img/profile.png); 
+    background-image: url(/assets/img/profile.png); 
 
     background-repeat: no-repeat; 
 
@@ -301,7 +302,7 @@ iframe{
 }
 
 .icone-joaninha{
-    background-image: url(assets/img/icone_joaninha.png); 
+    background-image: url(/assets/img/icone_joaninha.png); 
 
     background-repeat: no-repeat; 
 
@@ -309,7 +310,7 @@ iframe{
     */
 }
 .icone-breakout{
-    background-image: url(assets/img/icone_breakout.png); 
+    background-image: url(/assets/img/icone_breakout.png); 
 
     background-repeat: no-repeat; 
 
@@ -317,7 +318,7 @@ iframe{
 
 }
 .icone-connectome{
-    background-image: url(assets/img/icone_connectome.png); 
+    background-image: url(/assets/img/icone_connectome.png); 
 
     background-repeat: no-repeat; 
 
@@ -325,21 +326,21 @@ iframe{
 
 }
 .icone-genius{
-    background-image: url(assets/img/icone_genius.png); 
+    background-image: url(/assets/img/icone_genius.png); 
 
     background-repeat: no-repeat; 
 
 
 }
 .icone-tetris{
-    background-image: url(assets/img/icone_tetris.png); 
+    background-image: url(/assets/img/icone_tetris.png); 
 
     background-repeat: no-repeat; 
 
 
 }
 .icone-tangran{
-    background-image: url(assets/img/icone_tangran.png); 
+    background-image: url(/assets/img/icone_tangran.png); 
 
     background-repeat: no-repeat; 
 
@@ -348,7 +349,7 @@ iframe{
 }
 .icone-looktable{
 
-    background-image: url(assets/img/icone_looktable.png); 
+    background-image: url(/assets/img/icone_looktable.png); 
 
     background-repeat: no-repeat; 
 
@@ -407,7 +408,7 @@ iframe{
          */ height: 100%; 
 
 
-         /* background-image: url(assets/img/baloon.png); 
+         /* background-image: url(/assets/img/baloon.png); 
          */ 
          /* background-repeat: no-repeat; 
          */
@@ -422,7 +423,7 @@ iframe{
                 width: 100%; height: 100%; 
 
 
-                /* background-image: url(assets/img/baloon.png); 
+                /* background-image: url(/assets/img/baloon.png); 
                 */ 
                 /* background-repeat: no-repeat; 
                 */
@@ -437,7 +438,7 @@ iframe{
     */ /* float:left; 
     */ 
 
-    background-image: url(assets/img/baloon.png); 
+    background-image: url(/assets/img/baloon.png); 
 
     background-repeat: no-repeat; 
 
@@ -453,7 +454,7 @@ iframe{
     */ /* float:left; 
     */ 
 
-    background-image: url(assets/img/baloon-reverse.png); 
+    background-image: url(/assets/img/baloon-reverse.png); 
 
     background-repeat: no-repeat; 
 
@@ -486,7 +487,7 @@ iframe{
 }
 .btn-bg{
 
-    background-image: url(assets/img/background_button.png); 
+    background-image: url(/assets/img/background_button.png); 
 
     background-repeat: no-repeat; 
 
@@ -592,6 +593,13 @@ font-size: 1em;
     border-radius: 20px;
 
 }
+
+.viewr{
+     width: 100%;
+     
+
+    height: 100%;
+}
 .view-h{
     width: 100%;
      
@@ -648,6 +656,10 @@ font-size: 1em;
 .view-g{
     
     cursor: pointer;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .view-g .row{
     height: 100%; 
@@ -724,7 +736,7 @@ font-size: 1em;
     background-size: 100%;
 }
 .view-3{
-    /* width: 80%; */ 
+    width: 80%; 
 
 
     /* top: 15%; */ 
@@ -824,7 +836,7 @@ font-size: 1em;
 
 .modal-content
 {
-    background-image: url(assets/img/modal_content.png); 
+    background-image: url(/assets/img/modal_content.png); 
 
     background-repeat: no-repeat; 
 
@@ -959,10 +971,12 @@ font-size: 1em;
     transform-origin: 0 0;
 }
     .view-4{
-     padding: 2% 5% 0% 5%;
+     /* padding: 0% 7% 0% 5%; */
      
 
-    }
+    
+     width: 80%;
+}
     
   
 }
@@ -1106,15 +1120,15 @@ h1{
     color: #00CCFF;
     box-shadow: 2px 2px 2px rgba(176, 191, 220, 0.79);
 }
-.view  {
+html, body, iframe, .view, div  {
 
-    animation: fadein 2s; 
+    animation: fadein 1s; 
 
-    -moz-animation: fadein 2s; 
+    -moz-animation: fadein 1s; 
     /* Firefox */
-    -webkit-animation: fadein 2s; 
+    -webkit-animation: fadein 1s; 
     /* Safari and Chrome */
-    -o-animation: fadein 2s; 
+    -o-animation: fadein 1s; 
     /* Opera */
     
 

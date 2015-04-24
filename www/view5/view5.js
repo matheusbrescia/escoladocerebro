@@ -468,26 +468,7 @@ angular.module('myApp.view5', ['ngRoute'])
             
             $scope.goPath = function (view) {
 
-                $timeout(function () {
-                    var points = 0;
-                    if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
-                        var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
-                        $.each(logArr, function (key, value) {
-                            var localData = JSON.parse(value);
-                            $.each(localData, function (k, v) {
-                                if (k === "pontuacao")
-                                    points = v;
-                            });
-                        });
-                    } else {
-                        $scope.$apply(function () {
-                            $scope.showAlert("Você ainda não tem pontos! Jogue para conquistá-los.");
-                        });
-
-                    }
-
-                    $location.path(view);
-                }, 500);
+                   $location.path(view);
 
             };
             if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {

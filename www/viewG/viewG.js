@@ -37,9 +37,7 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
 
             $scope.goPath = function (view) {
 
-                $timeout(function () {
-                    $location.path(view);
-                }, 500);
+                $location.path(view);
 
             };
 
