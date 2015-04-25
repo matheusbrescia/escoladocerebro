@@ -1,0 +1,227 @@
+<!DOCTYPE html> 
+<html>
+    <head> 
+
+        <title>Bem Vindos ao Ranking Escola do Cérebro</title> 
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    
+        <meta name="author" content="Cognisense Tecnologia Ltda">  
+        <meta name="keywords" content="" /> 
+        <meta name="description" content="" />    
+
+        <link href="/assets/css/escola-do-cerebro-charts.css" rel="stylesheet" type="text/css"/>
+        <script src="/bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="/bower_components/amcharts-stock/dist/amcharts/serial.js" type="text/javascript"></script>
+        <script src="/bower_components/amcharts-stock/dist/amcharts/amstock.js" type="text/javascript"></script> 
+        
+        
+         <script src="/bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
+
+        <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+    </head> 
+    <body> 
+        <section>  
+            <div id="chart_dashboard" >  </div>  
+        </section>    
+ 
+
+        <script>
+          try {
+                userID = window.parent.document.getElementById("userID").value;
+                dashID = window.parent.document.getElementById("dashID").value;
+                
+                console.log(userID);
+                console.log(dashID); 
+            }
+            catch (e) {
+
+                console.log(e);
+            }
+            function renderStockChart(d1, d2, d3, theme, bgColor ) {
+                var chart;
+                if (chart) {
+                    chart.clear();
+                }
+
+                if (document.body) {
+                    //  document.body.style.backgroundColor = bgColor;
+                    //  document.body.style.backgroundImage = "url(" + bgImage + ")";
+                }
+
+                AmCharts.dayNames = "Domingo Segunda Terça Quarta Quinta Sexta Sábado".split(" ");
+                AmCharts.shortDayNames = "Dom Seg Ter Qua Qui Sex Sab".split(" ");
+                AmCharts.monthNames = "Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro".split(" ");
+                AmCharts.shortMonthNames = "Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez".split(" ");
+
+                AmCharts.makeChart("chart_dashboard", {
+                    type: "stock",
+                    theme: theme,
+                    pathToImages: "/bower_components/amcharts-stock/dist/amcharts/images/",
+                    dataSets: [{
+                            title: "Acurácia",
+                            fieldMappings: [{
+                                    fromField: "value",
+                                    toField: "value"
+                                }, {
+                                    fromField: "volume",
+                                    toField: "volume"
+                                }],
+                            dataProvider: d1,
+                            categoryField: "date"
+                        },
+                        {
+                            title: "Velocidade",
+                            fieldMappings: [{
+                                    fromField: "value",
+                                    toField: "value"
+                                }, {
+                                    fromField: "volume",
+                                    toField: "volume"
+                                }],
+                            dataProvider: d2,
+                            categoryField: "date"
+                        },
+                        {
+                            title: "Estabilidade",
+                            fieldMappings: [{
+                                    fromField: "value",
+                                    toField: "value"
+                                }, {
+                                    fromField: "volume",
+                                    toField: "volume"
+                                }],
+                            dataProvider: d3,
+                            categoryField: "date"
+                        }],
+                    panels: [{
+                            showCategoryAxis: false,
+                            title: "Indicadores",
+                            percentHeight: 50,
+                            stockGraphs: [{
+                                    id: "g1",
+                                    valueField: "value",
+                                    comparable: true,
+                                    compareField: "value",
+                                    bullet: "round",
+                                    bulletBorderColor: "#FFFFFF",
+                                    bulletBorderAlpha: 1,
+                                    balloonText: "[[title]]:<b>[[value]]</b>",
+                                    compareGraphBalloonText: "[[title]]:<b>[[value]]</b>",
+                                    compareGraphBullet: "round",
+                                    compareGraphBulletBorderColor: "#FFFFFF",
+                                    compareGraphBulletBorderAlpha: 1
+                                }],
+                            stockLegend: {
+                                periodValueTextComparing: "[[percents.value.close]]%",
+                                periodValueTextRegular: "[[value.close]]"
+                            }
+                        },
+                        {
+                            title: "Pontuação",
+                            percentHeight: 50,
+                            stockGraphs: [{
+                                    valueField: "volume",
+                                    type: "column",
+                                    showBalloon: false,
+                                    fillAlphas: 1
+                                }],
+                            stockLegend: {
+                                periodValueTextRegular: "[[value.close]]"
+                            }
+                        }],
+                    chartScrollbarSettings: {
+                        graph: "g1"
+                    },
+                    chartCursorSettings: {
+                        valueBalloonsEnabled: true
+                    },
+                    periodSelector: {
+                        position: "left",
+                        width: 90,
+                        inputFieldsEnabled: false,
+                        fromText: "De: ",
+                        toText: "Até: ",
+                        periods: [{
+                                period: "DD",
+                                count: 10,
+                                label: "10 dias"
+                            }, {
+                                period: "MM",
+                                selected: true,
+                                count: 1,
+                                label: "1 mês"
+                            }, {
+                                period: "YYYY",
+                                count: 1,
+                                label: "1 ano"
+                            }, {
+                                period: "YTD",
+                                label: "YTD"
+                            }, {
+                                period: "MAX",
+                                label: "MAX"
+                            }]
+                    },
+                    dataSetSelector: {
+                        position: "left",
+                        width: 90,
+                        compareText: "Compare com:",
+                        comboBoxSelectText: "Selecione...",
+                        selectText: "Indicadores: "
+                    }
+                });
+            }
+
+            function ajaxStockChart() {
+
+                $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "allmypoints", idusers: userID, idgame: dashID})
+                        .done(function (json) {
+
+                            var d1 = [];
+                            var d2 = [];
+                            var d3 = [];
+                            if (json !== null) {
+                                var obj = JSON.parse(json);
+                                $.each(obj, function (i, val) {
+                                    d1.push({
+                                        date: obj[i].timestamp,
+                                        value: Number(obj[i].acuracia),
+                                        volume: Number(obj[i].pontuacao)
+                                    });
+                                    d2.push({
+                                        date: obj[i].timestamp,
+                                        value: Number(obj[i].velocidade),
+                                        volume: Number(obj[i].pontuacao)
+                                    });
+                                    d3.push({
+                                        date: obj[i].timestamp,
+                                        value: Number(obj[i].estabilidade),
+                                        volume: Number(obj[i].pontuacao)
+                                    });
+                                    //console.log(i + " " + val + " " + obj[i].timestamp + " " + obj[i].acuracia + " " + obj[i].velocidade);
+                                    $.each(val, function (u, wv) {
+                                        //   console.log(u + " " + wv);
+                                    });
+                                });
+                                renderStockChart(d1, d2, d3, 'chalk', '#516e5b');
+                                $('a').hide();
+                            }
+                        })
+                        .fail(function (jqxhr, textStatus, error) {
+                            console.log("Você parece estar off-line!");
+                        });
+
+                return true;
+            }
+
+
+
+            $(document).ready(function ($) {
+                ajaxStockChart();
+
+                console.log("ajaxStockChart");
+            });
+        </script>
+    </body>  
+</html>

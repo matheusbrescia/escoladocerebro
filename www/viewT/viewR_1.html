@@ -1,0 +1,199 @@
+<!DOCTYPE html> 
+<html>
+    <head> 
+
+        <title>Bem Vindos ao Ranking Escola do Cérebro</title> 
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    
+        <meta name="author" content="Cognisense Tecnologia Ltda">  
+        <meta name="keywords" content="" /> 
+        <meta name="description" content="" />    
+        <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/assets/css/shapes.css" rel="stylesheet" type="text/css"/>
+        <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    </head> 
+    <body>  
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand text-muted" href="#" ></a>
+
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" id="time">TEMPO</a></li> 
+                        <li><a href="#" id="points">PONTOS</a></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="#" id="state">ESTÁGIO <span class="sr-only"> </span></a></li>
+
+                    </ul>
+                </div><!--/.nav-collapse -->
+
+            </div><!--/.container-fluid -->
+        </nav>
+
+        <div class="container">
+
+            <div id="start_test" class="jumbotron">
+                <a class="btn btn-lg btn-success" href="#" role="button">COMEÇAR</a> 
+                <p>clicar sobre todas as ocorrências do elemento na tela</p>
+            </div>
+            <!-- Example row of columns -->
+            <div class="board">
+
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function ($) {
+
+                try {
+                    userID = window.parent.document.getElementById("userID").value;
+                    psicotesteID = window.parent.document.getElementById("psicotesteID").value;
+                }
+                catch (e) {
+                    console.log(e);
+                }
+                var nTest = 0;
+                var nTime = null;
+                var nLevel = 0;
+                var startTime = 0;
+                var nPoints = [];
+
+                function pscicoteste_ModelA1() {
+
+                    var peaces = [];
+
+                    for (var i = 0; i < 22; i++) {
+                        peaces.push({"value": ("peaces_" + i), "state": false});
+                    }
+
+                    var peace = Math.floor((Math.random() * 22) + 0);
+                    var board = [];
+                    for (var i = 0; i < 10; i++) {
+                        board.push(peaces[peace]);
+                    }
+                    peaces.splice(peace, 1);
+                    for (var i = 0; i < 70; i++) {
+                        board.push(peaces[Math.floor((Math.random() * 21) + 0)]);
+
+                    }
+                    board.sort(function () {
+                        return .5 - Math.random();
+                    });
+
+
+                    var nRows = 8;
+                    var nColumns = 10;
+                    var nCells = (nRows * nColumns);
+
+                    var nBreak = (nColumns - 1);
+                    var gamePage = "<div class=\"layout\" id=\"layout\">";
+
+                    $.each(board, function (i) {
+                        var str = board[i].value;
+                        var res = str.split("_");
+
+                        if ((i % nColumns) == 0) {
+                            gamePage += '<div class="row">';
+                        }
+                        gamePage += '<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">';
+                        gamePage += '<button type="button" data-toggle="button" id="' + str + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + res[1] + '.png" </img></button></div>';
+
+                        if ((i % nColumns) == nBreak) {
+                            gamePage += "</div> ";
+                        }
+
+                    });
+
+                    gamePage += " </div>";
+
+                    $(".text-muted").html('<button type="button" data-toggle="button" id="cur_' + peace + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + peace + '.png" </img></button></div>');
+                    $(".board").html(gamePage);
+                    $(".btn-board").on("click", function (e) {
+                        if ("peaces_" +peace == this.id) {
+                            nPoints.push(this.id);
+                            $("#points").text(nPoints.length);
+                        }
+                        console.log(peace);
+                        console.log(this.id);
+                    });
+                }
+                function myStopFunction() {
+                    clearInterval(nTime);
+                }
+                function myTimer() {
+                    var d = new Date();
+                    var t = d.toLocaleTimeString();
+                    if (nTest > 5) {
+                        myStopFunction();
+                        $("#start_test").show();
+                    } else {
+                        nTest++;
+                        pscicoteste_ModelA1();
+                    }
+                }
+
+                function display() {
+                    // later record end time
+                    var endTime = new Date();
+
+                    // time difference in ms
+                    var timeDiff = endTime - startTime;
+
+                    // strip the miliseconds
+                    timeDiff /= 1000;
+
+                    // get seconds
+                    var seconds = Math.round(timeDiff % 60);
+
+                    // remove seconds from the date
+                    timeDiff = Math.floor(timeDiff / 60);
+
+                    // get minutes
+                    var minutes = Math.round(timeDiff % 60);
+
+                    // remove minutes from the date
+                    timeDiff = Math.floor(timeDiff / 60);
+
+                    // get hours
+                    var hours = Math.round(timeDiff % 24);
+
+                    // remove hours from the date
+                    timeDiff = Math.floor(timeDiff / 24);
+
+                    // the rest of timeDiff is number of days
+                    var days = timeDiff;
+
+                    $("#time").text(seconds);
+                    setTimeout(display, 1000);
+                }
+
+                $("#start_test").on("click", function (e) {
+                    $(this).hide();
+                    startTime = new Date();
+                    setTimeout(display, 1000);
+                    $("#state").text("ESTÁGIO " + 1);
+                    $("#points").text(0);
+                    myTimer();
+                    nTime = setInterval(function () {
+                        myTimer();
+                    }, 100);
+
+                });
+
+            });
+        </script>
+    </body>  
+</html>
