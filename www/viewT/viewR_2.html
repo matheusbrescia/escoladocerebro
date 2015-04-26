@@ -26,21 +26,18 @@
 
                 </div>
                 <div id="navbar" class="navbar-collapse collapse ">
-
                     <ul class="nav navbar-nav hidden">
                         <li role="presentation" ><a href="#">TEMPO <span class="badge  " id="time">0 </span> </a></li>
                         <li role="presentation"><a href="#">PONTOS <span class="badge  " id="points">0 </span> </a></li> 
 
                     </ul>
-
                     <ul class="nav navbar-nav navbar-right hidden">
                         <li role="presentation" class="active"><a href="#">FASE <span class="badge  " id="state">1 </span> </a></li>
 
 
                     </ul>
-                </div><!--/.nav-collapse -->
-
-            </div><!--/.container-fluid -->
+                </div>
+            </div>
         </nav>
         <div class="container">
             <div class="jumbotron hello">
@@ -58,7 +55,6 @@
                 <p>Memorize este objeto e clique nele quando aparecer na próxima tela. Você está pronto?</p> 
                 <button class="btn btn-xs btn-danger ">OKAY</button>
             </div>
-
             <div id="test_model_end" class="jumbotron teste_model">
 
                 <p>Suas estatísticas: </p> 
@@ -77,11 +73,10 @@
                             Número de tentativas
                         </li>
                     </ul>
-                    <a href="/viewT/viewR_1.html" class="btn btn-success">INICAR</a>
+                    <a href="/viewT/viewR_2.html" class="btn btn-success">INICAR</a>
                 </div>
 
             </div>
-            <!-- Example row of columns -->
             <div id="board" class="board">
 
             </div>
@@ -92,53 +87,60 @@
 
                 </div>
             </div>
-
         </footer>
         <script>
             $(document).ready(function ($) {
-
                 try {
                     userID = window.parent.document.getElementById("userID").value;
                 }
                 catch (e) {
                     console.log(e);
                 }
-
                 var nRows = 1;
                 var nColumns = 6;
                 var nTest = 0;
+                var nTestPeaces = 22;
                 var nClicks = 0;
                 var nTimeInterval = null;
-                var nTimeToStart = 30000;
-                var nTimeToTest = 10000;
                 var nLevel = 1;
                 var nPoints = [];
-
                 var peaces = [];
-                var peaces_clone = [];
-
+                var clone_peaces = [];
                 var nPlay = true;
                 var nStartTime = new Date();
-                var nTotalTime = 0;
                 var nLastClickTime = new Date();
                 var nClickIntervals = [];
-
 
                 function log(t) {
                     console.log(t);
                 }
                 function gamePscicotest() {
-                    log("gamePscicotest nTest" + nTest)
-                    var board = [];
-                    board.push(peaces[nTest]);
-                    peaces.splice(nTest, 1);
+                    nTest++;
 
+                    var board = [];
+                    board.push(peaces[nTest - 1]);
+                    board.push(peaces[nTest]);
+                    var p = peaces[nTest].value.split("_");
+                    $(".peaces-logo").html("");
+                    $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="/assets/img/shapes/ts' + p[1] + '.png" </img></button></div>');
+
+                    clone_peaces.splice(0, 1); 
+                   // clone_peaces.splice(0, 1);
+                    var sub_clone_peaces = clone_peaces.slice();
                     for (var i = 0; i < 4; i++) {
-                        board.push(peaces[Math.floor((Math.random() * (peaces.length - 1)) + 0)]);
+                        var tmp = Math.floor((Math.random() * (sub_clone_peaces.length - 1)) + 0);
+                        board.push(sub_clone_peaces[tmp]);
+                        sub_clone_peaces.splice(tmp, 1);
+
                     }
                     board.sort(function () {
                         return .5 - Math.random();
                     });
+                    clone_peaces.push(peaces[nTest - 1]);
+                   // clone_peaces.push(peaces[nTest]);
+                  //  log(JSON.stringify(board))
+                   // log(JSON.stringify(clone_peaces))
+                    log(JSON.stringify(sub_clone_peaces))
                     var nBreak = (nColumns - 1);
                     var gamePage = "<div class=\"layout\" id=\"layout\">";
                     $.each(board, function (i) {
@@ -149,39 +151,43 @@
                             gamePage += '<div class="row">';
                         }
                         gamePage += '<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">';
-                        gamePage += '<button type="button" data-toggle="button" id="' + str + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + res[1] + '.png" </img></button></div>';
+                        gamePage += '<button type="button" data-toggle="button"   class="btn btn-primary btn-board">' + res[1] + '<img src="/assets/img/shapes/ts' + res[1] + '.png" </img></button></div>';
 
                         if ((i % nColumns) == nBreak) {
                             gamePage += "</div> ";
                         }
-                        $(".peaces-logo").html("");
-                        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + str + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + res[1] + '.png" </img></button></div>');
 
                     });
                     gamePage += " </div>";
-
                     $("#board").html(gamePage);
                     $(".btn-board").on("click", function (e) {
+                        var p = peaces[nTest - 1].value.split("_");
                         nClicks++;
                         $(this).prop('disabled', true);
                         nClickIntervals.push(new Date() - nLastClickTime);
                         nLastClickTime = new Date();
-
-                        if ("peaces_" + peaces[nTest - 1] == this.id) {
-                            nPoints.push(this.id);
+                        if (p[1] == $(this).text()) {
+                            nPoints.push($(this).text());
                             $("#points").text(nPoints.length);
                         }
+
                         $(".total_points").text(nPoints.length);
                         $(".total_clicks").text(nClicks);
+                        log("total_points " + nPoints.length)
+                        log("total_clicks " + nClicks)
+                        log("$(this).text() " + $(this).text())
+                        log("peaces[nTest - 1] " + p[1])
 
-                        log("nPoints.length " + nPoints.length)
-                        log("nClicks " + nClicks)
-
+                        if (nTest === nTestPeaces - 1) {
+                            gameStop();
+                            $("#test_model_end").show();
+                            nPlay = false;
+                            onAnimateComplete();
+                            return true;
+                        }
                         gamePscicotest();
                     });
-
-
-                    nTest++;
+                    log("gamePscicotest nTest" + nTest)
                 }
                 function gameStop() {
                     log("stop");
@@ -190,18 +196,17 @@
                     $(".peaces-logo").html("");
                 }
                 function gameStart() {
-                    // $("#board").show();
-                    // $(".teste_model").hide();
                     $("#points").text(nPoints.length);
                     $("#state").text(nLevel);
-
-                    for (var i = 0; i < 22; i++) {
+                    for (var i = 0; i < nTestPeaces; i++) {
                         peaces.push({"value": ("peaces_" + i), "state": false});
                     }
-                    peaces.sort(function () {
-                        return .5 - Math.random();
-                    });
-                    peaces_clone = peaces;
+//                    peaces.sort(function () {
+//                        return .5 - Math.random();
+//                    });
+                    clone_peaces = peaces.slice();
+                    //log(JSON.stringify(peaces))
+
                     gamePscicotest();
                 }
                 function gamePlayerOkayDude() {
@@ -209,10 +214,11 @@
                     $(".teste_model").hide();
                     $("#points").text(nPoints.length);
                     $("#state").text(nLevel);
-
+                    nClicks++;
+                    nClickIntervals.push(new Date() - nLastClickTime);
+                    nLastClickTime = new Date();
                     gamePscicotest();
                 }
-
                 function gameTime() {
 
                     var endTime = new Date();
@@ -252,7 +258,7 @@
 
                     var dMult = [40, 60, 100];
                     logObject.pontuacao = ((logObject.acuracia + logObject.velocidade + logObject.estabilidade) / 3) * dMult[nLevel];
-                    logObject.gameId = "psicoattention";
+                    logObject.gameId = "psicomemo";
                     logObject.timestamp = (new Date()).getTime();
                     logObject['memoria'] = logObject.pontuacao * 1;
                     logObject['visuo_espacial'] = logObject.pontuacao * 1;
@@ -282,9 +288,7 @@
                     var minutes = Math.floor((milli / (60 * 1000)) % 60);
                     return minutes + ":" + seconds;
                 }
-
                 $(".teste_model").hide();
-
                 $(".btn-toggle .btn").on("click", function () {
                     $(".btn-toggle .btn").toggleClass("active")
                     if ($(this).text() == "TESTE") {
@@ -298,7 +302,7 @@
                     }
                 });
                 $("#hello").on("click", function () {
-                    //$(".board").hide();
+                    $(".board").hide();
                     $(".hello").hide();
                     $("#test_model_1").show();
                     $("#navbar ul").removeClass("hidden");
@@ -308,8 +312,6 @@
                 $("#test_model_1 button").on("click", function () {
                     gamePlayerOkayDude();
                 });
-
-
             });
         </script>
     </body>  
