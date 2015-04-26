@@ -25,17 +25,20 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand text-muted" href="#" ></a>
+                    <div class="navbar-brand peaces-logo"   ></div>
 
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#" id="time">TEMPO</a></li> 
-                        <li><a href="#" id="points">PONTOS</a></li>
+                <div id="navbar" class="navbar-collapse collapse ">
+
+                    <ul class="nav navbar-nav hidden">
+                        <li role="presentation" ><a href="#">TEMPO <span class="badge  " id="time">0 </span> </a></li>
+                        <li role="presentation"><a href="#">PONTOS <span class="badge  " id="points">0 </span> </a></li> 
 
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#" id="state">ESTÁGIO <span class="sr-only"> </span></a></li>
+
+                    <ul class="nav navbar-nav navbar-right hidden">
+                        <li role="presentation" class="active"><a href="#">FASE <span class="badge  " id="state">1 </span> </a></li>
+
 
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -44,63 +47,166 @@
         </nav>
 
         <div class="container">
+            <div class="jumbotron hello">
+                <h1>Bem vindos ao game da Atençao </h1>
 
-            <div id="start_test" class="jumbotron">
-                <a class="btn btn-lg btn-success" href="#" role="button">COMEÇAR</a> 
-                <p>clicar sobre todas as ocorrências do elemento na tela</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button" id="hello">COMEÇAR</a></p>
+            </div>
+            <div id="test_model_1" class="jumbotron teste_model">
+
+                <p>Clicar sobre todas as ocorrências do elemento que aparece no logo.</p>
+            </div>
+            <div id="test_model_2" class="jumbotron teste_model">
+
+                <p>Clicar sobre todas as ocorrências de cada um dos 2 elementos que aparecem no logo.</p>
+            </div>
+            <div id="test_model_3" class="jumbotron teste_model">
+
+                <p>Clicar sobre todas as ocorrências de cada um dos 3 elementos que aparecem no logo.</p>
+            </div>
+            <div id="test_model_end" class="jumbotron teste_model">
+
+                <p>Suas estatísticas: </p> 
+                <div class="game-stats" data-game-stats-id="list-group-badges">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge total_times">0</span>
+                            Tempo total
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge total_points">0</span>
+                            Total de acertos
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge total_clicks">0</span>
+                            Número de tentativas
+                        </li>
+                    </ul>
+                    <a href="/viewT/viewR_1.html" class="btn btn-success">INICAR</a>
+                </div>
+
             </div>
             <!-- Example row of columns -->
-            <div class="board">
+            <div id="board" class="board">
 
             </div>
         </div>
 
+        <footer>
+            <div id="myProgressbar" class="progress hidden">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+
+                </div>
+            </div>
+            <div class="btn-group btn-toggle footer-test"> 
+                <button class="btn btn-xs btn-default active">APLICAÇÃO</button>
+                <button class="btn btn-xs btn-danger ">TESTE</button>
+            </div>
+        </footer>
         <script>
             $(document).ready(function ($) {
 
                 try {
                     userID = window.parent.document.getElementById("userID").value;
-                    psicotesteID = window.parent.document.getElementById("psicotesteID").value;
                 }
                 catch (e) {
                     console.log(e);
                 }
+
+                var nRows = 8;
+                var nColumns = 10;
                 var nTest = 0;
-                var nTime = null;
-                var nLevel = 0;
-                var startTime = 0;
+                var nClicks = 0;
+                var nTimeInterval = null;
+                var nTimeToStart = 30000;
+                var nTimeToTest = 10000;
+                var nLevel = 1;
                 var nPoints = [];
+                var nPeaces = [];
+                var nPlay = true;
+                var nStartTime = new Date();
+                var nTotalTime = 0;
+                var nLastClickTime = new Date();
+                var nClickIntervals = [];
 
-                function pscicoteste_ModelA1() {
-
+                function log(t) {
+                    console.log(t);
+                }
+                function gamePscicotest() {
+                    nTest++;
                     var peaces = [];
 
                     for (var i = 0; i < 22; i++) {
                         peaces.push({"value": ("peaces_" + i), "state": false});
                     }
 
-                    var peace = Math.floor((Math.random() * 22) + 0);
+                    while (nPeaces.length < 3) {
+                        var randomnumber = Math.floor((Math.random() * 22) + 0);
+                        var found = false;
+                        for (var i = 0; i < nPeaces.length; i++) {
+                            if (nPeaces[i] == randomnumber) {
+                                found = true;
+                                break
+                            }
+                        }
+                        if (!found)
+                            nPeaces[nPeaces.length] = randomnumber;
+                    }
+
                     var board = [];
                     for (var i = 0; i < 10; i++) {
-                        board.push(peaces[peace]);
-                    }
-                    peaces.splice(peace, 1);
-                    for (var i = 0; i < 70; i++) {
-                        board.push(peaces[Math.floor((Math.random() * 21) + 0)]);
+                        if (nLevel == 1) {
+                            board.push(peaces[nPeaces[0]]);
+                        }
+                        if (nLevel == 2) {
+                            if (i < 5) {
+                                board.push(peaces[nPeaces[0]]);
+                            } else {
+                                board.push(peaces[nPeaces[1]]);
+                            }
 
+                        }
+                        if (nLevel == 3) {
+                            if (i < 4) {
+                                board.push(peaces[nPeaces[0]]);
+                            }
+                            if (i >= 4 && i < 7) {
+                                board.push(peaces[nPeaces[1]]);
+                            }
+                            if (i >= 7) {
+                                board.push(peaces[nPeaces[2]]);
+                            }
+                        }
+                    }
+                    if (nLevel == 1) {
+                        peaces.splice(peaces[nPeaces[0]], 1);
+                    }
+                    if (nLevel == 2) {
+                        peaces.splice(peaces[nPeaces[0]], 1);
+                        peaces.splice(peaces[nPeaces[1]], 1);
+                    }
+                    if (nLevel == 3) {
+                        peaces.splice(peaces[nPeaces[0]], 1);
+                        peaces.splice(peaces[nPeaces[1]], 1);
+                        peaces.splice(peaces[nPeaces[2]], 1);
+                    }
+
+                    for (var i = 0; i < 70; i++) {
+                        if (nLevel == 1) {
+                            board.push(peaces[Math.floor((Math.random() * 21) + 0)]);
+                        }
+                        if (nLevel == 2) {
+                            board.push(peaces[Math.floor((Math.random() * 20) + 0)]);
+                        }
+                        if (nLevel == 3) {
+                            board.push(peaces[Math.floor((Math.random() * 19) + 0)]);
+                        }
                     }
                     board.sort(function () {
                         return .5 - Math.random();
                     });
-
-
-                    var nRows = 8;
-                    var nColumns = 10;
-                    var nCells = (nRows * nColumns);
-
                     var nBreak = (nColumns - 1);
                     var gamePage = "<div class=\"layout\" id=\"layout\">";
-
                     $.each(board, function (i) {
                         var str = board[i].value;
                         var res = str.split("_");
@@ -116,81 +222,195 @@
                         }
 
                     });
-
                     gamePage += " </div>";
+                    if (nLevel == 1) {
+                        $(".peaces-logo").html("");
+                        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + nPeaces[0] + '.png" </img></button></div>');
 
-                    $(".text-muted").html('<button type="button" data-toggle="button" id="cur_' + peace + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + peace + '.png" </img></button></div>');
-                    $(".board").html(gamePage);
-                    $(".btn-board").on("click", function (e) {
-                        if ("peaces_" +peace == this.id) {
-                            nPoints.push(this.id);
-                            $("#points").text(nPoints.length);
-                        }
-                        console.log(peace);
-                        console.log(this.id);
-                    });
-                }
-                function myStopFunction() {
-                    clearInterval(nTime);
-                }
-                function myTimer() {
-                    var d = new Date();
-                    var t = d.toLocaleTimeString();
-                    if (nTest > 5) {
-                        myStopFunction();
-                        $("#start_test").show();
-                    } else {
-                        nTest++;
-                        pscicoteste_ModelA1();
                     }
-                }
+                    if (nLevel == 2) {
+                        $(".peaces-logo").html("");
+                        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + nPeaces[0] + '.png" </img></button></div>');
+                        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + nPeaces[1] + '.png" </img></button></div>');
 
-                function display() {
-                    // later record end time
+                    }
+                    if (nLevel == 3) {
+                        $(".peaces-logo").html("");
+                        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + nPeaces[0] + '.png" </img></button></div>');
+                        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + nPeaces[1] + '.png" </img></button></div>');
+                        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[2] + '" class="btn btn-primary btn-board">   <img src="/assets/img/shapes/ts' + nPeaces[2] + '.png" </img></button></div>');
+
+                    }
+
+                    $("#board").html(gamePage);
+                    $(".btn-board").on("click", function (e) {
+                        nClicks++;
+                        $(this).prop('disabled', true);
+                        nClickIntervals.push(new Date() - nLastClickTime);
+                        nLastClickTime = new Date();
+
+                        if (nLevel == 1) {
+                            if ("peaces_" + nPeaces[0] == this.id) {
+                                nPoints.push(this.id);
+                                $("#points").text(nPoints.length);
+                            }
+                        }
+                        if (nLevel == 2) {
+                            if (("peaces_" + nPeaces[0] == this.id) || ("peaces_" + nPeaces[1] == this.id)) {
+                                nPoints.push(this.id);
+                                $("#points").text(nPoints.length);
+                            }
+                        }
+                        if (nLevel == 3) {
+                            if (("peaces_" + nPeaces[0] == this.id) || ("peaces_" + nPeaces[1] == this.id) || ("peaces_" + nPeaces[2] == this.id)) {
+                                nPoints.push(this.id);
+                                $("#points").text(nPoints.length);
+                            }
+                        }
+                        $(".total_points").text(nPoints.length);
+                        $(".total_clicks").text(nClicks);
+                        log("nPoints.length " + nPoints.length)
+                        log("nClicks " + nClicks)
+                    });
+                    log("gamePscicotest nTest" + nTest)
+                }
+                function gameStop() {
+                    log("stop");
+                    clearInterval(nTimeInterval);
+                    $("#board").hide();
+                    $(".peaces-logo").html("");
+                }
+                function gameStart() {
+                    $("#board").show();
+                    $(".teste_model").hide();
+                    $("#points").text(nPoints.length);
+                    $("#state").text(nLevel);
+                    gameRunner();
+                    nTimeInterval = setInterval(function () {
+                        gameRunner();
+                    }, nTimeToTest);
+                }
+                function gameRunner() {
+
+                    if (nTest == 5 && nLevel < 2) {
+                        gameStop();
+                        $("#test_model_2").show();
+                        nLevel = 2;
+                        setTimeout(gameStart, nTimeToStart);
+                        return true;
+                    }
+                    if (nTest == 10 && nLevel < 3) {
+                        gameStop();
+                        $("#test_model_3").show();
+                        nLevel = 3;
+                        setTimeout(gameStart, nTimeToStart);
+                        return true;
+                    }
+                    if (nTest == 15) {
+                        nTest++;
+                        gameStop();
+                        $("#test_model_end").show();
+                        nPlay = false;
+                        onAnimateComplete();
+                        return true;
+                    }
+                    if (nTest < 15) {
+                        gamePscicotest();
+
+                    }
+
+                }
+                function gameTime() {
+
                     var endTime = new Date();
 
-                    // time difference in ms
-                    var timeDiff = endTime - startTime;
+                    var timeDiff = endTime - nStartTime;
 
-                    // strip the miliseconds
-                    timeDiff /= 1000;
+                    if (nPlay) {
+                        $("#time").text(millisecondsToTime(timeDiff));
+                        $(".total_times").text(millisecondsToTime(timeDiff));
 
-                    // get seconds
-                    var seconds = Math.round(timeDiff % 60);
+                        setTimeout(gameTime, 1000);
+                    }
+                    // $('.progress-bar').css('width', 100*( seconds/30)+'%').attr('aria-valuenow', 100*(seconds/30));
+                }
+                function onAnimateComplete() {
+                    var avgInterval = 0;
+                    var duration = new Date() - nStartTime;
+                    for (var i = 0; i < nClickIntervals.length; i++) {
+                        avgInterval += nClickIntervals[i];
+                    }
+                    avgInterval = avgInterval / nClickIntervals.length;
 
-                    // remove seconds from the date
-                    timeDiff = Math.floor(timeDiff / 60);
+                    var dp = 0;
+                    for (var i = 0; i < nClickIntervals.length; i++) {
+                        dp += Math.pow(nClickIntervals[i] - avgInterval, 2);
+                    }
+                    dp = Math.pow(dp / nClickIntervals.length - 1, 0.5);
 
-                    // get minutes
-                    var minutes = Math.round(timeDiff % 60);
+                    var logObject = {
+                        acuracia: ((nRows * nColumns) / (nPoints.length - 1)),
+                        velocidade: ((nRows * nColumns) / (duration / 1000)),
+                        estabilidade: (1 / (dp)),
+                        time: duration,
+                        success: true,
+                        level: nLevel
+                    };
 
-                    // remove minutes from the date
-                    timeDiff = Math.floor(timeDiff / 60);
+                    var dMult = [40, 60, 100];
+                    logObject.pontuacao = ((logObject.acuracia + logObject.velocidade + logObject.estabilidade) / 3) * dMult[nLevel];
+                    logObject.gameId = "psicoattention";
+                    logObject.timestamp = (new Date()).getTime();
+                    logObject['memoria'] = logObject.pontuacao * 1;
+                    logObject['visuo_espacial'] = logObject.pontuacao * 1;
+                    logObject['resolucao_problemas'] = logObject.pontuacao * 1;
+                    logObject['psico_motora'] = logObject.pontuacao * 1;
+                    logObject['logico_matematica'] = logObject.pontuacao * 1;
+                    logObject['linguagem'] = logObject.pontuacao * 1;
 
-                    // get hours
-                    var hours = Math.round(timeDiff % 24);
+                    var tr;
+                    var text = "Parabéns! Seu tempo foi de:  " + duration + "";
 
-                    // remove hours from the date
-                    timeDiff = Math.floor(timeDiff / 24);
+                    clearTimeout(tr);
+                    tr = setTimeout(function () {
+                        log(text)
+                    }, 2000);
 
-                    // the rest of timeDiff is number of days
-                    var days = timeDiff;
-
-                    $("#time").text(seconds);
-                    setTimeout(display, 1000);
+                    try {
+                        window.parent.saveLogObject(logObject);
+                    }
+                    catch (e) {
+                        console.log("ZERO PRA TI:\n" + JSON.stringify(logObject));
+                    }
+                }
+                function millisecondsToTime(milli) {
+                    var milliseconds = milli % 1000;
+                    var seconds = Math.floor((milli / 1000) % 60);
+                    var minutes = Math.floor((milli / (60 * 1000)) % 60);
+                    return minutes + ":" + seconds;
                 }
 
-                $("#start_test").on("click", function (e) {
-                    $(this).hide();
-                    startTime = new Date();
-                    setTimeout(display, 1000);
-                    $("#state").text("ESTÁGIO " + 1);
-                    $("#points").text(0);
-                    myTimer();
-                    nTime = setInterval(function () {
-                        myTimer();
-                    }, 10000);
+                $(".teste_model").hide();
 
+                $(".btn-toggle .btn").on("click", function () {
+                    $(".btn-toggle .btn").toggleClass("active")
+                    if ($(this).text() == "TESTE") {
+                        alert("RODANDO EM MODO TESTE 1 SEGUNDO PARA CADA ATIVIDADE")
+                        nTimeToStart = 1000;
+                        nTimeToTest = 1000;
+
+                    } else {
+                        nTimeToStart = 30000;
+                        nTimeToTest = 10000;
+                    }
+                });
+                $("#hello").on("click", function () {
+
+                    $(".hello").hide();
+                    $("#test_model_1").show();
+                    $("#navbar ul").removeClass("hidden");
+                    setTimeout(gameStart, nTimeToStart);
+                    setTimeout(gameTime, 1000);
                 });
 
             });

@@ -14,9 +14,22 @@
      height: 48px;
      /* min-width: 32px; */   
      /* min-height: 32px; */
-     padding: 10px;
+     padding: 10px; 
 }
-.text-muted img{
+.peaces-logo .btn {
+ margin-left: 10px;
+     
+} 
+.footer-test{
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+.board  {
+      
+     padding-top: 3%;
+}
+.peaces-logo img{
 	 
      width: 48px;
      height: 48px; 
