@@ -1,177 +1,94 @@
 <!DOCTYPE html> 
 <html>
     <head> 
-
-        <title>Bem Vindos ao Ranking Escola do Cérebro</title> 
-
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    
-        <meta name="author" content="Cognisense Tecnologia Ltda">  
-        <meta name="keywords" content="" /> 
-        <meta name="description" content="" />    
-
-        <link href="/assets/css/escola-do-cerebro-charts.css" rel="stylesheet" type="text/css"/>
-
-    </head> 
-    <body> 
-        <section>  
-            <div id="chart_dashboard" >  </div>  
-        </section>    
-        <script src="/bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script>
-        <script src="/bower_components/amcharts-stock/dist/amcharts/serial.js" type="text/javascript"></script>
-        <script src="/bower_components/amcharts-stock/dist/amcharts/amstock.js" type="text/javascript"></script> 
-        
-         <script src="/bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
-        
+        <title>Psicoteste Resolução de Problemas</title> 
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">  
+        <meta name="description" content="Escola do Cérebro" />
+        <meta name="keywords" content="cognisense, education, braingames, games, cognitive, seriousgames, escola do cérebro, escola, games digitais, educação, pedagogia" />
+        <meta name="author" content="Escola do Cérebro" />  
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">    
+        <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/assets/css/shapes.css" rel="stylesheet" type="text/css"/>
         <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/assets/js/eduscada_problems_solve.js" type="text/javascript"></script>
+    </head> 
+    <body>  
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand peaces-logo"   ></div>
 
-        <script>
-           try {
-                userID = window.parent.document.getElementById("userID").value;
-                dashID = window.parent.document.getElementById("dashID").value;
-                
-                console.log(userID);
-                console.log(dashID); 
-            }
-            catch (e) {
+                </div>
+                <div id="navbar" class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav hidden">
+                        <li role="presentation" ><a href="#">TEMPO <span class="badge  " id="time">0 </span> </a></li>
+                        <li role="presentation"><a href="#">PONTOS <span class="badge  " id="points">0 </span> </a></li> 
 
-                console.log(e);
-            }
-            function renderStockPointsChart(dataset, theme, bgColor ) {
-                var chart;
-                if (chart) {
-                    chart.clear();
-                }
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right hidden">
+                        <li role="presentation" class="active"><a href="#">FASE <span class="badge  " id="state">1 </span> </a></li>  
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="jumbotron hello">
+                <h1>Bem vindos ao game da Resolução de Problemas </h1> 
+                <img src="/assets/img/icon_user_profile.png" alt=""/>
+                <p>Nesse game você deve decidir o melhor padrão.</p>
+                <div class="btn-group btn-toggle footer-test"> 
+                    <button class="btn btn-xs btn-default active">APLICAÇÃO</button>
+                    <button class="btn btn-xs btn-danger ">TESTE</button>
+                </div>
+                <p></p>
+                <a class="btn btn-primary btn-lg" href="#" role="button" id="hello">COMEÇAR</a>
+            </div>
+            <div id="test_model_1" class="jumbotron teste_model">
 
-                if (document.body) {
-                    //  document.body.style.backgroundColor = bgColor;
-                    //  document.body.style.backgroundImage = "url(" + bgImage + ")";
-                }
+                <p>Escolha o melhor padrão para a sequência. Você está pronto?</p> 
+                <button class="btn btn-xs btn-danger ">OKAY</button>
+            </div>
+            <div id="test_model_2" class="jumbotron teste_model">
 
-                AmCharts.dayNames = "Domingo Segunda Terça Quarta Quinta Sexta Sábado".split(" ");
-                AmCharts.shortDayNames = "Dom Seg Ter Qua Qui Sex Sab".split(" ");
-                AmCharts.monthNames = "Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro".split(" ");
-                AmCharts.shortMonthNames = "Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez".split(" ");
-                AmCharts.makeChart("chart_dashboard"  , {
-                    type: "stock",
-                    theme: theme,
-                    categoryAxesSettings: {
-                        minPeriod: "mm"
-                    },
-                    pathToImages: "/bower_components/amcharts-stock/dist/amcharts/images/",
-                    dataSets: [{
-                            title: "Pontuação",
-                            fieldMappings: [{
-                                    fromField: "value",
-                                    toField: "value"
-                                }, {
-                                    fromField: "volume",
-                                    toField: "volume"
-                                }],
-                            dataProvider: dataset,
-                            categoryField: "date"
-                        }],
-                    panels: [{
-                            showCategoryAxis: false,
-                            title: "Evolução",
-                            percentHeight: 50,
-                            stockGraphs: [{
-                                    id: "g1",
-                                    valueField: "value",
-                                    type: "smoothedLine",
-                                    lineThickness: 2,
-                                    bullet: "round"
-                                }],
-                            stockLegend: {
-                                valueTextRegular: " ",
-                                markerType: "none"
-                            }
-                        },
-                        {
-                            title: "Experiência Acumulada",
-                            percentHeight: 50,
-                            stockGraphs: [{
-                                    valueField: "volume",
-                                    type: "column",
-                                    cornerRadiusTop: 2,
-                                    fillAlphas: 1
-                                }],
-                            stockLegend: {
-                                valueTextRegular: " ",
-                                markerType: "none"
-                            }
-                        }
-                    ],
-                    chartScrollbarSettings: {
-                        graph: "g1",
-                        usePeriod: "10mm",
-                        position: "bottom"
-                    },
-                    chartCursorSettings: {
-                        valueBalloonsEnabled: true
-                    },
-                    periodSelector: {
-                        position: "bottom",
-                        inputFieldsEnabled: false,
-                        dateFormat: "YYYY-MM-DD JJ:NN",
-                        fromText: "De: ",
-                        toText: "Até: ",
-                        inputFieldWidth: 150,
-                        periods: [{
-                                period: "hh",
-                                count: 1,
-                                label: "1 hora"
+                <p>Escolha o melhor padrão para a sequência. Você está pronto?</p> 
+                <button class="btn btn-xs btn-danger ">OKAY</button>
+            </div>
+            <div id="test_model_end" class="jumbotron teste_model">
 
-                            }, {
-                                period: "hh",
-                                count: 10,
-                                label: "10 horas"
-                            }, {
-                                period: "MAX",
-                                label: "MAX"
-                            }]
-                    },
-                    panelsSettings: {
-                        usePrefixes: true
-                    }
-                });
-            }
+                <p>Suas estatísticas: </p> 
+                <div class="game-stats" data-game-stats-id="list-group-badges">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge total_times">0</span>
+                            Tempo total
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge total_points">0</span>
+                            Total de acertos
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge total_clicks">0</span>
+                            Número de tentativas
+                        </li>
+                    </ul>
+                    <a href="/viewT/viewR_3.html" class="btn btn-success">INICAR</a>
+                </div>
 
-            function ajaxStockPointsChart() {
-
-                $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "allmypoints", idusers: userID, idgame: dashID})
-                        .done(function (json) {
-                            if (json !== null) {
-                                var dataset = [];
-                                var sum = 0;
-                                var obj = JSON.parse(json);
-                                $.each(obj, function (i, val) {
-                                    sum += Number(obj[i].pontuacao);
-                                    dataset.push({
-                                        date: obj[i].timestamp,
-                                        value: Number(obj[i].pontuacao),
-                                        volume: Number(sum)
-                                    });
-                                    //console.log(i + " " + val + " " + obj[i].timestamp + " " + obj[i].acuracia + " " + obj[i].velocidade);
-                                    $.each(val, function (u, wv) {
-                                        //   console.log(u + " " + wv);
-                                    });
-                                });
-                                renderStockPointsChart(dataset, 'chalk', '#516e5b');
-                                $('a').hide(); //discomment after buy
-                            }
-                        })
-                        .fail(function (jqxhr, textStatus, error) {
-                            console.log("Você parece estar off-line!");
-                        });
-
-                return true;
-            }
-            $(document).ready(function ($) {
-                ajaxStockPointsChart();
-
-                console.log("ajaxStockPointsChart");
-            });
-        </script>
+            </div>
+            <div id="board" class="board"> </div>
+        </div>
+        <footer>
+            <div id="myProgressbar" class="progress hidden">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">  </div>
+            </div>
+        </footer>
+        
     </body>  
 </html>

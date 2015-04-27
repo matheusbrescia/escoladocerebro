@@ -20,6 +20,13 @@
  margin-left: 10px;
      
 } 
+.hello img{
+	position:absolute;
+	left:1%;
+	top:1%;
+	
+	width: 5%;
+}
 .footer-test{
 	/* position:absolute; */
 	/* bottom:0; */
@@ -31,7 +38,7 @@
 }
 .peaces-logo img{
 	 
-     width: 48px;
+     width: 100%;
      height: 48px; 
 }
 .shape {
