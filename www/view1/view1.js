@@ -15,8 +15,10 @@ angular.module('myApp.view1', ['ngRoute'])
             $scope.hidden = "hidden";
             $scope.off = "hidden";
             $scope.message = "Bem vindo!";
-            $scope.stateAdmin = false;
+            $scope.points = [];
             $scope.statePlayer = false;
+            $scope.statePoints = false;
+            $scope.stateSendPoints = false;
             $scope.title = "Escolha um Game";
 
             $scope.checkGame = function (game) {
@@ -113,15 +115,18 @@ angular.module('myApp.view1', ['ngRoute'])
                 $.each(logArr, function (key, value) {
                     //console.log('DashboardCtrl:' + key + ' = ' + value);
 
+
                     var localData = JSON.parse(value);
                     console.log(localData);
-                    //localData.playerId = $scope.user.playerId;
-                    $scope.logToSend++;
-                    $scope.points.push(localData);
-                    $scope.statePoints = true;
-                    $.each(localData, function (k, v) {
-                        // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
-                    });
+                    if (localData !== null) {
+                        //localData.playerId = $scope.user.playerId;
+                        $scope.logToSend++;
+                        $scope.points.push(localData);
+                        $scope.statePoints = true;
+                        $.each(localData, function (k, v) {
+                            // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
+                        });
+                    }
                 });
 
                 $scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");

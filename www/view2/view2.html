@@ -16,18 +16,24 @@
             <div id="baloon-header" class="baloon-header  {{hidden}} " > 
                 <div class="baloon-reverse" >  
                     <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
-
                     <span class="baloon-label">  
                         {{message}} 
+                    </span>  
+                </div>  
+            </div>
+            <div id="baloon-header-logger" class="baloon-header hidden" > 
+                <div class="baloon-reverse" >   
+                    <span class="baloon-label">  
+                        
                     </span> 
-                </div> 
-
+                    <button id="game_again" class="btn fa fa-forward baloon-off" >JOGAR NOVAMENTE</button>  
+                </div>  
             </div>
         </div>
     </div> 
 </nav> 
 <section class="view view-2">   
-
+     
     <iframe iframe-onload="iframeLoadedCallBack()" id="{{gameId}}" src="{{gameUrl}}"></iframe> 
 </section> 
  

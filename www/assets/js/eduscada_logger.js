@@ -1,4 +1,4 @@
- 
+
 function setStat(key, value) {
     var display = $('.stat_' + key + '_display');
     if (display.length > 0)
@@ -6,14 +6,50 @@ function setStat(key, value) {
 
 }
 
+function syncData(logObject) {
+
+    console.log("Sincronizando...");
+    if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
+        var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
+        var logArrWalk = 0;
+        $.each(logArr, function (key, value) {
+            var localData = JSON.parse(value);
+            $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
+                    .done(function (rjson) {
+                        if (rjson !== null) {
+                            var obj = JSON.parse(rjson);
+                            logArrWalk++;
+                            if (logArr.length === logArrWalk) {
+                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = "";
+                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength = 0; 
+                                $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(logObject.pontuacao) + " pontos em " + Math.round(logObject.time/1000) + " segundos.");
+                                $("#baloon-header-logger").toggleClass("hidden");
+                                $("#game_again").on("click", function (){
+                                    $("#baloon-header-logger").toggleClass("hidden");
+                                    document.getElementById(logObject.gameId).src = "games/" + logObject.gameId + "/" + logObject.gameId + ".html";
+                                });
+                                console.log("Ranking atualizado, jogue novamente!");
+                                console.log(obj)
+                                return true;
+                            }
+
+                        } else {
+                            return false;
+                        }
+                    })
+                    .fail(function (jqxhr, textStatus, error) {
+                        console.log("Você parece estar off-line!");
+
+                        return false;
+                    });
+        });
+    } else {
+        console.log("Você ainda não tem pontos nessa sessão!");
+        return false;
+    }
+}
 function saveLogObject(logObject) {
 
-    if (logObject.gameId !== "memos" && logObject.gameId !== "genius") {
-        document.getElementById(logObject.gameId).src = "games/" + logObject.gameId + "/" + logObject.gameId + ".html";
-        setStat('numMoves', 0);
-        setStat('runningTime', 0);
-    }
-  
     if (typeof (Storage) !== "undefined") {
 
         if (localStorage.brComCognisenseEscolaDoCerebroUserProfile) {
@@ -25,14 +61,14 @@ function saveLogObject(logObject) {
         else {
 
             logObject.playerId = 0;
-            logObject.fullname = '';
+            logObject.fullname = 'convidado';
             logObject.adminId = 138;
         }
-       
+
         if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
             localStorage.brComCognisenseEscolaDoCerebroLogObjectArr += "|" + JSON.stringify(logObject);
             console.log("Parabéns, você fez " + Math.round(logObject.pontuacao) + " pontos nessa partida.");
-
+            
             //  $(".icone-" + logObject.gameId).trigger("click");
         }
         else {
@@ -40,28 +76,10 @@ function saveLogObject(logObject) {
             // $(".icone-" + logObject.gameId).trigger("click");
             console.log("Parabéns, você fez " + Math.round(logObject.pontuacao) + " pontos nessa partida.");
         }
- 
+        var sync = syncData(logObject);
+
     }
     else {
         alert("-\(°_o)/¯ Tente com o navegador Google Chrome ou Firefox");
     }
-
-
-
 }
-
-
-//        (function (i, s, o, g, r, a, m) {
-//            i['GoogleAnalyticsObject'] = r;
-//            i[r] = i[r] || function () {
-//                (i[r].q = i[r].q || []).push(arguments)
-//            }, i[r].l = 1 * new Date();
-//            a = s.createElement(o),
-//                    m = s.getElementsByTagName(o)[0];
-//            a.async = 1;
-//            a.src = g;
-//            m.parentNode.insertBefore(a, m)
-//        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-//
-//        ga('create', 'UA-5156382-22', 'escoladocerebro.org');
-//        ga('send', 'pageview');

@@ -13,9 +13,11 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
             BackgroundService.setCurrentBg("view-g-background");
 
             $scope.hidden = "hidden";
-            $scope.stateAdmin = false;
+              $scope.points = [];
             $scope.statePlayer = false;
-
+            $scope.statePoints = false;
+            $scope.stateSendPoints = false;
+            
             $scope.show = function () {
                 $scope.hidden = "alert";
             };
