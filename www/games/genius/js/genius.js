@@ -136,13 +136,13 @@ var circles8 = {
 $(document).ready(function () {
 
     $("#btPlay").click(playGame);
-    $(".basico").click(function () {
+    $(".easy").click(function () {
         chooseLevel(0);
     });
-    $(".intermediario").click(function () {
+    $(".medium").click(function () {
         chooseLevel(1);
     });
-    $(".avancado").click(function () {
+    $(".hard").click(function () {
         chooseLevel(2);
     });
     d("game loaded");

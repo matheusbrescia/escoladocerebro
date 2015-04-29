@@ -10,10 +10,11 @@ angular.module('myApp', [
     'myApp.view3',
     'myApp.view4',
     'myApp.view5',
-    'myApp.view6'
+    'myApp.view6',
+    'myApp.viewT'
 
 ]).factory('BackgroundService', [function () {
-        var currentBackgroundClass = 'view-1-background view-2-background view-3-background view-4-background view-5-background view-6-background view-H-background view-G-background view-L-background view-R-background home-background';
+        var currentBackgroundClass = 'view-1-background view-2-background view-3-background view-4-background view-5-background view-6-background view-H-background view-G-background view-L-background view-R-background view-T-background home-background';
         return  {
             setCurrentBg: function (c) {
                 currentBackgroundClass = c;

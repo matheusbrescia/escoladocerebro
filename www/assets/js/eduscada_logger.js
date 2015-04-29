@@ -21,10 +21,10 @@ function syncData(logObject) {
                             logArrWalk++;
                             if (logArr.length === logArrWalk) {
                                 localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = "";
-                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength = 0; 
-                                $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(logObject.pontuacao) + " pontos em " + Math.round(logObject.time/1000) + " segundos.");
+                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength = 0;
+                                $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(logObject.pontuacao) + " pontos em " + Math.round(logObject.time / 1000) + " segundos.");
                                 $("#baloon-header-logger").toggleClass("hidden");
-                                $("#game_again").on("click", function (){
+                                $("#game_again").on("click", function () {
                                     $("#baloon-header-logger").toggleClass("hidden");
                                     document.getElementById(logObject.gameId).src = "games/" + logObject.gameId + "/" + logObject.gameId + ".html";
                                 });
@@ -68,7 +68,7 @@ function saveLogObject(logObject) {
         if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
             localStorage.brComCognisenseEscolaDoCerebroLogObjectArr += "|" + JSON.stringify(logObject);
             console.log("Parabéns, você fez " + Math.round(logObject.pontuacao) + " pontos nessa partida.");
-            
+
             //  $(".icone-" + logObject.gameId).trigger("click");
         }
         else {
@@ -76,7 +76,8 @@ function saveLogObject(logObject) {
             // $(".icone-" + logObject.gameId).trigger("click");
             console.log("Parabéns, você fez " + Math.round(logObject.pontuacao) + " pontos nessa partida.");
         }
-        var sync = syncData(logObject);
+       
+
 
     }
     else {

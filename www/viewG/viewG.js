@@ -13,11 +13,11 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
             BackgroundService.setCurrentBg("view-g-background");
 
             $scope.hidden = "hidden";
-              $scope.points = [];
+            $scope.points = [];
             $scope.statePlayer = false;
             $scope.statePoints = false;
             $scope.stateSendPoints = false;
-            
+
             $scope.show = function () {
                 $scope.hidden = "alert";
             };
@@ -80,12 +80,17 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
                 $scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
             } else {
                 $scope.logToSend = 0;
-              //  $scope.showAlert("Parabéns, todos seus dados estão sincronizados!");
+                //  $scope.showAlert("Parabéns, todos seus dados estão sincronizados!");
             }
             if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
                 $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
                 if ($scope.dashboard.ngames > 0) {
                     $scope.stateGamer = true;
+                    if ($scope.dashboard.ngames > 10) { 
+                        $scope.stateTesty = true;
+
+                    }
+
                 } else {
                     $scope.stateGamer = false;
                 }

@@ -1,9 +1,7 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" > 
-           <img src="/assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/>  
- 
-
+           <img src="/assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/>   
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
             <img class="title-img" src="/assets/img/tittle.png" alt=""/>
@@ -14,17 +12,13 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar"> 
             <button class="btn fa fa-trash" ng-click="cleanUser()" ng-show="statePlayer"><span class="hidden-sm hidden-xs"> </span></button>  
             <button class="btn fa fa-save" ng-click="saveUser()" ng-show="statePlayer"><span class="hidden-sm hidden-xs"> </span></button>  
-            <button class="btn hidden-sm hidden-xs" data-toggle="modal"  data-target="#modal" ng-click="showProfessor()"> + Grupo </button>
-
+            <button class="btn hidden-sm hidden-xs" data-toggle="modal"  data-target="#modal" ng-click="showProfessor()"> + Grupo </button> 
             <div class="baloon-header  {{hidden}}" > 
                 <div class="baloon-baloon" >  
                     <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
-
                     <span class="baloon-label">  
-                        {{message}}
-
-                    </span>
-
+                        {{message}} 
+                    </span> 
                     <button class="btn fa fa-forward {{off}}"  ng-click="goPath('viewG')">Entrar OFF-LINE</button>  
                 </div> 
 

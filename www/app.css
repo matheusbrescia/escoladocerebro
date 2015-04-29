@@ -9,7 +9,7 @@
 body, html, .app{
     font-family:"OCRastd"; 
     background-image:url(/assets/img/app.svg);
-    
+
 
     margin: 0 auto; 
 
@@ -20,142 +20,89 @@ body, html, .app{
     overflow: hidden; 
 
     color: #F3F9FF; 
-    
+
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
-      
+
     /* background: transparent; */
 }
 nav{
-    padding-top: 2%;
-    padding-bottom: 2%;
+    /* padding-top: 2%; */
+    /* padding-bottom: 2%; */
 }
 section{
-    font-family:"OCRastd"; 
-
-    /* text-align: center; 
-    */ 
-    /* zoom: 50%; 
-    */
-    /* font-size: 100%; */ 
-
-    color: #00CCFF; 
-
-
-    padding-top: 4%;
+    font-family:"OCRastd";  
+    color: #00CCFF;  
+    /* padding-top: 4%; */
+    text-align: center;   
 }
 .display{
     display: block!important;
 }
-
-.view{
-    /* position: absolute; */ 
-
-    /* top: 0; */ 
-
-    /* left: 0; */ 
-
-    /* right: 0; */ 
-
-    margin: 0 auto; 
-
-    width: 100%; 
-
-    height: 100%; 
-
+.view{  
+    margin: 0 auto;  
+    width: 100%;  
+    height: 100%;  
+    /* text-align: center; */
 }
 .container{
     padding-right: 2%;
-    height: 100%; 
-
-    padding-left: rgba(148, 106, 106, 0.48);
-    padding-left: 2%;
-    /* width: 100%; */
-}
-.row{
-    /* height: 100%; */
-}
+    height: 100%;   
+    padding-left: 2%; 
+} 
 .modal-header{
-    border-bottom: 0px solid #e5e5e5;
-
+    border-bottom: 0px solid #e5e5e5; 
 }
 .datepicker{
-    color: #9F89D6; 
-
+    color: #9F89D6;  
 }
 .h100{
-    height: 100%; 
-
+    height: 100%;  
 }
 .w100{
-    width: 100%; 
-
+    width: 100%;  
 }
 .s100{
     height: 100%; 
-    width: 100%; 
-
-    /* position: absolute; */
+    width: 100%;  
 }
 .svg-app{
-    width: 100%; 
-
-    height: 100%; 
-
+    width: 100%;  
+    height: 100%;  
     border: 0px;
-    position: absolute; 
-
-    top: 0; 
-
-    left: 0; 
-
-    right: 0; 
-
-    z-index: -10; 
-
+    position: absolute;  
+    top: 0;  
+    left: 0;  
+    right: 0;  
+    z-index: -10;  
     overflow: auto;
-}
-svg{
-    /* width: 1024px; */
-    /* height: 600px; */
-    /* top: 0px; */
-    /* position: absolute; */
-
-}
+} 
 .svg:not(:root){
     overflow: scroll;
 }
-.btn-img{
-    /* display: inline-block; */ 
-
-    width: 25%;
-    /* height: 32px; */
+.btn-img{ 
+    width: 25%; 
 }
- 
+
 .btn{
-    color: #00CCFF; 
-
-    background: #413466; 
-
-    border: 1px #8676b5 solid; 
-    
+    color: #00CCFF;  
+    background: #413466;  
+    border: 1px #8676b5 solid;  
     font-size: 1em;
 }
 .btn.focus, .btn:focus, .btn:hover{
-    color: #413466; 
-
+    color: #413466;  
     background: #00CCFF; 
 
 }
+.btn:hover{
+    color: #9F89D6;  
+}
 .btn-back{
-    color: #00CCFF; 
-
-
-    background: transparent; 
-
-    border-radius:8px;
-
+    color: #00CCFF;  
+    background: transparent;  
+    border-radius:8px; 
     border: 0px #8676b5 solid; 
     display: inline-block; 
     padding:0px;
@@ -163,57 +110,29 @@ svg{
     font-size: 1em;
 }
 .key{
-    /* margin:10px; */ 
-
-    /* width: 100%; */ 
 
 }
-.btn:hover{
-    color: #9F89D6; 
 
-
-}
 input, select, .form-control{
-    width: 100%; 
-
-    color: #9F89D6; 
-
-    /* text-overflow: ellipsis; */     
-    /* white-space: nowrap; */        
-    /* overflow: hidden; */
+    width: 100%;  
+    color: #9F89D6;  
 }
 iframe{
-    border: 3px solid #8Dceff; 
-
-    border-radius: 20px; 
-
-
-    height: 100%; 
-
-    width: 100%; 
-
-
-    margin: 0 auto; 
-
-    /* zoom: .5; */   
-    overflow-x:hidden; 
-
-    overflow-y:hidden; 
-
-    /* padding-top: 0; */
+    
+    border: 0px;  
+    height: 100%;  
+    width: 100%;  
+    margin: 0 auto;  
+    overflow-x:hidden;  
+    overflow-y:hidden;  
 } 
 
 .thumbnail{
-    background: transparent; 
-
-    display: block; 
-
-    padding: 1px; 
-
-    margin-bottom: 2px; 
-
-    border: 0px solid #ddd; 
-
+    background: transparent;  
+    display: block;   
+    padding: 1px;  
+    margin-bottom: 2px;  
+    border: 0px solid #ddd;  
 } 
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form{
@@ -229,15 +148,16 @@ iframe{
     border-color: #e7e7e7;
 }
 .ngames{
-     background: #413466 url(/assets/img/icone_trofeu.png); 
+    background: #413466 url(/assets/img/icone_trofeu.png); 
 
     background-repeat: no-repeat; 
 
-    
-     background-position: center center; 
 
-     background-size: 100%;
+    background-position: center center; 
+
+    background-size: 100%;
 }
+
 .stat_runningTime_icon{
     background: #413466 url(/assets/img/icone_times.png); 
 
@@ -253,229 +173,85 @@ iframe{
 
 
 }
-.stat_runningTime_display{
-    /* letter-spacing : -1.8px; */ 
+.stat_runningTime_display{  
+    color: #D5CCFF;   
+    width: 100%;  
+}  
 
-    color: #D5CCFF; 
-
-    /* font-size: 1em; */ 
-
-    width: 100%; 
-
-} 
-.icone-games{
-    background-image: url(/assets/img/games.png); 
-
-    background-repeat: no-repeat; 
-
-    text-align: center; 
-
-    background-position: center; 
-
-}
-.icone-ranking{
-    background-image: url(/assets/img/ranking.png); 
-
-    background-repeat: no-repeat; 
-
-    text-align: center; 
-    background-position: center; 
-
-}
-.icone-dashboard{
-    background-image: url(/assets/img/dashboard.png); 
-
-    background-repeat: no-repeat; 
-
-    text-align: center; 
-    background-position: center; 
-
-}
-.icone-person{
-    background-image: url(/assets/img/profile.png); 
-
-    background-repeat: no-repeat; 
-
-    text-align: center; 
-    background-position: center; 
-
-}
-
-.icone-joaninha{
-    background-image: url(/assets/img/icone_joaninha.png); 
-
-    background-repeat: no-repeat; 
-
-    /* margin-top: 8px; 
-    */
-}
-.icone-breakout{
-    background-image: url(/assets/img/icone_breakout.png); 
-
-    background-repeat: no-repeat; 
-
-
-
-}
-.icone-connectome{
-    background-image: url(/assets/img/icone_connectome.png); 
-
-    background-repeat: no-repeat; 
-
-
-
-}
-.icone-genius{
-    background-image: url(/assets/img/icone_genius.png); 
-
-    background-repeat: no-repeat; 
-
-
-}
-.icone-tetris{
-    background-image: url(/assets/img/icone_tetris.png); 
-
-    background-repeat: no-repeat; 
-
-
-}
-.icone-tangran{
-    background-image: url(/assets/img/icone_tangran.png); 
-
-    background-repeat: no-repeat; 
-
-
-
-}
-.icone-looktable{
-
-    background-image: url(/assets/img/icone_looktable.png); 
-
-    background-repeat: no-repeat; 
-
-
-
-}
-
-.title {/* width: 100%; 
-    */ text-align:center; 
+.title {
+    text-align:center; 
     font-size: 1em; 
-    float:left; 
-    /* background-color:#CCCCCC; 
-    */ padding-top:10px; 
+    float:left;   
+    padding-top:10px; 
     padding-bottom:10px; 
     position:relative}
-
-.title-label {width: 100%; 
-              color:#FFFFFF; 
-              /* background-color: rgba(108, 91, 91, 0.38); 
-              */ float:left; 
-              padding: 5px; 
-              position:absolute; 
-              top: 30%; 
-              left: 0px; 
+.title-label {
+    width: 100%; 
+    color:#FFFFFF; 
+    float:left; 
+    padding: 5px; 
+    position:absolute; 
+    top: 30%; 
+    left: 0px; 
 }
-
 .title-img{width: 100%; 
            border:0px; 
            margin:auto; 
 }
 
-.trophy {width: 25%; text-align:center; 
+.trophy {
+    width: 25%; text-align:center; 
     font-size: 1em; 
     float: right; 
-    /* background-color:#CCCCCC; 
-    */ /* padding-top:10px; */ 
-    /* padding-bottom:10px; */ 
+
     position:relative}
-
-.trophy-label {width: 100%; 
-              color:#FFFFFF; 
-              /* background-color: rgba(108, 91, 91, 0.38); 
-              */ float:left; 
-              /* padding: 5px; */ 
-              position:absolute; 
-              top: 100%; 
-              left: 0px; 
+.trophy-label {
+    width: 100%; 
+    color:#FFFFFF; 
+    float:left;  
+    position:absolute; 
+    top: 100%; 
+    left: 0px; 
 }
-
 .trophy-img{width: 50%; 
-           border:0px; 
-           margin:auto; 
+            border:0px; 
+            margin:auto; 
 }
-.baloon {font-size: 1em; 
-         /* text-align:center; 
-         */ height: 100%; 
 
-
-         /* background-image: url(/assets/img/baloon.png); 
-         */ 
-         /* background-repeat: no-repeat; 
-         */
-
-
-         /* background-size: 100% 100%; 
-         *//* background-color:#CCCCCC; 
-         */  margin-top: 50%; 
-         /* position: absolute; 
-         */}
-.baloon-header {font-size: 1em; 
-                width: 100%; height: 100%; 
-
-
-                /* background-image: url(/assets/img/baloon.png); 
-                */ 
-                /* background-repeat: no-repeat; 
-                */
-
-
-                /* background-size: 100% 100%; 
-                *//* background-color:#CCCCCC; 
-                */  margin-top: 30%; 
-                position: absolute;right: 30%;z-index: 10000;}
-.baloon-baloon {/* font-size: 1em; 
-    */ /* text-align:center; 
-    */ /* float:left; 
-    */ 
-
-    background-image: url(/assets/img/baloon.png); 
-
-    background-repeat: no-repeat; 
-
-
-
+.baloon {
+    font-size: 1em; 
+    height: 100%;  
+    margin-top: 50%; 
+}
+.baloon-header {
+    font-size: 1em; 
+    width: 100%; height: 100%; 
+    margin-top: 30%; 
+    position: absolute;right: 30%;z-index: 10000;
+}
+.baloon-baloon { 
+    background-image: url(/assets/img/baloon.png);  
+    background-repeat: no-repeat;  
     background-size: 100% 100%; 
-    /* background-color:#CCCCCC; 
-    */ /* padding: 25%; */ 
-    /* margin-top: 50%; *//* position: absolute; 
-    */}
-.baloon-reverse {/* font-size: 1em; 
-    */ /* text-align:center; 
-    */ /* float:left; 
-    */ 
+}
+.baloon-reverse { 
+    background-image: url(/assets/img/baloon-reverse.png);  
+    background-repeat: no-repeat;  
+    background-size: 100% 100%;  
+    padding: 19%; 
+}
+.baloon-label {
+    text-align: left;
+    color:#FFFFFF; 
+}
 
-    background-image: url(/assets/img/baloon-reverse.png); 
-
-    background-repeat: no-repeat; 
-
-
-
-    background-size: 100% 100%; 
-    /* background-color:#CCCCCC; 
-    */ padding: 19%; 
-    /* margin-top: 50%; 
-    *//* position: absolute; 
-    */}
-.baloon-label {text-align: left; color:#FFFFFF; 
-               /* background-color: rgba(108, 91, 91, 0.38); */ /* margin-bottom: 11%; */  /* position:absolute; */ /* top: 10%; */ /* left: 5%; *//* padding: 10%; */}
-
-.baloon-img{  cursor: pointer; 
-              width: 100%; 
-              border:0px; 
-              margin:auto; 
-              /* top: 20%; 
-              */position: absolute; 
-              z-index: -1; 
+.baloon-img{ 
+    cursor: pointer; 
+    width: 100%; 
+    border:0px; 
+    margin:auto;  
+    position: absolute; 
+    z-index: -1; 
 }
 .baloon-btn{
     /* float:right; */
@@ -502,6 +278,7 @@ iframe{
 
     text-align: center; 
 
+    font-size: 1em;
 }
 .right-bar{
     padding: 2%; 
@@ -516,6 +293,11 @@ iframe{
 
 
 }
+ .testy  {
+    position: absolute;
+    z-index: 1000;
+    cursor:pointer;
+}
 .pointer{
     cursor: pointer; 
 
@@ -523,9 +305,6 @@ iframe{
 .form-group{
     margin-bottom: 5px; 
 
-
-    /* background: #413466; 
-    */
 
     border-radius: 20px; 
 
@@ -547,7 +326,7 @@ iframe{
 }
 .input-group-addon{
     border: 0px #8676b5 solid; 
-font-size: 1em;
+    font-size: 1em;
     border-radius:20px; 
 
     color: #00CCFF; 
@@ -594,15 +373,15 @@ font-size: 1em;
 
 }
 
-.viewr{
-     width: 100%;
-     
+.viewr {
+    width: 100%;
+
 
     height: 100%;
 }
-.view-h{
+.view-h {
     width: 100%;
-     
+
 
     height: 100%;
     cursor: pointer;
@@ -613,7 +392,7 @@ font-size: 1em;
     background-position: top center;  
     background-size: 100%;
     opacity:1;
-  
+
 }
 .view-h .row{
     height: 100%; 
@@ -629,11 +408,12 @@ font-size: 1em;
     background-position: top center;  
     background-size: 100%;
     opacity:1;
-   
+
 }
-.view-l{
+.view-l {
     padding-left: 7%;  
     padding-right: 7%;  
+    padding-top: 10%;
 }
 .view-l .row{ 
 
@@ -645,16 +425,15 @@ font-size: 1em;
 .nav .baloon-baloon{
     padding: 10%;
     text-align:left;
-}
-
+} 
 .view-g-background{ 
     background-image: url(viewG/appG.svg);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
 }
-.view-g{
-    
+.view-g {
+
     cursor: pointer;
     width: 100%;
     position: absolute;
@@ -670,9 +449,9 @@ font-size: 1em;
     width: 100%;
 
     position: absolute;
-    /* left: 50%; */
-    /* top: 15%; */
-}
+    left: 35%;
+    top: 0%;
+} 
 .view-g .baloon-baloon{
     /* height: auto; */
 
@@ -687,24 +466,32 @@ font-size: 1em;
     background-position: top center;  
     background-size: 100%;
 }
-.view-1{
+
+.view-1, .view-T {
     width: 80%;
-    
+
 
 }
+
+.view-T-background{ 
+    background-image: url(view1/app1.svg);  
+    background-repeat: no-repeat;  
+    background-position: top center;  
+    background-size: 100%;
+}
+
 .view-2-background{ 
     background-image: url(view2/app2.svg);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
 }
-.view-2{
-    
+.view-2 {
+
     text-align: center; 
- 
+
 
 }
-
 .view-2 iframe{
     /* border: 3px solid #8Dceff; */
     /* border-radius: 5px; */
@@ -721,6 +508,8 @@ font-size: 1em;
     min-height: 350px;
     min-width: 530px;
 } 
+
+
 .nav-2  .baloon-header {
     font-size: 1em; 
     width: 100%; height: 100%;  
@@ -735,19 +524,20 @@ font-size: 1em;
     background-position: top center;  
     background-size: 100%;
 }
-.view-3{
-    width: 80%; 
+.view-3 {
+    /* width: 80%; */ 
 
 
     /* top: 15%; */ 
 
-    font-size: 1em; 
+    padding-right: 10%;   height: 100%;   
+    padding-left: 10%;
+    /* font-size: 1em; */ 
 
-    /* height: 50%; */ 
- 
+    padding-top: 10%; 
+
 
 }
-
 .view-3 .list_points{
     /* width: 80%; */ 
 
@@ -769,12 +559,12 @@ font-size: 1em;
     background-position: top center;  
     background-size: 100%;
 }
-.view-4{
+.view-4 {
     /* width: 95%; */ 
 
     /* height: 100%; */ 
 
-    /* top: 10%; */ 
+    padding-top: 3%; 
 
 }
 .view-4 iframe{
@@ -797,11 +587,17 @@ font-size: 1em;
     background-position: top center;  
     background-size: 100%;
 }
-.view-5{
-    
+.view-5 {
+
     font-size: 1em;  
 
     overflow-y: auto; 
+
+    padding-right: 10%;
+
+    padding-left: 10%;
+
+    padding-top: 3%;
 
 }
 .view-5 .input-group-addon{
@@ -834,8 +630,23 @@ font-size: 1em;
 
 }
 
-.modal-content
-{
+.view-6-background{ 
+    background-image: url(view2/app2.svg);  
+    background-repeat: no-repeat;  
+    background-position: top center;  
+    background-size: 100%;
+}
+.view-6 { 
+    
+}
+.view-6 iframe{ 
+ 
+   height: 70%;  
+    
+   width: 100%;  
+} 
+
+.modal-content{
     background-image: url(/assets/img/modal_content.png); 
 
     background-repeat: no-repeat; 
@@ -849,223 +660,68 @@ font-size: 1em;
     border-radius: 20px;
 }
 .modal-dialog{
-    width: 90%;
+    width: 98%;
     margin:0 auto;
-    margin-top:2%;
+    margin-top:1%;
+    
 }
 .modal-body{
     padding:10%;
+}
+#modal_psicotest .modal-content{
+    background-image: url(/assets/img/modal_content.png); 
+
+    background-repeat: no-repeat; 
+
+
+    background-position: center; 
+
+
+    background-size: 100% 100%;
+    background-color: transparent;
+   height:90%;
+}
+#modal_psicotest .modal-body{
+    padding:0%;
+    height: 100%;
+
+}
+#modal_psicotest .modal-dialog{
+    padding:0%;
+    height: 100%;
+    
 }
 .modal-footer{
     text-align:center;
     border-top: 0px solid #e5e5e5;
 }
-/* Large desktop */
-@media (min-width: 1200px) { 
-    body, html{
-        font-size: 1em; 
 
-    }
-    .view-5{ 
-         
-    }
-    .view-3{
-       
-
-    }
-    .view-4{
-        
-
-    }
-    .view-l{
-        
-    }
-}
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) { 
-    body, html{
-        font-size: .9em; 
-
-    }
- nav{
-        padding:0;
-    }
-    .view-5{ 
-        
-    }
-    .view-3{
-    padding: 10%;
- 
-        
-    }
-    .view-2{
-    padding: 0;
- 
-    }
-    
-
-.view-2 iframe {
-     
-    
-    -ms-transform: scale(0.9);
-    -moz-transform: scale(0.9);
-    -o-transform: scale(0.9);
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
-    
-    -ms-transform-origin: center center;
-    -moz-transform-origin: center center;
-    -o-transform-origin: center center;
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
- 
-}
-    .view-4{
-        
-
-    }
-   .view-l{
-    padding-left: 7%;  
-    padding-right: 7%;  
-}
-}
-
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {   
-    body, html{
-        font-size: .7em; 
-
-    }
-    nav{
-        padding:0;
-    
-        /* margin: 0; */
-}
-    .view-5{ 
-              padding: 2% 10% 0% 10%;
-    }
-    .view-3{
-    padding: 10%;
- 
-              
-    }
-    .view-2{
-      padding: 0;
-   
-    }
-
-.view-2 iframe {
-     
-    
-    -ms-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    -o-transform: scale(0.8);
-    -webkit-transform: scale(0.8);
-    transform: scale(0.8);
-
-       -ms-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-}
-    .view-4{
-     /* padding: 0% 7% 0% 5%; */
-     
-
-    
-     width: 80%;
-}
-    
-  
-}
-
-/* Landscape phones and down */
-@media (max-width: 480px) { 
-    body, html{
-        font-size: .7em; 
-
-    }
-    .view-5{ 
-         padding: 0% 10% 0% 10%;
-    
-    }
-    .view-3{
-    padding: 0% 10% 0% 10%;
- 
-        
-    }
-    .view-2{
-
-       
-    }
-    .view-4{
-    
-         padding: 2% 5% 0% 5%;
-     
-
-    }
-    
-
-.view-2 iframe {
-     
-    
-    -ms-transform: scale(0.5);
-    -moz-transform: scale(0.5);
-    -o-transform: scale(0.5);
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    
-       -ms-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
- 
-}
-    .view-l{
-          
-    }
-
-    .key{
-        /* margin: 0; */
-        /* padding: 21%; */
-    
-        /* text-align: center; */
-}
-}
 .axis path,
 .axis line{
     fill: none;
     stroke:black;
     shape-rendering:crispEdge;
 }
-
 .axis text{
     font-family: sans-serif;
     font-size: 10px;
 }
-
 h1{
     font-family: sans-serif;
     font-weight: bold;
     font-size: 16px;
 }
-.tick
-{
+.tick{
     stroke-dasharray: 1, 2;
 }
 .axis path {
     display: none;
-}
-
+} 
 .axis line {
     stroke: #fff;
     stroke-opacity: .5;
     shape-rendering: crispEdges;
-}
-
+} 
 .chartsum {
     background: rgba(176, 191, 220, 0.79) ;
 
@@ -1076,14 +732,12 @@ h1{
     border-radius: 4px;
 
 }
-
 .chartsum div {
     width: 0;
     transition: all 1s ease-out;
     -moz-transition: all 1s ease-out;
     -webkit-transition: all 1s ease-out;
 }
-
 .chartsum div {
 
     background-color: #413466;
@@ -1093,7 +747,6 @@ h1{
     color: #00CCFF;
     box-shadow: 2px 2px 2px rgba(176, 191, 220, 0.79);
 }
-
 .chartavg {
     background: rgba(176, 191, 220, 0.79) ;
 
@@ -1103,14 +756,12 @@ h1{
     padding: 3px;
     border-radius: 4px;
 }
-
 .chartavg div {
     width: 0;
     transition: all 1s ease-out;
     -moz-transition: all 1s ease-out;
     -webkit-transition: all 1s ease-out;
 }
-
 .chartavg div {
 
     background-color: #9F89D6;
@@ -1119,6 +770,241 @@ h1{
     margin: 5px;
     color: #00CCFF;
     box-shadow: 2px 2px 2px rgba(176, 191, 220, 0.79);
+}
+
+/* Large desktop */
+@media (min-width: 1200px) { 
+    body, html{
+        font-size: 1em; 
+
+    }
+    .view-5{ 
+
+    }
+    .view-3{
+
+
+    }
+    .view-4{
+
+
+    }
+    .view-l{
+
+    }
+
+   
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    body, html{
+        font-size: .9em; 
+
+    }
+    nav{
+        padding:0;
+    }
+    .view-5{ 
+
+    }
+    .view-3{
+        padding: 10%;
+
+
+    }
+    .view-2{
+        padding: 0;
+
+    }
+
+
+    .view-2 iframe  {
+
+
+        -ms-transform: scale(0.9);
+        -moz-transform: scale(0.9);
+        -o-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+
+        -ms-transform-origin: center center;
+        -moz-transform-origin: center center;
+        -o-transform-origin: center center;
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+
+    }
+    .view-6 iframe {
+
+
+       
+
+        height: 40%;
+ 
+        min-width: 480px;
+        -ms-transform: scale(0.9);
+        -moz-transform: scale(0.9);
+        -o-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+
+        -ms-transform-origin: center center;
+        -moz-transform-origin: center center;
+        -o-transform-origin: center center;
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+
+    }
+    .view-4{
+
+
+    }
+    .view-l{
+        padding-left: 7%;  
+        padding-right: 7%;  
+    
+        padding-top: 10%;
+}
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {   
+    body, html{
+        font-size: .7em;  
+    }
+    nav{
+        padding:0; 
+    }
+    .view-5, .view-l {
+
+        padding: 2% 10% 0% 10%;
+    }
+           
+    .view-3{
+        padding: 10%;
+
+
+    }
+    .view-2{
+        padding: 0;
+
+    }
+
+    .view-2 iframe  {
+
+        -ms-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8); 
+        -ms-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+   .view-6 iframe {
+
+       
+
+        height: 30%;
+ 
+        min-width: 480px;
+ 
+        -ms-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8); 
+        -ms-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+    .view-4{ 
+        width: 80%;
+    }
+
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+    body, html{
+        font-size: .7em; 
+
+    }
+    .view-5, .view-l{ 
+        padding: 0% 10% 0% 10%;
+
+    }
+    .view-3{
+        padding: 0% 10% 0% 10%;
+
+
+    }
+    .view-2{
+
+
+    }
+    .view-4{
+
+        padding: 2% 5% 0% 5%;
+
+
+    }
+
+    .view-2 iframe  {
+
+
+        -ms-transform: scale(0.5);
+        -moz-transform: scale(0.5);
+        -o-transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+
+        -ms-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+
+    } 
+
+     .view-6 iframe  {
+
+
+        height: 20%;
+ 
+        min-width: 480px;
+
+
+        -ms-transform: scale(0.5);
+        -moz-transform: scale(0.5);
+        -o-transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+
+        -ms-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+
+    }
+    .view-l{
+    padding-top: 0px;
+
+    }
+
+    .key{
+        /* margin: 0; */
+        /* padding: 21%; */
+
+        /* text-align: center; */
+    }
 }
 html, body, iframe, .view, div  {
 
@@ -1130,7 +1016,7 @@ html, body, iframe, .view, div  {
     /* Safari and Chrome */
     -o-animation: fadein 1s; 
     /* Opera */
-    
+
 
     /* position: absolute; */
 
