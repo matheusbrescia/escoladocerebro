@@ -76,7 +76,7 @@ function saveLogObject(logObject) {
             // $(".icone-" + logObject.gameId).trigger("click");
             console.log("Parabéns, você fez " + Math.round(logObject.pontuacao) + " pontos nessa partida.");
         }
-       
+        var sync = syncData(logObject);
 
 
     }

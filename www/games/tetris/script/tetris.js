@@ -57,7 +57,7 @@ $(function ()
     c1 = $('#c1');
 
     background = $('#background');
-    BackgroundUtil.SetBackgroundImage(background, 'game-background');
+    BackgroundUtil.SetBackgroundImage(background, 'game_background');
 
     gameDisplay = $('#game');
 

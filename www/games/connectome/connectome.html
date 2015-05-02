@@ -16,7 +16,7 @@
 			{
 				position: absolute;
 				overflow:hidden;
-				background-color: #fff;
+				background-color: transparent;
 			}
 			
 			#game-container
@@ -24,7 +24,7 @@
 				position: absolute;
 				width: 529px;
 				height: 348px;
-				background-color: #fff;
+				background-color: transparent;
 			}
 			
 			#game-help
@@ -154,7 +154,7 @@
 				btPlay.width(138);
 				btPlay.height(41);
 				gameHelp.append(btPlay);
-				BackgroundUtil.SetBackgroundImage(btPlay, 'jogar');
+				BackgroundUtil.SetBackgroundImage(btPlay, 'play');
 				
 				var btPlayClicked = false;
 				btPlay.on('mouseup',function()
@@ -170,7 +170,7 @@
 			function showDifficultyScreen()
 			{
 				var gameDifficulty = $('#game-difficulty');
-				BackgroundUtil.SetBackgroundImage(gameDifficulty, 'clear_background');
+				BackgroundUtil.SetBackgroundImage(gameDifficulty, 'niveis_background');
 				
 				var btEasy = $('<div></div>');
 				btEasy.css('position','absolute');
@@ -181,7 +181,7 @@
 				btEasy.width(140);
 				btEasy.height(43);
 				gameDifficulty.append(btEasy);
-				BackgroundUtil.SetBackgroundImage(btEasy, 'basico');
+				BackgroundUtil.SetBackgroundImage(btEasy, 'easy');
 				
 				var btDifficultyClicked = false;
 				btEasy.on('mouseup',function()
@@ -202,7 +202,7 @@
 				btMedium.width(140);
 				btMedium.height(43);
 				gameDifficulty.append(btMedium);
-				BackgroundUtil.SetBackgroundImage(btMedium, 'medio');
+				BackgroundUtil.SetBackgroundImage(btMedium, 'medium');
 				
 				var btDifficultyClicked = false;
 				btMedium.on('mouseup',function()
@@ -223,7 +223,7 @@
 				btHard.width(140);
 				btHard.height(43);
 				gameDifficulty.append(btHard);
-				BackgroundUtil.SetBackgroundImage(btHard, 'avancado');
+				BackgroundUtil.SetBackgroundImage(btHard, 'hard');
 				
 				var btDifficultyClicked = false;
 				btHard.on('mouseup',function()

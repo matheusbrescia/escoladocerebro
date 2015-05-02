@@ -13,6 +13,7 @@ angular.module('myApp.viewH', ['ngRoute', 'mediaPlayer'])
 
             BackgroundService.setCurrentBg("view-h-background");
             $scope.hidden = "hidden";
+             $scope.points = [];
             $scope.stateProfessor = false;
             $scope.stateAdmin = false;
             $scope.statePlayer = false;

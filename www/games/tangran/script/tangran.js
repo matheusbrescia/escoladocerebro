@@ -73,7 +73,7 @@ $(function ()
 
     gameDisplay = $('#game');
     var background = $('#background');
-    BackgroundUtil.SetBackgroundImage(background, 'game-background');
+    BackgroundUtil.SetBackgroundImage(background, 'game_background');
 
     //btPrint = $('#btPrint');
     //btPrint.click(onBtPrintClick);

@@ -774,7 +774,7 @@ BackgroundUtil.SetBackgroundImage = function(element, sourceName)
 {
 	//console.log(sourceName+' -> '+B64Assets[sourceName])
 	console.log('SetBackgroundImage -> '+sourceName);
-	//$(element).css('background-image', 'url(\''+ 'assets/'+sourceName+'.png' +'\')');
-	$(element).css('background-image', 'url(\''+'data:image/png;base64,'+B64Assets[sourceName]+'\')');
+	$(element).css('background-image', 'url(\''+ 'assets/'+sourceName+'.png' +'\')');
+	//$(element).css('background-image', 'url(\''+'data:image/png;base64,'+B64Assets[sourceName]+'\')');
 	$(element).css('background-size', '100% 100%');
 }
