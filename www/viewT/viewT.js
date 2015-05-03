@@ -19,7 +19,7 @@ angular.module('myApp.viewT', ['ngRoute'])
             $scope.statePlayer = false;
             $scope.statePoints = false;
             $scope.stateSendPoints = false;
-            $scope.title = "Escolha um Game";
+            $scope.title = "Escolha um Teste";
 
             $scope.checkPsicotest = function (game) {
                 $scope.gameId = game;

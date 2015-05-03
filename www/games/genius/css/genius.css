@@ -54,7 +54,7 @@ html {
     font-size: 100%; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
     -ms-text-size-adjust: 100%; /* 2 */
-    background: #413466; /* Old browsers */ 
+    background: transparent; /* Old browsers */ 
 
     width:100%;
 
@@ -87,6 +87,8 @@ body{
 
     width: 150px;
     height: 43px;
+
+    z-index: 10000000;
 
 }
 #divLevels{ 

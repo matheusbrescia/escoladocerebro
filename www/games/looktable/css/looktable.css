@@ -4,6 +4,7 @@ html {
     background-image: url('../img/help_background.png');  
     background-repeat:no-repeat; 
     background-position:center center; 
+    background-size:100% 100%;
 } 
 
 #btPlay{

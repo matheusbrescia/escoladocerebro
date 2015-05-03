@@ -176,6 +176,7 @@ angular.module('myApp.view3', ['ngRoute'])
                 $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
                 if ($scope.user.playerId > 0) {
                     $scope.statePlayer = true;
+                    $scope.checkDash($scope.user.playerId);
                 } else {
                     $scope.statePlayer = false;
                     $scope.cleanUser();

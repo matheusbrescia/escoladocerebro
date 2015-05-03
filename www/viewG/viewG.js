@@ -11,6 +11,7 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
 
         .controller('ViewGTabCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
             BackgroundService.setCurrentBg("view-g-background");
+            $scope.ec_query_players = 'http://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
 
             $scope.hidden = "hidden";
             $scope.points = [];
@@ -42,12 +43,57 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
                 $location.path(view);
 
             };
+            $scope.checkDash = function (player) {
+
+                $.getJSON($scope.ec_query_players, {action: "dashboardbyuser", idusers: player})
+                        .done(function (json) {
+                            if (json !== null) {
+
+                                var obj = JSON.parse(json);
+                                $scope.dashboard.ngames = obj[0].ngames;
+                                $scope.dashboard.acuracia = obj[0].acuracia;
+                                $scope.dashboard.velocidade = obj[0].velocidade;
+                                $scope.dashboard.estabilidade = obj[0].estabilidade;
+                                $scope.dashboard.total_time = obj[0].total_time;
+                                $scope.dashboard.pontuacao_avg = obj[0].pontuacao_avg;
+                                $scope.dashboard.pontuacao_sum = obj[0].pontuacao_sum;
+                                $scope.dashboard.idadmin = obj[0].idadmin;
+                                $scope.dashboard.barssum = obj[0].barssum;
+                                $scope.dashboard.barsavg = obj[0].barsavg;
+
+                                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
+//                                var obj = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
+//                                console.log(obj[0].ngames);
+//                                console.log($scope.dashboard[0].ngames);
+                                $timeout(function () {
+                                    // $scope.showAlert("Você tem " + $scope.dashboard.ngames + " dados no dashboard!");
+                                }, 5000);
+                            } else {
+                                $scope.$apply(function () {
+                                    $timeout(function () {
+                                        //   $scope.showAlert("Sem dados no dashboard!");
+
+                                    }, 5000);
+
+                                });
+                            }
+                        })
+                        .fail(function (jqxhr, textStatus, error) {
+                            $scope.$apply(function () {
+
+                                $scope.showAlert("Você parece estar OFF-LINE!");
+                            });
+
+                        });
+
+            };
 
 
             if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {
                 $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
                 if ($scope.user.playerId > 0) {
                     $scope.statePlayer = true;
+                    $scope.checkDash($scope.user.playerId);
                     $scope.showAlert("Escolha um caminho " + $scope.user.fullname + ".");
 
                 } else {
@@ -86,7 +132,7 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
                 $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
                 if ($scope.dashboard.ngames > 0) {
                     $scope.stateGamer = true;
-                    if ($scope.dashboard.ngames > 10) { 
+                    if ($scope.dashboard.ngames > 10) {
                         $scope.stateTesty = true;
 
                     }
