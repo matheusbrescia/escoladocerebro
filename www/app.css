@@ -139,7 +139,7 @@ iframe{
     border: 0px;
 }
 .navbar-default {
-    background-image: url(/assets/img/tittle.png); 
+    background-image: url(/assets/img/tittle.svg); 
     background-size: 50% 90%;
     background-repeat: no-repeat; 
     background-position: center center;
@@ -221,18 +221,31 @@ iframe{
 .baloon {
     font-size: 1em; 
     height: 100%;  
-    margin-top: 50%; 
+    width: 100%;
+    /* margin-top: 50%; */ 
+     background-image: url(/assets/img/baloon.svg);  
+    background-repeat: no-repeat;  
+    /* background-size: 100% 100%; */ 
+    /* background-position: center top; */
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    width: 20%;
+    cursor: pointer;
 }
 .baloon-header {
     font-size: 1em; 
     width: 100%; height: 100%; 
-    margin-top: 30%; 
-    position: absolute;right: 30%;z-index: 10000;
-}
-.baloon-baloon { 
-    background-image: url(/assets/img/baloon.png);  
+       background-image: url(/assets/img/baloon.svg);  
     background-repeat: no-repeat;  
-    background-size: 100% 100%; 
+    /* margin-top: 30%; */ 
+    position: absolute;
+    right: 20%;z-index: 10000;
+}
+.baloon-baloon {
+    padding: 10%;
+ 
+   
 }
 .baloon-reverse { 
     background-image: url(/assets/img/baloon-reverse.png);  
@@ -423,8 +436,10 @@ iframe{
 }
 
 .nav .baloon-baloon{
-    padding: 10%;
-    text-align:left;
+    padding: 7%;
+    text-align: left;
+    /* padding-bottom: 64%; */
+    /* height: 16%; */
 } 
 .view-g-background{ 
     background-image: url(viewG/appG.svg);  

@@ -10,20 +10,8 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar"> 
 
-            <button class="btn fa fa-user-plus" ng-click="createUser()"><span class="hidden-sm hidden-xs">Criar Novo</span></button>  
             <button class="btn fa fa-unlock" ng-show="statePlayer" ng-click="cleanUser()"><span class="hidden-sm hidden-xs">Sair</span></button> 
-            <div class="baloon-header  {{hidden}}" > 
-                <div class="baloon-baloon" >  
-                    <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
 
-                    <span class="baloon-label">  
-                        {{message}} 
-                    </span>
-
-                    <button class="btn fa fa-forward {{off}} baloon-off"  ng-click="goPath('viewG')">Entrar OFF-LINE</button>  
-                </div> 
-
-            </div>
         </div>
     </div> 
 </nav>
@@ -35,65 +23,59 @@
             <div class="input-group">
                 <span class="input-group-addon " id="basic-login">Login</span> 
                 <input class="form-control" ng-change="change()" name="target" ng-model="user.login" id="target" type="text" value="" placeholder="Jogador" aria-describedby="basic-login"/> 
-               
+
             </div> 
-            
+
         </div>
     </div>
     <div class="row">
         <div class="form-group has-feedback">
             <div class="input-group">
-                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 h100"> 
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 h100"> 
                     <span class="input-group-addon" id="basic-pass">Senha</span> 
                 </div> 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 h100"> 
                     <input type="password" class="form-control" placeholder="Senha" ng-change="change()" ng-model="user.pass" aria-describedby="basic-pass">  
-                       
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
-                        <button class="key btn fa fa-plane" ng-click="changePass('1')">1</button>
-                        <button class="key btn fa fa-gift" ng-click="changePass('4')">4</button> 
-                        <button class="key btn fa fa-heart" ng-click="changePass('7')">7</button> 
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
+                            <button class="key btn fa fa-plane" ng-click="changePass('1')">1</button>
+                            <button class="key btn fa fa-gift" ng-click="changePass('4')">4</button> 
+                            <button class="key btn fa fa-heart" ng-click="changePass('7')">7</button> 
 
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
-                        <button class="key btn fa fa-money" ng-click="changePass('2')">2</button> 
-                        <button class="key btn fa fa-briefcase" ng-click="changePass('5')">5</button>
-                        <button class="key btn fa fa-bug" ng-click="changePass('8')">8</button>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
+                            <button class="key btn fa fa-money" ng-click="changePass('2')">2</button> 
+                            <button class="key btn fa fa-briefcase" ng-click="changePass('5')">5</button>
+                            <button class="key btn fa fa-bug" ng-click="changePass('8')">8</button>
 
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
-                        <button class="key btn fa fa-cloud" ng-click="changePass('3')">3</button>
-                        <button class="key btn fa fa-code" ng-click="changePass('6')">6</button>
-                        <button class="key btn fa fa-cogs" ng-click="changePass('9')">9</button>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"> 
+                            <button class="key btn fa fa-cloud" ng-click="changePass('3')">3</button>
+                            <button class="key btn fa fa-code" ng-click="changePass('6')">6</button>
+                            <button class="key btn fa fa-cogs" ng-click="changePass('9')">9</button>
 
-                    </div>
-                    
-                </div> 
-
+                        </div> 
+                    </div>  
                 </div> 
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 h100"> 
-                   <button class="btn fa fa-lock checkin"  ng-click="checkUser('checkin')"><span >Entrar</span></button>  
- 
-                </div> 
-               
-              
+                    <button class="btn fa fa-lock checkin"  ng-click="checkUser('checkin')"><span class="hidden-sm hidden-xs">Fazer login</span></button>  
+                    <button class="btn fa fa-user-plus" ng-click="createUser()"><span class="hidden-sm hidden-xs">Criar login</span></button>  
+
+                </div>  
             </div> 
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" >  
 
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" >  
-
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" > 
-
-        </div> 
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" >  
-
-        </div> 
-    </div>  
-
+    </div> 
 </section>
+
+<div class="baloon baloon-left  {{hidden}}" > 
+    <div class="baloon-baloon" >  
+        <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
+
+        <span class="baloon-label">  
+            {{message}} 
+        </span>
+
+        <button class="btn fa fa-forward {{off}} baloon-off"  ng-click="goPath('viewG')">Entrar OFF-LINE</button>  
+    </div>  
+</div>
