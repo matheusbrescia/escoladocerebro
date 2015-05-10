@@ -2,7 +2,7 @@
 function setStat(key, value) {
     var display = $('.stat_' + key + '_display');
     if (display.length > 0)
-        display.html(value + " segundos");//display.text(parseFloat(value).toFixed(0));
+        display.html(value);//display.text(parseFloat(value).toFixed(0));
 
 }
 

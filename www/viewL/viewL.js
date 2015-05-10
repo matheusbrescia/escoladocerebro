@@ -230,13 +230,13 @@ angular.module('myApp.viewL', ['ngRoute', 'mediaPlayer'])
 
                                 } else {
                                     $scope.$apply(function () {
-                                        $scope.showAlert("Login de Jogador já existe! ");
+                                        $scope.showAlert("Login de Jogador não confere ou já existe! ");
                                     });
 
                                 }
                             } else {
                                 $scope.$apply(function () {
-                                    $scope.showAlert("Login de Jogador já existe! ");
+                                    $scope.showAlert("Login de Jogador não confere ou já existe! ");
                                 });
 
                             }
@@ -268,7 +268,7 @@ angular.module('myApp.viewL', ['ngRoute', 'mediaPlayer'])
             } else {
                 $scope.cleanUser();
                 $scope.statePlayer = false;
-                $scope.showAlert("Você deve digitar seu login e selecionar sua senha, para clicar em “Entrar”! Se ainda não tem cadastro clique em “Criar Novo”");
+                $scope.showAlert("Digite seu login e senha ou se ainda não tem cadastro clique em Criar login");
             }
             if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr && localStorage.brComCognisenseEscolaDoCerebroLogObjectArr != 0) {
                 var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
@@ -290,7 +290,7 @@ angular.module('myApp.viewL', ['ngRoute', 'mediaPlayer'])
                 $scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
             } else {
                 $scope.logToSend = 0;
-                $scope.showAlert("Você deve digitar seu login e selecionar sua senha, para clicar em “Entrar”! Se ainda não tem cadastro clique em “Criar Novo”");
+                $scope.showAlert("Digite seu login e senha ou se ainda não tem cadastro clique em “Criar login”");
             }
             if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
                 $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);

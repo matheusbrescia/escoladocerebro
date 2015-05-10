@@ -21,21 +21,7 @@
 
             <button class="btn fa fa-user" ng-click="goPath('view5')">  </button>
             <button class="btn fa fa-refresh "  ng-click="syncData()"></button>  
-            <div class="baloon-header  {{hidden}}" > 
-                <div class="baloon-baloon" >  
-                    <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
 
-                    <span class="baloon-label">  
-                        {{message}}
-
-                    </span>
-
-                    <button class="btn fa fa-refresh " ng-show="statePoints" ng-click="syncData()">Sincronizar</button>  
-
-                    <button class="btn fa fa-gamepad " ng-show="!statePoints" ng-click="goPath('view1')">Jogar</button>  
-                </div> 
-
-            </div>
         </div>
     </div> 
 </nav>
@@ -86,3 +72,19 @@
     </div>  
 
 </section> 
+
+<div class="baloon baloon-left  {{hidden}}" > 
+    <div class="baloon-baloon" >  
+        <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
+
+        <span class="baloon-label">  
+            {{message}}
+
+        </span>
+
+        <button class="btn fa fa-refresh " ng-show="statePoints" ng-click="syncData()">Sincronizar</button>  
+
+        <button class="btn fa fa-gamepad " ng-show="!statePoints" ng-click="goPath('view1')">Jogar</button>  
+    </div> 
+
+</div>

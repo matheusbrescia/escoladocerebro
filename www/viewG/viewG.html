@@ -1,13 +1,13 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >    
-             <div class="trophy"> 
+            <div class="trophy"> 
                 <img class="trophy-img" src="/assets/img/icone_trofeu.png" alt=""/>
                 <span class="trophy-label">  
                     {{dashboard.ngames}} 
                 </span>
             </div>
-          
+
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
             <img class="title-img" src="/assets/img/tittle.png" alt=""/>
@@ -16,10 +16,7 @@
             </span>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar">  
-              <div class="testy"  > 
-                <img class="testy-img" src="/assets/img/icone_trofeu_teste.png" alt="" ng-click="goPath('viewT')"/>
-                
-            </div>
+
         </div>
     </div> 
 </nav>
@@ -27,22 +24,29 @@
 <section class="view view-g container" >  
     <div class="row">       
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view3')"> 
-             
+
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view5')"> 
-            
+
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view1')">    
-            <div class="baloon {{hidden}}" > 
-                <div class="baloon-reverse" >  
-                    <span class="baloon-label">   
-                         {{message}}                         
-                    </span>
-                </div> 
-            </div>
+
         </div> 
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view4')">       
-             
+
         </div> 
     </div>  
 </section> 
+
+<div class="testy"  > 
+    <img class="testy-img" src="/assets/img/icone_trofeu_teste.png" alt="" ng-click="goPath('viewT')"/> 
+</div>
+<div class="baloon {{hidden}}" > 
+    <div class="baloon-baloon" >  
+        <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
+
+        <span class="baloon-label">   
+            {{message}}                         
+        </span>
+    </div> 
+</div>

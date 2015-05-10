@@ -111,7 +111,7 @@ body{
     height: 43px;
 } 
 .cover{
-    background-size: cover; 
+    background-size: 100% 100%; 
 
 }
 #wrap {
@@ -174,11 +174,12 @@ article .cnt{
 #console {
     left: 0px;
     right: 0px;
-    top: 40%;
+    /* top: 40%; */
     position: absolute;
     height: 100%;  
     text-align: center;
 
+    background: rgba(0, 0, 0, 0.5);
     color: #f2f2f2; 
     -webkit-transition: opacity 1s ease-in-out;
     -moz-transition: opacity 1s ease-in-out;
@@ -192,17 +193,29 @@ article .cnt{
     width:100%;
      font-family: 'alpha_echoregular', cursive;   
     text-transform: uppercase;
-    border-bottom: 2px solid #FF0000;
+    border-bottom: 10px solid #FF0000;
     z-index: 1000; 
 }
 
 #console.busy {
     opacity: 1; 
     display: table;   
-    padding-top:1%;
+    /* top: 0%; */
 }   
 
-
+#console span {
+     width:100%;
+     height:100%;
+     vertical-align:middle;
+     /* margin-top: -20%; */
+} 
+ 
+#console i {
+     width:100%;
+     padding:1%;
+     vertical-align:middle;
+     /* margin-top: -20%; */
+}   
 // ┌────────────────────────────────────────────────────────────────────┐ \\
 // │ Escola do Cérebro 1.0.0 - Educational Game Library                 │ \\
 // ├────────────────────────────────────────────────────────────────────┤ \\

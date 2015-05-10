@@ -98,9 +98,9 @@ angular.module('myApp.view2', ['ngRoute'])
                         $scope.showAlert("Você ainda não tem pontos nessa sessão!");
                     }
                 };
-                $timeout(function () {
-                    $scope.button.playPause();
-                }, 300);
+//                $timeout(function () {
+//                    $scope.button.playPause();
+//                }, 300);
             };
             $scope.change = function () {
                 $scope.showAlert("Jogue para ganhar experiência.");
@@ -202,7 +202,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 $scope.stateGamer = false;
             }
             $timeout(function () {
-                $scope.closeAlert("");
+            //    $scope.closeAlert("");
             }, 5000);
 
 

@@ -12,10 +12,11 @@ var currentId = "camera";
 var level = 0;
 var levels = [4, 6, 8];
 var increment = 0;
+var incrementError = 0;
 var seeds = [];
 var tseed = 1000;
-var ttrans = tseed / 2;
-
+var ttrans = tseed * 3; 
+ 
 var gameability = ["icons", "colors", "flat"];
 var snd_okay = null;
 var snd_err = null;
@@ -192,138 +193,118 @@ function onAnimateComplete() {
     return true;
 }
 
-
 function next() {
-    //audioLevelup();
-    if (onAnimateComplete()) {
-        feedback((seeds.length + 1));
-        play = false;
-        var t;
-        clearTimeout(t);
-        t = setTimeout(function () {
-            seed();
-        }, ttrans);
 
-    }
+    feedback("Memorize<br> " + (seeds.length + 1));
+    play = false;
+    var t;
+    clearTimeout(t);
+    t = setTimeout(function () {
+        seed();
+    }, ttrans);
     increment = 0;
+
 }
 
 function evalClick(id) {
+    d("evalClick:" + id)
     if (play) {
         clickIntervals.push(new Date() - lastClickTime);
         lastClickTime = new Date();
-
+        moves++;
         try {
-            window.parent.setStat('numMoves', (moves++) + 1);
+            window.parent.setStat('numMoves', (moves) + 1);
         }
         catch (e) {
             d(e);
         }
-
         var obj = eval("circles." + id);
         if (obj.index === seeds[increment]) {
             increment++;
-            showSeed(id);
+            incrementError = 0;
+           // showSeed(id);
+            if (increment === seeds.length) {
+                next();//fechou fase
+            }
         } else {
-            // audioErr();
-            feedback("ERROU!");
-            $("#wrap").addClass(errcolor);
-            var t;
-            clearTimeout(t);
-            t = setTimeout(function () {
-                $("#wrap").removeClass(errcolor);
-            }, ttrans);
+            increment = 0;
+            incrementError++;
+            if (incrementError > 2) {
+                feedback("Fim de Jogo! <br>  <i class=\"color crimson  btn fa fa-heart-o\">" + incrementError + "/3</i> ");
+                onAnimateComplete();
+            } else {
+                feedback("ERROU! <br>  <i class=\"color crimson btn fa fa-heart\">" + incrementError + "/3</i>  <br>Vamos repetir! ");
+                $("#wrap").addClass(errcolor);
+                var t;
+                clearTimeout(t);
+                t = setTimeout(function () {
+                    $.each(seeds, function (id, obj) {
+                        trigger = tseed * (id + 1);
+                        var tick;
+                        clearTimeout(tick);
+                        tick = setTimeout(function () {
+                            showSeed(findSeed(circles, obj));
+                        }, trigger);
+
+                    });
+                }, ttrans);
+            }
+
         }
     }
 
 }
 
-function rem(obj) {
-//    $("#" + id).removeClass("active");
-//    $("#" + id).transition({
-//        x: -100,
-//        opacity: 0,
-//        zIndex: 0
-//    }, ttrans, function() {
-//        //   $("#" + id).addClass("off");
-//    });
-    $("#ferromenu-controller,#nav li ." + obj.color).css("-webkit-box-shadow", " 0px 0px 0px 0px " + obj.background);
-    $("#ferromenu-controller,#nav li ." + obj.color).css("-moz-box-shadow", " 0px 0px 0px 0px " + obj.background);
-    $("#ferromenu-controller,#nav li ." + obj.color).css("box-shadow", " 0px 0px 0px 0px " + obj.background);
-//    
-    //$("#ferromenu-controller,#nav li ." + obj.color).css("background-image", "url('img/" + levels[level] + "CORES/" + obj.color + ".png')");
-    //$("#ferromenu-controller,#nav li ." + obj.color).removeClass("hover");
-    //  $("#" + obj.id).addClass("off");
-    // $("#" + obj.id).removeClass("active");
-
-    if (increment === seeds.length) {
-        next();//fechou fase
-    }
-}
-
-function add(obj) {
-
-    // $("#" + obj.id).removeClass("off");
-    // $("#" + obj.id).addClass("active");
-    var t;
-    clearTimeout(t);
-    t = setTimeout(function () {
-        rem(obj);
-    }, ttrans);
-
-
-//    $("#" + id).transition({
-//        x: 300
-//    }, 0, function() {
-//      //  $("#" + id).removeClass("off");
-//        $("#" + id).transition({
-//            x: 0,
-//            opacity: 1,
-//            zIndex: 2
-//        }, ttrans, function() {
-//            rem(id);
-//        });
-//
-//    });
-
-
-}
 
 function showSeed(id) {
+    d("showSeed:" + id)
+
     var obj = eval("circles." + id);
     var mul = 64 / (levels[level]);
     $("#ferromenu-controller,#nav li ." + obj.color).css("-webkit-box-shadow", " 0px 0px " + mul + "px " + mul / 2 + "px  " + obj.background);
     $("#ferromenu-controller,#nav li ." + obj.color).css("-moz-box-shadow", " 0px 0px " + mul + "px " + mul / 2 + "px  " + obj.background);
     $("#ferromenu-controller,#nav li ." + obj.color).css("box-shadow", " 0px 0px " + mul + "px " + mul / 2 + "px  " + obj.background);
-    d("id:" + id + " index:" + obj.index);
-    //audioTecla(obj.index);
-    add(obj);
+
+    var t;
+    clearTimeout(t);
+    t = setTimeout(function () {
+
+        $("#ferromenu-controller,#nav li ." + obj.color).css("-webkit-box-shadow", " 0px 0px 0px 0px " + obj.background);
+        $("#ferromenu-controller,#nav li ." + obj.color).css("-moz-box-shadow", " 0px 0px 0px 0px " + obj.background);
+        $("#ferromenu-controller,#nav li ." + obj.color).css("box-shadow", " 0px 0px 0px 0px " + obj.background);
+
+    }, ttrans);
 }
 
 function start() {
 
     startTime = new Date();
     play = true;
-    feedback("AGORA!");
+    feedback("Memorize...");
+    d("start genius...")
     setInterval(function () {
         var endTime = new Date();
         duration = endTime - startTime;
-
         try {
             window.parent.setStat('runningTime', millisecondsToTime(duration));
         }
         catch (e) {
             d(e);
         }
+    }, 300);
 
-
-    }, 50);
+    var t;
+    clearTimeout(t);
+    t = setTimeout(function () {
+        seed();
+    }, ttrans);
 
 }
 
 function feedback(msg) {
     var t;
-    $('#console').text(msg).addClass('busy');
+    $('#console').html("<span>" + msg + "</span>");
+    $('#console').addClass('busy');
     clearTimeout(t);
     t = setTimeout(function () {
         $('#console').removeClass('busy');
@@ -344,17 +325,16 @@ function seed() {
     var trigger = 0;
     var mul = levels[level];
     var rand = Math.floor(Math.random() * (mul));
-
-    for (var i = 0; i < mul; i++) {
+    while(rand === seeds[increment]){
         rand = Math.floor(Math.random() * (mul));
-        // seeds.push(i);
-
+        d("rand:" + rand)
     }
-
     seeds.push(rand);
+    d("seeds:" + seeds)
     seeds.sort(function () {
         return Math.random() - 0.5;
     });
+     d("seedssort:" + seeds)
     $.each(seeds, function (id, obj) {
         trigger = tseed * (id + 1);
         var tick;
@@ -368,8 +348,10 @@ function seed() {
     var t;
     clearTimeout(t);
     t = setTimeout(function () {
-        start();
-    }, trigger);
+        //start();
+        play = true;
+        feedback("Agora!");
+    }, trigger + 100);
 }
 
 function millisecondsToTime(milli) {
@@ -449,9 +431,10 @@ function chooseLevel(lv) {
             radius: radius,
             opened: true
         });
-        seed();
+
     }
 
+    start();
 
 
 }

@@ -478,12 +478,13 @@ angular.module('myApp.view5', ['ngRoute'])
                 } else {
                     $scope.statePlayer = false;
                     $scope.cleanUser();
+                   
                 }
-
+                 $scope.showAlert("Após preencher os campos clique em Salvar");
             } else {
                 $scope.cleanUser();
                 $scope.statePlayer = false;
-
+                  $scope.showAlert("Após preencher os campos clique em Salvar");
             }
             if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr && localStorage.brComCognisenseEscolaDoCerebroLogObjectArr != 0) {
                 var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
@@ -505,7 +506,7 @@ angular.module('myApp.view5', ['ngRoute'])
                 $scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
             } else {
                 $scope.logToSend = 0;
-                $scope.showAlert("Parabéns, todos seus dados estão sincronizados!");
+               
             }
             if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
                 $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
