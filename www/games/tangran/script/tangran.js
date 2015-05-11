@@ -730,14 +730,20 @@ function onPieceDoubleClick(e)
     var piece = getPieceUnderPoint(e.pageX, e.pageY);
     if (!piece)
         return;
-    var pieceDisplay = piece.display;
+	
+	rotatePiece(piece);
+}
 
+function rotatePiece(piece)
+{	
     if (piece.isRightPosition)
         return;
 
     if (piece.isRotating)
         return;
 
+    var pieceDisplay = piece.display;
+	
     piece.isRotating = true;
 
     var deltaRotation = 45;
@@ -780,6 +786,7 @@ function onPieceDoubleClick(e)
 }
 
 var mouseUpTimeout;
+var rotateTimeout;
 function onPieceMouseDown(e)
 {
     var piece = getPieceUnderPoint(e.pageX, e.pageY);
@@ -790,6 +797,8 @@ function onPieceMouseDown(e)
     if (piece.isRightPosition)
         return;
 
+	rotateTimeout = setTimeout(function(){ rotatePiece(piece); }, 1000);
+		
     var index = pieces.indexOf(piece);
     pieces.splice(index, 1);
     pieces.splice(0, 0, piece);
@@ -804,6 +813,8 @@ function onPieceMouseDown(e)
 
     function onMouseMove(e)
     {
+		clearTimeout(rotateTimeout);
+	
         var x = parseFloat(pieceDisplay.css('left').replace('px', ''));
         var y = parseFloat(pieceDisplay.css('top').replace('px', ''));
 
@@ -822,6 +833,8 @@ function onPieceMouseDown(e)
 
     function onMouseUp(e)
     {
+		clearTimeout(rotateTimeout);
+	
         body.off('mousemove', onMouseMove);
         body.off('mouseup', onMouseUp);
 

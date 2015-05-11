@@ -16,7 +16,7 @@
                 padding: 0;
                 overflow: hidden;
                 background-color: #413466;
-
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
             }
 
             .piece
@@ -114,6 +114,37 @@
               //  $(element).css('background-image', 'url(\'' + 'data:image/png;base64,' + B64Assets[sourceName] + '\')');
                 $(element).css('background-size', '100% 100%');
             }
+			
+			$(function()
+			{
+				initTouchHandler();
+			});
+			
+			function touchHandler(event) 
+			{			
+				var touch = event.changedTouches[0];
+
+				var simulatedEvent = document.createEvent("MouseEvent");
+					simulatedEvent.initMouseEvent({
+					touchstart: "mousedown",
+					touchmove: "mousemove",
+					touchend: "mouseup"
+				}[event.type], true, true, window, 1,
+					touch.screenX, touch.screenY,
+					touch.clientX, touch.clientY, false,
+					false, false, false, 0, null);
+
+				touch.target.dispatchEvent(simulatedEvent);
+				event.preventDefault();
+			}
+
+			function initTouchHandler() 
+			{
+				document.getElementById('game').addEventListener("touchstart", touchHandler, true);
+				document.getElementById('game').addEventListener("touchmove", touchHandler, true);
+				document.getElementById('game').addEventListener("touchend", touchHandler, true);
+				document.getElementById('game').addEventListener("touchcancel", touchHandler, true);
+			}
 
         </script>
         <script src="script/tangran.js" type="text/javascript"></script>

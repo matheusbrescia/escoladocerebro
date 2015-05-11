@@ -210,32 +210,6 @@ function playLevelId(difficulty)
     showGame();
 }
 
-function touchHandler(event)
-{
-    var touch = event.changedTouches[0];
-
-    var simulatedEvent = document.createEvent("MouseEvent");
-    simulatedEvent.initMouseEvent({
-        touchstart: "mousedown",
-        touchmove: "mousemove",
-        touchend: "mouseup"
-    }[event.type], true, true, window, 1,
-            touch.screenX, touch.screenY,
-            touch.clientX, touch.clientY, false,
-            false, false, false, 0, null);
-
-    touch.target.dispatchEvent(simulatedEvent);
-    event.preventDefault();
-}
-
-function initTouchHandler()
-{
-    document.getElementById('game-display').addEventListener("touchstart", touchHandler, true);
-    document.getElementById('game-display').addEventListener("touchmove", touchHandler, true);
-    document.getElementById('game-display').addEventListener("touchend", touchHandler, true);
-    document.getElementById('game-display').addEventListener("touchcancel", touchHandler, true);
-}
-
 function showGame()
 {
     setSize();
@@ -365,7 +339,7 @@ function initializeOnScreenButtons()
     rotateButton = $('<div style="position:absolute; background-image: url(\'rotate_button.png\');"></div>');
     rotateButton.css({'width': '114px', 'height': '114px', 'left': '25px', 'top': '125px'});
     gameUi.append(rotateButton);
-    rotateButton.click(function () {
+    rotateButton.on('mousedown',function () {
         rotatePiece();
     });
 

@@ -16,8 +16,7 @@
                 padding: 0;
                 overflow: hidden;
                 background-color: transparent;
-                
-
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
             }
 
             #background
@@ -119,6 +118,37 @@
                 $(element).css('background-size', '100% 100%');
             }
 
+			$(function()
+			{
+				initTouchHandler();
+			});
+			
+			function touchHandler(event) 
+			{			
+				var touch = event.changedTouches[0];
+
+				var simulatedEvent = document.createEvent("MouseEvent");
+					simulatedEvent.initMouseEvent({
+					touchstart: "mousedown",
+					touchmove: "mousemove",
+					touchend: "mouseup"
+				}[event.type], true, true, window, 1,
+					touch.screenX, touch.screenY,
+					touch.clientX, touch.clientY, false,
+					false, false, false, 0, null);
+
+				touch.target.dispatchEvent(simulatedEvent);
+				event.preventDefault();
+			}
+
+			function initTouchHandler() 
+			{
+				document.getElementById('game-ui').addEventListener("touchstart", touchHandler, true);
+				document.getElementById('game-ui').addEventListener("touchmove", touchHandler, true);
+				document.getElementById('game-ui').addEventListener("touchend", touchHandler, true);
+				document.getElementById('game-ui').addEventListener("touchcancel", touchHandler, true);
+			}
+			
         </script>
         <script src="script/tetris.js" type="text/javascript"></script>
     </head>
