@@ -166,6 +166,6 @@ angular.module('myApp.viewT', ['ngRoute'])
                 $scope.stateGamer = false;
             }
             $timeout(function () {
-                $scope.baloon.playPause();
+               // $scope.baloon.playPause();
             }, 300);
         }); 

@@ -8,7 +8,8 @@
 
 body, html, .app{
     font-family:"OCRastd"; 
-    background-image:url(/assets/img/app.svg);
+    background: #836ACC;
+    background-image:url(assets/img/app.svg);
 
 
     margin: 0 auto; 
@@ -17,7 +18,7 @@ body, html, .app{
 
     width: 100%; 
 
-    overflow: hidden; 
+    /* overflow: hidden; */ 
 
     color: #F3F9FF; 
 
@@ -53,6 +54,7 @@ section{
 } 
 .modal-header{
     border-bottom: 0px solid #e5e5e5; 
+    /* min-height: 0; */
 }
 .datepicker{
     color: #9F89D6;  
@@ -140,7 +142,7 @@ iframe{
     border: 0px;
 }
 .navbar-default {
-    background-image: url(/assets/img/tittle.svg); 
+    background-image: url(assets/img/tittle.svg); 
     background-size: 50% 90%;
     background-repeat: no-repeat; 
     background-position: center center;
@@ -149,7 +151,7 @@ iframe{
     border-color: #e7e7e7;
 }
 .ngames{
-    background: #413466 url(/assets/img/icone_trofeu.png); 
+    background: #413466 url(assets/img/icone_trofeu.png); 
 
     background-repeat: no-repeat; 
 
@@ -160,7 +162,7 @@ iframe{
 }
 
 .stat_runningTime_icon{
-    background: #413466 url(/assets/img/icone_times.png); 
+    background: #413466 url(assets/img/icone_times.png); 
 
     background-repeat: no-repeat; 
 
@@ -203,12 +205,43 @@ iframe{
            margin:auto; 
 }
 
+.testy {
+    width: 25%; text-align:center; 
+    font-size: 1em; 
+    float: right; 
+
+    position:relative;
+    z-index: 10000000000;
+    cursor: pointer;
+}
+ 
+.testy-label {
+    width: 100%; 
+    color:#FFFFFF; 
+    float:left;  
+    position:absolute; 
+    top: 100%; 
+    left: 0px; 
+}
+.testy-img{width: 50%; 
+            border:0px; 
+            margin:auto; 
+}
+.testy:hover {
+    width: 30%; 
+   
+}
 .trophy {
     width: 25%; text-align:center; 
     font-size: 1em; 
     float: right; 
 
-    position:relative}
+    position:relative;
+    z-index: 10000000000;
+    cursor: pointer;
+}
+
+
 .trophy-label {
     width: 100%; 
     color:#FFFFFF; 
@@ -221,13 +254,12 @@ iframe{
             border:0px; 
             margin:auto; 
 }
-
 .baloon {
     font-size: 1em; 
     height: 35%;  
     width: 100%;
     /* margin-top: 50%; */ 
-     background-image: url(/assets/img/baloon.svg);  
+     background-image: url(assets/img/baloon.svg);  
     background-repeat: no-repeat;  
     /* background-size: 100% 100%; */ 
     /* background-position: center top; */
@@ -243,7 +275,7 @@ iframe{
     height: 35%;  
     width: 100%;
     /* margin-top: 50%; */ 
-     background-image: url(/assets/img/baloon.svg);  
+     background-image: url(assets/img/baloon.svg);  
     background-repeat: no-repeat;  
     /* background-size: 100% 100%; */ 
     /* background-position: center top; */
@@ -263,7 +295,7 @@ iframe{
 .baloon-header {
     font-size: 1em; 
     width: 100%; height: 100%; 
-       background-image: url(/assets/img/baloon.svg);  
+       background-image: url(assets/img/baloon.svg);  
     background-repeat: no-repeat;  
     /* margin-top: 30%; */ 
     position: absolute;
@@ -276,7 +308,7 @@ iframe{
     margin-top: 5%;
 }
 .baloon-reverse { 
-    background-image: url(/assets/img/baloon-reverse.png);  
+    background-image: url(assets/img/baloon-reverse.png);  
     background-repeat: no-repeat;  
     background-size: 100% 100%;  
     padding: 19%; 
@@ -304,7 +336,7 @@ iframe{
 }
 .btn-bg{
 
-    background-image: url(/assets/img/background_button.png); 
+    background-image: url(assets/img/background_button.png); 
 
     background-repeat: no-repeat; 
 
@@ -334,13 +366,7 @@ iframe{
 
 
 }
- .testy  {
-    position: absolute;
-    top: 30%;
-    left: 65%;
-    z-index: 1000;
-    cursor:pointer;
-}
+ 
 .pointer{
     cursor: pointer; 
 
@@ -694,7 +720,7 @@ iframe{
 } 
 
 .modal-content{
-    background-image: url(/assets/img/modal_content.png); 
+    background-image: url(assets/img/modal_content.png); 
 
     background-repeat: no-repeat; 
 
@@ -724,7 +750,7 @@ iframe{
 
 
 #modal_psicotest .modal-content{
-    background-image: url(/assets/img/modal_content.png); 
+    background-image: url(assets/img/background_test.png); 
 
     background-repeat: no-repeat; 
 
@@ -742,7 +768,7 @@ iframe{
 
 }
 #modal_psicotest .modal-dialog{
-    padding:0%;
+    /* padding: 5%; */
     height: 100%;
     
 }
@@ -780,7 +806,7 @@ h1{
 .chartsum {
     background: rgba(176, 191, 220, 0.79) ;
 
-    background-image: url(/assets/img/bk_painel_ranking.png);
+    background-image: url(assets/img/bk_painel_ranking.png);
     background-repeat: repeat-y;
     background-size: 100% 6px; 
     padding: 3px;
@@ -805,7 +831,7 @@ h1{
 .chartavg {
     background: rgba(176, 191, 220, 0.79) ;
 
-    background-image: url(/assets/img/bk_painel_ranking.png);
+    background-image: url(assets/img/bk_painel_ranking.png);
     background-repeat: repeat-y;
     background-size: 100% 6px; 
     padding: 3px;

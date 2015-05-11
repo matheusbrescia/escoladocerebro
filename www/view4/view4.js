@@ -9,7 +9,7 @@ angular.module('myApp.view4', ['ngRoute'])
             }])
         .controller('RankingCtrl', function ($scope, $http, SettingsService, $location, $timeout, BackgroundService) {
             BackgroundService.setCurrentBg("view-4-background");
-
+            $scope.dashUrl = "games/ranking/ranking.html";
             $scope.hidden = "hidden";
             $scope.title = "Ranking";
             $scope.stateAdmin = false;
@@ -35,8 +35,8 @@ angular.module('myApp.view4', ['ngRoute'])
             };
             $scope.syncDash = function ( ) {
                 $scope.showAlert("Momentinho, vamos atualizar o ranking...");
-                $scope.dashUrl = "viewR/viewR.html";
-                $timeout(function () {
+                $scope.dashUrl = "games/ranking/ranking.html";
+                $timeout(function () { 
                     $scope.showAlert("Pronto, aqui você pode ver sobre o seu desempenho!");
                 }, 300);
             };

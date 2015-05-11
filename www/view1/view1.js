@@ -24,8 +24,10 @@ angular.module('myApp.view1', ['ngRoute'])
             $scope.checkGame = function (game) {
                 $scope.gameId = game;
                 SettingsService.set('game', game);
+                $timeout(function () {
+                    $location.path('view2');
+                }, 100);
 
-                $location.path('/view2/view2.html');
             };
 
             $scope.show = function () {

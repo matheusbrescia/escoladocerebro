@@ -90,16 +90,16 @@ $(document).ready(function ($) {
             return .5 - Math.random();
         });
         var nBreak = (nColumns - 1);
-        var gamePage = "<div class=\"layout\" id=\"layout\">";
+        var gamePage = "<div class=\"layout board-attention\" id=\"layout\">";
         $.each(board, function (i) {
             var str = board[i].value;
             var res = str.split("_");
 
             if ((i % nColumns) == 0) {
-                gamePage += '<div class="row">';
+                gamePage += '<div class="row center-block">';
             }
-            gamePage += '<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">';
-            gamePage += '<button type="button" data-toggle="button"  class="btn btn-primary btn-board ">' + res[1] + '<img src="/assets/img/pattern_1/ts' + res[1] + '.png" </img></button></div>';
+            gamePage += '<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 center-block">';
+            gamePage += '<button type="button" data-toggle="button"  class="btn btn-primary btn-board ">' + res[1] + '<img src="img/pattern_1/ts' + res[1] + '.png" </img></button></div>';
 
             if ((i % nColumns) == nBreak) {
                 gamePage += "</div> ";
@@ -109,20 +109,20 @@ $(document).ready(function ($) {
         gamePage += " </div>";
         if (nLevel == 1) {
             $(".peaces-logo").html("");
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary ">   <img src="/assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
 
         }
         if (nLevel == 2) {
             $(".peaces-logo").html("");
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary ">   <img src="/assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary ">   <img src="/assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div>');
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div>');
 
         }
         if (nLevel == 3) {
             $(".peaces-logo").html("");
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary ">   <img src="/assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary ">   <img src="/assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div>');
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[2] + '" class="btn btn-primary ">   <img src="/assets/img/pattern_1/ts' + nPeaces[2] + '.png" </img></button></div>');
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div>');
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[2] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="img/pattern_1/ts' + nPeaces[2] + '.png" </img></button></div>');
 
         }
 
@@ -156,6 +156,9 @@ $(document).ready(function ($) {
             log("nPoints.length " + nPoints.length)
             log("nClicks " + nClicks)
         });
+        $("#board").addClass("jumbotron");
+         $("#peaces-logo").addClass("jumbotron");
+        
         log("gamePscicotest nTest" + nTest)
     }
     function gameStop() {
@@ -171,7 +174,7 @@ $(document).ready(function ($) {
         $("#state").text(nLevel);
         gameRunner();
         nTimeInterval = setInterval(function () {
-            gameRunner();
+             gameRunner();
         }, nTimeToTest);
     }
     function gameRunner() {
@@ -313,5 +316,5 @@ $(document).ready(function ($) {
         }
     });
     $(".teste_model").hide();
-
+ 
 });

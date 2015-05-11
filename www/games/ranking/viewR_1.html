@@ -10,16 +10,19 @@
         <meta name="keywords" content="" /> 
         <meta name="description" content="" />    
 
-        <link href="/assets/css/escola-do-cerebro-charts.css" rel="stylesheet" type="text/css"/> 
+        <link href="charts.css" rel="stylesheet" type="text/css"/> 
 
-        <script src="/bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script> 
-        <script src="/bower_components/amcharts/dist/amcharts/pie.js" type="text/javascript"></script>
+        <script src="bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script> 
+        <script src="bower_components/amcharts/dist/amcharts/pie.js" type="text/javascript"></script>
 
-        <script src="/bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
+        <script src="bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
 
-        <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+        <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
     </head> 
     <body> 
+        <header>
+            <h1>Ranking Geral</h1>
+        </header>
         <section>  
             <div id="chart_dashboard" >  </div>  
         </section>    
@@ -49,7 +52,7 @@
                 }
                 AmCharts.makeChart("chart_dashboard", {
                     "type": "pie",
-                    "theme": theme,
+                    "theme": theme, 
                     "dataProvider": data,
                     "valueField": "pontos",
                     "titleField": "nome",
@@ -59,7 +62,7 @@
                     "angle": 30,
                     "exportConfig": {
                         menuItems: [{
-                                "icon": '/bower_components/amcharts/images/export.png',
+                                "icon": 'bower_components/amcharts/images/export.png',
                                 format: 'png'
                             }]
                     }

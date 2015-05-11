@@ -19,6 +19,7 @@ angular.module('myApp.view2', ['ngRoute'])
             $scope.stateSendPoints = false;
             $scope.title = "Games ";
             $scope.fc = 0;
+            $scope.gameUrl = "games/connectome/connectome.html";//default
             $scope.show = function () {
                 $scope.hidden = "alert";
             };

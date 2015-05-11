@@ -2,10 +2,10 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" >  
-            <img src="/assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/> 
+            <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/> 
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
-            <img class="title-img" src="/assets/img/tittle.png" alt=""/>
+            <img class="title-img" src="assets/img/title.svg" alt=""/>
             <span class="title-label">  
                 {{title}} 
             </span>
@@ -19,7 +19,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <div class="thumbnail">
                 <a class="item item-avatar" href="#/viewT" ng-click="checkPsicotest('attention')">
-                    <img src="/assets/img/icon_breve.png" alt=""/> 
+                    <img src="assets/img/icon_breve.png" alt=""/> 
                 </a>
                 <div class="caption"> </div>
             </div>
@@ -27,7 +27,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <div class="thumbnail">
                 <a class="item item-avatar" href="#/viewT" ng-click="checkPsicotest('memory')">
-                    <img src="/assets/img/icon_breve.png" alt=""/> 
+                    <img src="assets/img/icon_breve.png" alt=""/> 
                 </a> 
                 <div class="caption"> </div>
             </div>
@@ -35,7 +35,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <div class="thumbnail"> 
                 <a class="item item-avatar" href="#/viewT" ng-click="checkPsicotest('problems')">
-                    <img src="/assets/img/icon_breve.png" alt=""/> 
+                    <img src="assets/img/icon_breve.png" alt=""/> 
                 </a>
                 <div class="caption"> </div>
             </div>
@@ -51,8 +51,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
-
+               <button class="btn fa fa-close  " data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <iframe iframe-onload="iframeLoadedCallBack()" id="{{gameId}}" src="{{gameUrl}}"></iframe> 

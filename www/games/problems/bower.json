@@ -6,21 +6,9 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "jquery": "latest",
-        "jquery-ui": "latest",
-        "modernizr": "latest",
-        "bootstrap": "latest",
-        "bootstrap-datepicker": "latest",
-        "amcharts": "latest",
-        "amcharts-stock": "latest",
-        "jssor-slider": "latest",
-        "d3": "latest",
-        "nvd3": "latest", 
-        "angular": "latest",
-        "angular-route": "latest",
-        "angular-loader": "latest",
-        "angular-mocks": "latest",
-        "angular-media-player": "latest",
+        "jquery": "latest", 
+        "bootstrap": "latest", 
+         "pace": "latest",
         "font-awesome": "latest"
 
     }

@@ -5,7 +5,7 @@ function setStat(key, value) {
         display.html(value);//display.text(parseFloat(value).toFixed(0));
 
 }
-
+ 
 function syncData(logObject) {
 
     console.log("Sincronizando...");
@@ -22,18 +22,16 @@ function syncData(logObject) {
                             if (logArr.length === logArrWalk) {
                                 localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = "";
                                 localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength = 0;
-                                if (logObject.gameId !== "memos" && logObject.gameId !== "genius") {
 
-                                    $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(logObject.pontuacao) + " pontos em " + Math.round(logObject.time / 1000) + " segundos.");
+                                $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(logObject.pontuacao) + " pontos em " + Math.round(logObject.time / 1000) + " segundos.");
+                                $("#baloon-header-logger").toggleClass("hidden");
+                                $("#game_again").on("click", function () {
                                     $("#baloon-header-logger").toggleClass("hidden");
-                                    $("#game_again").on("click", function () {
-                                        $("#baloon-header-logger").toggleClass("hidden");
-                                        document.getElementById(logObject.gameId).src = "games/" + logObject.gameId + "/" + logObject.gameId + ".html";
-                                    });
-                                }
+                                    document.getElementById(logObject.gameId).src = "games/" + logObject.gameId + "/" + logObject.gameId + ".html";
+                                });
 
                                 console.log("syncData atualizado, jogue novamente!" + obj);
-                              
+
                                 return true;
                             }
 

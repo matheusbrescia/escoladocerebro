@@ -21,6 +21,7 @@
         "angular-loader": "latest",
         "angular-mocks": "latest",
         "angular-media-player": "latest",
+         "pace": "latest",
         "font-awesome": "latest"
 
     }

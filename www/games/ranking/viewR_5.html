@@ -10,15 +10,19 @@
         <meta name="keywords" content="" /> 
         <meta name="description" content="" />    
 
-        <link href="/assets/css/escola-do-cerebro-charts.css" rel="stylesheet" type="text/css"/>
-        <script src="/bower_components/amcharts/dist/amcharts/amcharts.js" type="text/javascript"></script>
-        <script src="/bower_components/amcharts/dist/amcharts/funnel.js" type="text/javascript"></script>
-        
-         <script src="/bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
-        <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+        <link href="charts.css" rel="stylesheet" type="text/css"/>
+        <script src="bower_components/amcharts/dist/amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="bower_components/amcharts/dist/amcharts/funnel.js" type="text/javascript"></script>
+        <script src="bower_components/amcharts/dist/amcharts/serial.js" type="text/javascript"></script>
+
+        <script src="bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
+        <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
 
     </head> 
     <body> 
+        <header>
+            <h1>Jogadores recentes</h1>
+        </header>
         <section>  
             <div id="chart_dashboard" >  </div>  
         </section>    
@@ -26,18 +30,18 @@
 
 
         <script>
-           try {
+            try {
                 userID = window.parent.document.getElementById("userID").value;
                 dashID = window.parent.document.getElementById("dashID").value;
-                
+
                 console.log(userID);
-                console.log(dashID); 
+                console.log(dashID);
             }
             catch (e) {
 
                 console.log(e);
             }
-            function renderRealTimePieChart(data, theme, bgColor ) {
+            function renderRealTimePieChart(data, theme, bgColor) {
                 var chart;
                 if (chart) {
                     chart.clear();
@@ -47,28 +51,42 @@
                     //    document.body.style.backgroundColor = bgColor;
                     //  document.body.style.backgroundImage = "url(" + bgImage + ")";
                 }
-                AmCharts.makeChart("chart_dashboard" , {
-                    "type": "funnel",
+                AmCharts.makeChart("chart_dashboard", {
+                    "type": "serial",
                     "theme": theme,
                     "dataProvider": data,
-                    "balloon": {
-                        "fixedPosition": true
+                    "valueAxes": [{
+                            "position": "left",
+                            "axisAlpha": 0,
+                            "gridAlpha": 0
+                        }],
+                    "graphs": [{
+                            "balloonText": "[[category]]: <b>[[value]]</b>",
+                            "colorField": "color",
+                            "fillAlphas": 0.85,
+                            "lineAlpha": 0.1,
+                            "type": "column",
+                            "topRadius": 1,
+                            "valueField": "pontos"
+                        }],
+                    "depth3D": 40,
+                    "angle": 30,
+                    "chartCursor": {
+                        "categoryBalloonEnabled": false,
+                        "cursorAlpha": 0,
+                        "zoomable": false
                     },
-                    "valueField": "pontos",
-                    "titleField": "nome",
-                    "marginRight": 210,
-                    "marginLeft": 50,
-                    "startX": -500,
-                    "rotate": true,
-                    "labelPosition": "right",
-                    "balloonText": "[[title]]: [[value]]n[[description]]",
-                    "exportConfig": {
-                        "menuItems": [{
-                                "icon": '/bower_components/amcharts/dist/amcharts/images/export.png',
-                                "format": 'png'
-                            }]
+                    "categoryField": "nome",
+                    "categoryAxis": {
+                        "gridPosition": "start",
+                        "axisAlpha": 0,
+                        "gridAlpha": 0
+
+                    },
+                    "export": {
+                        "enabled": true
                     }
-                }); 
+                });
             }
 
 

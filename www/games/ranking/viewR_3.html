@@ -10,20 +10,23 @@
         <meta name="keywords" content="" /> 
         <meta name="description" content="" />    
 
-        <link href="/assets/css/escola-do-cerebro-charts.css" rel="stylesheet" type="text/css"/>
+        <link href="charts.css" rel="stylesheet" type="text/css"/>
 
     </head> 
     <body> 
+         <header>
+            <h1>Experiência acumulada</h1>
+        </header>
         <section>  
             <div id="chart_dashboard" >  </div>  
         </section>    
-        <script src="/bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script>
-        <script src="/bower_components/amcharts-stock/dist/amcharts/serial.js" type="text/javascript"></script>
-        <script src="/bower_components/amcharts-stock/dist/amcharts/amstock.js" type="text/javascript"></script> 
+        <script src="bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="bower_components/amcharts-stock/dist/amcharts/serial.js" type="text/javascript"></script>
+        <script src="bower_components/amcharts-stock/dist/amcharts/amstock.js" type="text/javascript"></script> 
         
-         <script src="/bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
+         <script src="bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
         
-        <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+        <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
 
         <script>
            try {
@@ -58,7 +61,7 @@
                     categoryAxesSettings: {
                         minPeriod: "mm"
                     },
-                    pathToImages: "/bower_components/amcharts-stock/dist/amcharts/images/",
+                    pathToImages: "bower_components/amcharts-stock/dist/amcharts/images/",
                     dataSets: [{
                             title: "Pontuação",
                             fieldMappings: [{

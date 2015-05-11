@@ -15,8 +15,8 @@ var increment = 0;
 var incrementError = 0;
 var seeds = [];
 var tseed = 1000;
-var ttrans = tseed * 3; 
- 
+var ttrans = tseed * 2;
+
 var gameability = ["icons", "colors", "flat"];
 var snd_okay = null;
 var snd_err = null;
@@ -34,7 +34,7 @@ var startTime = 0;
 var lastClickTime = 0;
 var duration = 0;
 var clickIntervals = [];
-
+var lives = 10;
 var play = false;
 var circles = null;
 var circles4 = {
@@ -150,6 +150,7 @@ $(document).ready(function () {
 });
 
 function onAnimateComplete() {
+
     //$("body").css("background", wincolor);
     var avgInterval = 0;
     for (var i = 0; i < clickIntervals.length; i++) {
@@ -195,14 +196,22 @@ function onAnimateComplete() {
 
 function next() {
 
-    feedback("Memorize<br> " + (seeds.length + 1));
-    play = false;
-    var t;
-    clearTimeout(t);
-    t = setTimeout(function () {
-        seed();
-    }, ttrans);
-    increment = 0;
+    if (seeds.length === lives) {
+        play = false;
+        feedback("Fim de Jogo!<br> ");
+        onAnimateComplete();
+
+    } else {
+        feedback("Memorize<br> " + (seeds.length + 1));
+        play = false;
+        var t;
+        clearTimeout(t);
+        t = setTimeout(function () {
+            seed();
+        }, ttrans);
+        increment = 0;
+    }
+
 
 }
 
@@ -219,11 +228,15 @@ function evalClick(id) {
             d(e);
         }
         var obj = eval("circles." + id);
+
         if (obj.index === seeds[increment]) {
             increment++;
+            $("#movements").html("<h1> " + increment + "/" + seeds.length + "</h1>");
+
             incrementError = 0;
-           // showSeed(id);
+            // showSeed(id);
             if (increment === seeds.length) {
+
                 next();//fechou fase
             }
         } else {
@@ -258,6 +271,7 @@ function evalClick(id) {
 
 function showSeed(id) {
     d("showSeed:" + id)
+    $("#movements").html("<h1> " + increment + "/" + seeds.length + "</h1>");
 
     var obj = eval("circles." + id);
     var mul = 64 / (levels[level]);
@@ -273,7 +287,7 @@ function showSeed(id) {
         $("#ferromenu-controller,#nav li ." + obj.color).css("-moz-box-shadow", " 0px 0px 0px 0px " + obj.background);
         $("#ferromenu-controller,#nav li ." + obj.color).css("box-shadow", " 0px 0px 0px 0px " + obj.background);
 
-    }, ttrans);
+    }, tseed);
 }
 
 function start() {
@@ -285,11 +299,13 @@ function start() {
     setInterval(function () {
         var endTime = new Date();
         duration = endTime - startTime;
-        try {
-            window.parent.setStat('runningTime', millisecondsToTime(duration));
-        }
-        catch (e) {
-            d(e);
+        if (play) {
+            try {
+                window.parent.setStat('runningTime', millisecondsToTime(duration));
+            }
+            catch (e) {
+                d(e);
+            }
         }
     }, 300);
 
@@ -325,7 +341,7 @@ function seed() {
     var trigger = 0;
     var mul = levels[level];
     var rand = Math.floor(Math.random() * (mul));
-    while(rand === seeds[increment]){
+    while (rand === seeds[increment]) {
         rand = Math.floor(Math.random() * (mul));
         d("rand:" + rand)
     }
@@ -334,7 +350,7 @@ function seed() {
     seeds.sort(function () {
         return Math.random() - 0.5;
     });
-     d("seedssort:" + seeds)
+    d("seedssort:" + seeds)
     $.each(seeds, function (id, obj) {
         trigger = tseed * (id + 1);
         var tick;
@@ -351,7 +367,7 @@ function seed() {
         //start();
         play = true;
         feedback("Agora!");
-    }, trigger + 100);
+    }, trigger);
 }
 
 function millisecondsToTime(milli) {

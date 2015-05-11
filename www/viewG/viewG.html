@@ -1,16 +1,22 @@
 <nav class="nav"> 
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >    
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" >    
             <div class="trophy"> 
-                <img class="trophy-img" src="/assets/img/icone_trofeu.png" alt=""/>
+                <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>
                 <span class="trophy-label">  
                     {{dashboard.ngames}} 
                 </span>
             </div>
-
+            <div class="testy" ng-click="goPath('viewT')" > 
+                <img class="testy-img" src="assets/img/icone_trofeu_teste.png" alt=""/>
+                <span class="testy-label">  
+                     
+                </span>
+            </div>
+            
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
-            <img class="title-img" src="/assets/img/tittle.png" alt=""/>
+            <img class="title-img" src="assets/img/title.svg" alt=""/>
             <span class="title-label">  
                 Escola do Cérebro 
             </span>
@@ -38,9 +44,6 @@
     </div>  
 </section> 
 
-<div class="testy"  > 
-    <img class="testy-img" src="/assets/img/icone_trofeu_teste.png" alt="" ng-click="goPath('viewT')"/> 
-</div>
 <div class="baloon {{hidden}}" > 
     <div class="baloon-baloon" >  
         <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  

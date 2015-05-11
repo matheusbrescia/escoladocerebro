@@ -26,7 +26,7 @@ $(document).ready(function ($) {
             $("#state").text(nLevel);
         }
         $(".peaces-logo").html("");
-        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="/assets/img/pattern_3/ts' + p[1] + '.png" </img></button></div>');
+        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="img/pattern_3/ts' + p[1] + '.png" </img></button></div>');
         for (var i = 0; i < 4; i++) {
             board.push(i + 1);
         }
@@ -37,15 +37,15 @@ $(document).ready(function ($) {
                 return .5 - Math.random();
             });
         }
-        var gamePage = "<div class=\"layout\" id=\"layout\">";
+        var gamePage = "<div class=\"layout board-problems\" id=\"layout\">";
         $.each(board, function (i) {
             var str = board[i];
 
             if ((i % nColumns) == 0) {
-                gamePage += '<div class="row">';
+                gamePage += '<div class="row center-block">';
             }
             gamePage += '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">';
-            gamePage += '<button type="button" data-toggle="button"   class="btn btn-primary btn-board">' + str + '<img src="/assets/img/pattern_3/ts' + nTest + '_' + str + '.png" </img></button></div>';
+            gamePage += '<button type="button" data-toggle="button"   class="btn btn-primary btn-board">' + str + '<img src="img/pattern_3/ts' + nTest + '_' + str + '.png" </img></button></div>';
 
             if ((i % nColumns) == nBreak) {
                 gamePage += "</div> ";
@@ -81,8 +81,9 @@ $(document).ready(function ($) {
             gamePscicotest();
         });
         nTest++;
+        $("#board").addClass("jumbotron");
+        $("#peaces-logo").addClass("jumbotron");
         log("gamePscicotest nTest" + nTest)
-        log(JSON.stringify(board))
     }
     function gameStop() {
         log("stop");
