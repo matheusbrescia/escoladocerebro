@@ -6,8 +6,7 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "jquery": "latest",
-        "jquery-ui": "latest",
+        "jquery": "latest", 
         "modernizr": "latest",
         "bootstrap": "latest",
         "bootstrap-datepicker": "latest",

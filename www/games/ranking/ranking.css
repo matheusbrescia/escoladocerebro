@@ -112,7 +112,7 @@ iframe {
 
     width: 16px;
     height: 16px;
-    background: url(img/b05.png) no-repeat;
+    background: url(../../assets/img/b05.png) no-repeat;
     overflow: hidden;
     cursor: pointer;
 }
@@ -127,7 +127,7 @@ iframe {
     width: 37px;
     height: 37px;
     cursor: pointer;
-    background: url(img/a11.png) no-repeat;
+    background: url(../../assets/img/a11.png) no-repeat;
     overflow: hidden;
 }
 .jssora11l { background-position: -11px -41px; }

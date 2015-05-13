@@ -40,7 +40,7 @@ html,body {
 
 }
 .board-background{
-    background-image: url(/assets/img/test_title.png); 
+    background-image: url(../../assets/img/test_title.png); 
 
     background-repeat: no-repeat; 
 
@@ -51,7 +51,7 @@ html,body {
     background-size: 100% 100%;
 }
 .peaces-background{
-    background-image: url(/assets/img/test_title.png); 
+    background-image: url(../../assets/img/test_title.png); 
 
     background-repeat: no-repeat; 
 
@@ -158,7 +158,8 @@ nav.navbar.navbar-default {
    
 }
 .peaces-logo .btn {
-    
+     max-width:128px;
+     max-height: 128px;
   /* padding: 5%; */
   
     font-size:0; 
@@ -219,7 +220,7 @@ nav.navbar.navbar-default {
     width: 100%;
     /* margin-top: 50%; */ 
      
-    background-image: url(/assets/img/baloon.png);  
+    background-image: url(../../assets/img/baloon.png);  
     background-repeat: no-repeat;  
     background-size: 100% 100%; 
     /* background-position: center top; */
@@ -238,7 +239,7 @@ nav.navbar.navbar-default {
     margin-top: 3%;
 }
 .baloon-reverse { 
-    background-image: url(/assets/img/baloon-reverse.png);  
+    background-image: url(../../assets/img/baloon-reverse.png);  
     background-repeat: no-repeat;  
     background-size: 100% 100%;  
     padding: 19%; 
