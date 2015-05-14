@@ -38,11 +38,54 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
 
             };
 
+            $scope.cleanUser = function () {
+                console.log("saindo..." + $scope.user);
+                $scope.statePlayer = false;
+
+                $scope.user = {
+                    playerId: 0,
+                    adminId: 0,
+                    adminPass: '',
+                    adminLogin: '',
+                    fullname: '',
+                    login: '',
+                    pass: '',
+                    nascimento: '',
+                    group: '',
+                    serie: '',
+                    chamada: '',
+                    escola: '',
+                    idusers: 0,
+                    day: '',
+                    city: '',
+                    state: '',
+                    country: '',
+                    email: '',
+                    sexo: '',
+                    partner: ''
+                };
+                $scope.dashboard = {
+                    ngames: 0,
+                    acuracia: '',
+                    velocidade: '',
+                    estabilidade: '',
+                    total_time: '',
+                    pontuacao_avg: '',
+                    pontuacao_sum: '',
+                    idadmin: '',
+                    barssum: '0,0,0',
+                    barsavg: '0,0,0'
+                };
+                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
+                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
+                console.log("tu tá offline!" + $scope.user);
+
+            }; 
             $scope.goPath = function (view) {
 
                 $location.path(view);
 
-            };
+            }; 
             $scope.checkDash = function (player) {
 
                 $.getJSON($scope.ec_query_players, {action: "dashboardbyuser", idusers: player})
@@ -139,9 +182,11 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
 
                 } else {
                     $scope.stateGamer = false;
-                }
+                } 
 
             } else {
+                $scope.cleanUser();
+                $scope.statePlayer = false;
                 $scope.stateGamer = false;
             }
 

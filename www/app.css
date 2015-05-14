@@ -566,8 +566,8 @@ iframe{
 
 }
 .view-2 iframe{
-    /* border: 3px solid #8Dceff; */
-    border-radius: 5px;
+    /* border: 0px solid #8Dceff; */
+    border-radius: 20px;
 
     /* height: 348px; */ 
 
@@ -615,7 +615,7 @@ iframe{
     /* width: 80%; */ 
 
 
-    /* height: 30%; */ 
+    max-height: 360px; 
 
 
     /* top: 0%; */
@@ -623,7 +623,7 @@ iframe{
     /* position: absolute; */ 
 
     /* margin: 0 auto; */
-    /* overflow-y: auto; */
+    overflow-y: auto;
 }
 
 .view-4-background{ 
