@@ -390,7 +390,10 @@ angular.module('myApp.view5', ['ngRoute'])
                 console.log("cleanUser... " + $scope.user.login + " " + $scope.user.pass);
 
             };
-            
+            $scope.logout = function ( ) {
+                $scope.cleanUser();
+                $location.path("viewH");
+            };
             $scope.changePass = function (pass) {
                 $scope.user.pass += pass;
                 console.log(pass)
