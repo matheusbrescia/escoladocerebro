@@ -11,12 +11,16 @@ angular.module('myApp.viewL', ['ngRoute', 'mediaPlayer'])
 
         .controller('ViewLTabCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
             BackgroundService.setCurrentBg("view-l-background");
+            $scope.points = [];
+            $scope.statePlayer = false;
+            $scope.statePoints = false;
+            $scope.stateSendPoints = false;
 
             $scope.hidden = "hidden";
             $scope.off = "hidden";
             $scope.message = "Bem vindo!";
             $scope.stateAdmin = false;
-            $scope.statePlayer = false;
+            
             $scope.title = "Perfil do Jogador";
 
             $scope.crypta = "http://escoladocerebro.org/crypta.php";
