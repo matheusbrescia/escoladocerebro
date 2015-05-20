@@ -138,7 +138,7 @@ angular.module('myApp.view4', ['ngRoute'])
             }
             $scope.syncDash();
             $timeout(function () {
-                $scope.baloon.playPause();
+                
             }, 300);
         });
  

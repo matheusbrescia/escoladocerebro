@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.viewH', ['ngRoute', 'mediaPlayer'])
+angular.module('myApp.viewH', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/viewH', {
@@ -13,10 +13,11 @@ angular.module('myApp.viewH', ['ngRoute', 'mediaPlayer'])
 
             BackgroundService.setCurrentBg("view-h-background");
             $scope.hidden = "hidden";
-             $scope.points = [];
+            $scope.points = [];
             $scope.stateProfessor = false;
             $scope.stateAdmin = false;
             $scope.statePlayer = false;
+            $scope.stateGamer = false;
             $scope.goPath = function (view) {
                 $location.path(view);
             };
@@ -62,11 +63,11 @@ angular.module('myApp.viewH', ['ngRoute', 'mediaPlayer'])
 
             };
 
-             if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {
+            if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {
                 $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
                 if ($scope.user.playerId > 0) {
                     $scope.statePlayer = true;
-                   // $scope.showAlert("Escolha um caminho " + $scope.user.fullname + ".");
+                    // $scope.showAlert("Escolha um caminho " + $scope.user.fullname + ".");
 
                 } else {
                     $scope.statePlayer = false;
@@ -114,11 +115,10 @@ angular.module('myApp.viewH', ['ngRoute', 'mediaPlayer'])
 
 
             $timeout(function () {
-                  $scope.hidden = "";
-                $scope.baloon.playPause();
-
+                $scope.hidden = "";
+                
             }, 100);
-            
+
 
         });
  

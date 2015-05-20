@@ -43,8 +43,7 @@ angular.module('myApp.viewT', ['ngRoute'])
             $scope.showAlert = function (txt) {
                 $scope.hidden = "alert";
                 $scope.message = txt;
-
-                console.log(txt)
+ 
             };
             $scope.closeAlert = function (txt) {
 
@@ -64,7 +63,6 @@ angular.module('myApp.viewT', ['ngRoute'])
                 }
               
                 $timeout(function () {
-                    $scope.button.playPause();
                      
                 }, 300);
             };
@@ -166,6 +164,6 @@ angular.module('myApp.viewT', ['ngRoute'])
                 $scope.stateGamer = false;
             }
             $timeout(function () {
-               // $scope.baloon.playPause();
+                
             }, 300);
         }); 

@@ -17,6 +17,7 @@ angular.module('myApp.view6', ['ngRoute'])
             $scope.statePlayer = false;
             $scope.statePoints = false;
             $scope.stateSendPoints = false;
+            $scope.stateGamer = false;
             $scope.title = "Games ";
             $scope.fc = 0;
             $scope.show = function () {
@@ -99,8 +100,8 @@ angular.module('myApp.view6', ['ngRoute'])
                     }
                 };
                 $timeout(function () {
-                    $scope.button.playPause();
-                      $('#modal').modal('show');
+                   
+                    $('#modal').modal('show');
                 }, 300);
             };
             $scope.change = function () {
@@ -207,4 +208,4 @@ angular.module('myApp.view6', ['ngRoute'])
             }, 5000);
 
 
-        })  ;
+        });

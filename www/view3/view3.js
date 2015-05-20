@@ -221,7 +221,7 @@ angular.module('myApp.view3', ['ngRoute'])
                 $scope.stateGamer = false;
             }
             $timeout(function () {
-                $scope.baloon.playPause();
+                
             }, 300);
 
         })

@@ -6,9 +6,7 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "jquery": "latest",
-        "jquery-ui": "latest",
-        "modernizr": "latest",
+        "jquery": "latest",  
         "bootstrap": "latest",
         "bootstrap-datepicker": "latest",
         "amcharts": "latest",
@@ -19,9 +17,8 @@
         "angular": "latest",
         "angular-route": "latest",
         "angular-loader": "latest",
-        "angular-mocks": "latest",
-        "angular-media-player": "latest",
-         "pace": "latest",
+        "angular-mocks": "latest", 
+        "pace": "latest",
         "font-awesome": "latest"
 
     }

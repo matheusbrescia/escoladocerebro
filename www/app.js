@@ -26,7 +26,7 @@ angular.module('myApp', [
     }])
         .controller('MainController', ['$scope', 'BackgroundService', function ($scope, backgroundService) {
                 $scope.bgService = backgroundService;
-                 
+
             }])
 
         .service('SettingsService', function () {
@@ -86,15 +86,7 @@ angular.module('myApp', [
                 }
             };
         })
-        .directive('svgView', ['$compile', function ($compile) {
-                return {
-                    restrict: 'A',
-                    templateUrl: 'app.svg',
-                    link: function (scope, element, attrs) {
-
-                    }
-                }
-            }])
+        
         .filter('trusted', ['$sce', function ($sce) {
                 return function (url) {
                     return $sce.trustAsResourceUrl(url);

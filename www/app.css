@@ -8,39 +8,23 @@
 
 body, html, .app{
     font-family:"OCRastd"; 
-    background: #836ACC;
-    background-image:url(assets/img/app.svg);
-
-
-    margin: 0 auto; 
-
-    height: 100%; 
-
-    width: 100%; 
-
-    /* overflow: hidden; */ 
-
-    color: #F3F9FF; 
-
+    background: #836ACC; 
+    margin: 0 auto;  
+    height: 100%;  
+    width: 100%;  
+    color: #F3F9FF;  
     background-repeat: no-repeat;  
-    background-position: top center;  
-    background-size: 100%;
+    /* background-position: top center; */  
+    /* background-size: 100% 100%; */ 
+      
+    /* color: #00CCFF; */  
+}
 
-    /* background: transparent; */
-}
 nav{
-    /* padding-top: 2%; */
-    /* padding-bottom: 2%; */
-}
-section{
-    font-family:"OCRastd";  
-    color: #00CCFF;  
-    /* padding-top: 4%; */
-    text-align: center;   
-}
-.display{
-    display: block!important;
-}
+   height: 48px; 
+       
+} 
+ 
 .view{  
     margin: 0 auto;  
     width: 100%;  
@@ -68,21 +52,7 @@ section{
 .s100{
     height: 100%; 
     width: 100%;  
-}
-.svg-app{
-    width: 100%;  
-    height: 100%;  
-    border: 0px;
-    position: absolute;  
-    top: 0;  
-    left: 0;  
-    right: 0;  
-    z-index: -10;  
-    overflow: auto;
 } 
-.svg:not(:root){
-    overflow: scroll;
-}
 .btn-img{ 
     width: 25%; 
 }
@@ -93,6 +63,7 @@ section{
     border: 1px #8676b5 solid;  
     font-size: 1em;
     min-width: 48px;
+    
 }
 .btn.focus, .btn:focus, .btn:hover{
     color: #413466;  
@@ -111,10 +82,7 @@ section{
     padding:0px;
     margin:0px;
     font-size: 1em;
-}
-.key{
-
-}
+} 
 
 input, select, .form-control{
     width: 100%;  
@@ -124,10 +92,9 @@ iframe{
     
     border: 0px;  
     height: 100%;  
-    width: 100%;  
+    width: 100% ;  
     margin: 0 auto;  
-    overflow-x:hidden;  
-    overflow-y:hidden;  
+     
 } 
 
 .thumbnail{
@@ -142,7 +109,7 @@ iframe{
     border: 0px;
 }
 .navbar-default {
-    background-image: url(assets/img/tittle.svg); 
+    background-image: url(assets/img/tittle.png); 
     background-size: 50% 90%;
     background-repeat: no-repeat; 
     background-position: center center;
@@ -158,7 +125,7 @@ iframe{
 
     background-position: center center; 
 
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 
 .stat_runningTime_icon{
@@ -259,10 +226,11 @@ iframe{
     height: 35%;  
     width: 100%;
     /* margin-top: 50%; */ 
-     background-image: url(assets/img/baloon.svg);  
+     
+    background-image: url(assets/img/baloon.png);  
     background-repeat: no-repeat;  
-    /* background-size: 100% 100%; */ 
-    /* background-position: center top; */
+    background-position: top center;  
+    background-size: 100% 100%;
     position: absolute;
     top: 10%;
     left: 35%;
@@ -275,10 +243,10 @@ iframe{
     height: 35%;  
     width: 100%;
     /* margin-top: 50%; */ 
-     background-image: url(assets/img/baloon.svg);  
+     background-image: url(assets/img/baloon.png);  
     background-repeat: no-repeat;  
-    /* background-size: 100% 100%; */ 
-    /* background-position: center top; */
+   background-position: top center;  
+    background-size: 100%;
     position: absolute;
     top: 10%;
     left: 70%;
@@ -289,15 +257,17 @@ iframe{
 .baloon-left {
      
     top: 20%;
-    left: 75%;
+    left: 60%;
     
 }
 .baloon-header {
     font-size: 1em; 
-    width: 100%; height: 100%; 
-       background-image: url(assets/img/baloon.svg);  
+    width: 100%; 
+    height: 100%; 
+       background-image: url(assets/img/baloon.png);  
     background-repeat: no-repeat;  
-    /* margin-top: 30%; */ 
+  background-position: top center;  
+    background-size: 100%;
     position: absolute;
     right: 20%;z-index: 10000;
 }
@@ -310,12 +280,14 @@ iframe{
 .baloon-reverse { 
     background-image: url(assets/img/baloon-reverse.png);  
     background-repeat: no-repeat;  
-    background-size: 100% 100%;  
+     background-position: top center;  
+    background-size: 100%;
     padding: 19%; 
 }
 .baloon-label {
     text-align: left;
     color:#FFFFFF; 
+    /* margin-top: 34px; */
 }
 
 .baloon-img{ 
@@ -458,25 +430,27 @@ iframe{
     cursor: pointer;
 }
 .view-h-background{ 
-    background-image: url(viewH/appH.svg);  
+    background-image: url(viewH/appH.png);  
     background-repeat: no-repeat;  
-    background-position: top center;  
+     background-position: top center;  
     background-size: 100%;
     opacity:1;
 
 }
 .view-h .row{
-    height: 100%; 
-
-
+    /* height: 100%; */ 
 }
-.view-h .baloon-baloon {text-align: left; color:#FFFFFF; 
-                        /* background-color: rgba(108, 91, 91, 0.38); */ /* margin-top: 21%; */  /* position:absolute; */ /* top: 10%; */ padding: 15%;font-size: 1.2em;}
+.view-h .baloon-baloon {
+    text-align: left;
+    color:#FFFFFF; 
+    padding: 15%;
+    font-size: 1.2em;
+}
 
 .view-l-background{ 
-    background-image: url(viewL/appL.svg);  
+    background-image: url(viewL/appL.png);  
     background-repeat: no-repeat;  
-    background-position: top center;  
+   background-position: top center;  
     background-size: 100%;
     opacity:1;
 
@@ -500,7 +474,7 @@ iframe{
     /* height: 16%; */
 } 
 .view-g-background{ 
-    background-image: url(viewG/appG.svg);  
+    background-image: url(viewG/appG.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
@@ -509,6 +483,8 @@ iframe{
 
     cursor: pointer;
     width: 100%;
+    
+
     position: absolute;
     left: 0;
     top: 0;
@@ -534,7 +510,7 @@ iframe{
 }
 
 .view-1-background{ 
-    background-image: url(view1/app1.svg);  
+    background-image: url(view1/app1.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
@@ -547,37 +523,38 @@ iframe{
 }
 
 .view-T-background{ 
-    background-image: url(view1/app1.svg);  
+    background-image: url(view1/app1.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
 }
 
 .view-2-background{ 
-    background-image: url(view2/app2.svg);  
+    background-image: url(view2/app2.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
 }
 .view-2 {
 
-    text-align: center; 
-
+      
+    text-align: center;
+    margin: 0 auto;  
 
 }
 .view-2 iframe{
-    /* border: 3px solid #8Dceff; */
-    border-radius: 5px;
+    /* border: 0px solid #8Dceff; */
+    border-radius: 20px;
 
-    /* height: 348px; */ 
+      height: 350px;  
+     width: 530px;
 
-    /* width: 530px; */ 
 
-
+    text-align: center;
     margin: 0 auto;  
 
-    max-height: 348px;
-    max-width: 527px;
+    /* max-height: 348px; */
+    /* max-width: 527px; */
     min-height: 348px;
     min-width: 527px;
 } 
@@ -592,7 +569,7 @@ iframe{
 }
 
 .view-3-background{ 
-    background-image: url(view3/app3.svg);  
+    background-image: url(view3/app3.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
@@ -615,7 +592,7 @@ iframe{
     /* width: 80%; */ 
 
 
-    /* height: 30%; */ 
+    max-height: 360px; 
 
 
     /* top: 0%; */
@@ -623,11 +600,11 @@ iframe{
     /* position: absolute; */ 
 
     /* margin: 0 auto; */
-    /* overflow-y: auto; */
+    overflow-y: auto;
 }
 
 .view-4-background{ 
-    background-image: url(view4/app4.svg);  
+    background-image: url(view4/app4.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
@@ -637,7 +614,7 @@ iframe{
 
     /* height: 100%; */ 
 
-    padding-top: 3%; 
+    padding-top: 10%; 
 
 }
 .view-4 iframe{
@@ -655,7 +632,7 @@ iframe{
 } 
 
 .view-5-background{ 
-    background-image: url(view5/app5.svg);  
+    background-image: url(view5/app5.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
@@ -670,7 +647,7 @@ iframe{
 
     padding-left: 10%;
 
-    padding-top: 10%;
+    padding-top: 5%;
 
 }
 .view-5 .input-group-addon{
@@ -704,7 +681,7 @@ iframe{
 }
 
 .view-6-background{ 
-    background-image: url(view2/app2.svg);  
+    background-image: url(view2/app2.png);  
     background-repeat: no-repeat;  
     background-position: top center;  
     background-size: 100%;
@@ -723,12 +700,8 @@ iframe{
     background-image: url(assets/img/modal_content.png); 
 
     background-repeat: no-repeat; 
-
-
-    background-position: center; 
-
-
-    background-size: 100% 100%;
+    background-position: top center;  
+    background-size: 100%;
     background-color: transparent;
     border-radius: 20px;
 }
@@ -753,12 +726,8 @@ iframe{
     background-image: url(assets/img/background_test.png); 
 
     background-repeat: no-repeat; 
-
-
-    background-position: center; 
-
-
-    background-size: 100% 100%;
+ background-position: top center;  
+    background-size: 100%;
     background-color: transparent;
    height:90%;
 }
@@ -880,7 +849,7 @@ h1{
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) { 
     body, html{
-        font-size: .9em; 
+        font-size: 1em; 
 
     }
     nav{
@@ -902,18 +871,7 @@ h1{
 
     .view-2 iframe  {
 
-
-        -ms-transform: scale(0.9);
-        -moz-transform: scale(0.9);
-        -o-transform: scale(0.9);
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9);
-
-        -ms-transform-origin: center center;
-        -moz-transform-origin: center center;
-        -o-transform-origin: center center;
-        -webkit-transform-origin: center center;
-        transform-origin: center center;
+ 
 
     }
     .view-6 iframe {
@@ -922,19 +880,8 @@ h1{
        
 
         height: 40%;
- 
-        min-width: 480px;
-        -ms-transform: scale(0.9);
-        -moz-transform: scale(0.9);
-        -o-transform: scale(0.9);
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9);
-
-        -ms-transform-origin: center center;
-        -moz-transform-origin: center center;
-        -o-transform-origin: center center;
-        -webkit-transform-origin: center center;
-        transform-origin: center center;
+  
+         
 
     }
     .view-4{

@@ -59,7 +59,13 @@ html {
     width:100%;
 
     height:100%; 
-
+ left: 0px;
+    right: 0px;
+    /* top: 40%; */
+    position: absolute;
+    height: 100%;  
+    text-align: center;
+    z-index: 1000; 
 
 }
 .genius_bg{
@@ -72,7 +78,13 @@ body{
     overflow-y:hidden; 
     background-repeat:no-repeat; 
     background-position:center center;
-
+ left: 0px;
+    right: 0px;
+    /* top: 40%; */
+    position: absolute;
+    height: 100%;  
+    text-align: center;
+    z-index: 1000; 
 }
 #divPlay{ 
     position: absolute; 
@@ -190,7 +202,7 @@ article .cnt{
     position: absolute;
     height: 100%;  
     text-align: center;
-
+    z-index: 1000; 
     background: rgba(0, 0, 0, 0.5);
     color: #f2f2f2; 
     -webkit-transition: opacity 1s ease-in-out;
@@ -206,7 +218,7 @@ article .cnt{
      font-family: 'alpha_echoregular', cursive;   
     text-transform: uppercase;
     border-bottom: 10px solid #FF0000;
-    z-index: 1000; 
+     
 }
 
 #console.busy {

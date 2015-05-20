@@ -12,22 +12,21 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link href="bower_components/nvd3/build/nv.d3.css" rel="stylesheet" type="text/css"/>
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="app.css"> 
-        <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/> 
+        <link href="app.css" rel="stylesheet" type="text/css"> 
     </head>
     <body class="app " ng-app="myApp"  ng-controller='MainController' >
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="view-1-background view-2-background view-3-background view-4-background view-5-background view-6-background view-H-background view-G-background view-L-background view-R-background home-background hidden"> </div> 
+        <!--<div class="view-1-background view-2-background view-3-background view-4-background view-5-background view-6-background view-H-background view-G-background view-L-background view-R-background home-background hidden"> </div>--> 
         <div class="viewr {{bgService.getCurrentBg()}}">
             <div ng-view class="container"> </div> 
         </div> 
 
         <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="bower_components/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
         <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
         <script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
 
@@ -35,7 +34,7 @@
         <script src="bower_components/nvd3/build/nv.d3.min.js" type="text/javascript"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-media-player/dist/angular-media-player.min.js" type="text/javascript"></script>
+        
         <script src="assets/js/eduscada_logger.js" type="text/javascript"></script> 
         <script src="app.js"></script> 
         <script src="viewH/viewH.js"></script>
@@ -48,11 +47,6 @@
         <script src="view5/view5.js"></script>
         <script src="view6/view6.js"></script>
         <script src="viewT/viewT.js"></script>  
-        <audio media-player="baloon" data-playlist="baloons">
-            <source src="assets/audio/193099__b-lamerichs__eventsounds2-v2.mp3" type="audio/ogg">
-        </audio>
-        <audio media-player="button" data-playlist="buttons">
-            <source src="assets/audio/193102__b-lamerichs__eventsounds2-p.mp3" type="audio/ogg">
-        </audio> 
+         
     </body>
 </html>

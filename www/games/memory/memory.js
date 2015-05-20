@@ -25,7 +25,7 @@ $(document).ready(function ($) {
         board.push(peaces[nTest]);
         var p = peaces[nTest].value.split("_");
         $(".peaces-logo").html("");
-        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="img/pattern_2/ts' + p[1] + '.png" </img></button></div>');
+        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="../../assets/img/pattern_2/ts' + p[1] + '.png" </img></button></div>');
 
         clone_peaces.splice(0, 1);
         // clone_peaces.splice(0, 1);
@@ -59,7 +59,7 @@ $(document).ready(function ($) {
                 gamePage += '<div class="row center-block">';
             }
             gamePage += '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 center-block">';
-            gamePage += '<button type="button" data-toggle="button"   class="btn btn-primary btn-board btn-board-memory">' + res[1] + '<img src="img/pattern_2/ts' + res[1] + '.png" </img></button></div>';
+            gamePage += '<button type="button" data-toggle="button"   class="btn btn-primary btn-board btn-board-memory">' + res[1] + '<img src="../../assets/img/pattern_2/ts' + res[1] + '.png" </img></button></div>';
 
             if ((i % nColumns) == nBreak) {
                 gamePage += "</div> ";

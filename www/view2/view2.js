@@ -19,7 +19,7 @@ angular.module('myApp.view2', ['ngRoute'])
             $scope.stateSendPoints = false;
             $scope.title = "Games ";
             $scope.fc = 0;
-            $scope.gameUrl = "games/connectome/connectome.html";//default
+
             $scope.show = function () {
                 $scope.hidden = "alert";
             };
@@ -53,8 +53,11 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
             $scope.iframeLoadedCallBack = function () {
+                console.log("iframeLoadedCallBack:" + $scope.fc)
+                if ($scope.fc < 1) {
+                     document.getElementById($scope.gameId).src += '';
 
-
+                }
                 $scope.fc++;
 
                 if ($scope.fc > 1) {
@@ -99,9 +102,6 @@ angular.module('myApp.view2', ['ngRoute'])
                         $scope.showAlert("Você ainda não tem pontos nessa sessão!");
                     }
                 };
-//                $timeout(function () {
-//                    $scope.button.playPause();
-//                }, 300);
             };
             $scope.change = function () {
                 $scope.showAlert("Jogue para ganhar experiência.");
@@ -203,7 +203,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 $scope.stateGamer = false;
             }
             $timeout(function () {
-            //    $scope.closeAlert("");
+                //    $scope.closeAlert("");
             }, 5000);
 
 

@@ -85,7 +85,7 @@ iframe {
         -ms-transition: All 1s ease-in-out;
         -o-transition: All 1s ease-in-out;
         transition: All 1s ease-in-out;*/
-    /* z-index: -1000000000000000; */
+    z-index: 1000000000000000;
 
 } 
  
@@ -112,7 +112,7 @@ iframe {
 
     width: 16px;
     height: 16px;
-    background: url(img/b05.png) no-repeat;
+    background: url(../../assets/img/b05.png) no-repeat;
     overflow: hidden;
     cursor: pointer;
 }
@@ -127,7 +127,7 @@ iframe {
     width: 37px;
     height: 37px;
     cursor: pointer;
-    background: url(img/a11.png) no-repeat;
+    background: url(../../assets/img/a11.png) no-repeat;
     overflow: hidden;
 }
 .jssora11l { background-position: -11px -41px; }

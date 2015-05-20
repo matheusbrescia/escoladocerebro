@@ -4,7 +4,7 @@
             <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/>   
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
-            <img class="title-img" src="assets/img/title.svg" alt=""/>
+            <img class="title-img" src="assets/img/title.png" alt=""/>
             <span class="title-label">  
                 {{title}}
             </span>
@@ -431,7 +431,7 @@
 
                 <p></p>
                 <p></p>
-                <button class="btn fa fa-trash" ng-click="cleanUser()" ng-show="statePlayer"><span class="hidden-sm hidden-xs"> Limpar</span></button>  
+                <button class="btn fa fa-trash" ng-click="logout()" ng-show="statePlayer"><span class="hidden-sm hidden-xs"> Limpar</span></button>  
 
             </div> 
         </div>
@@ -484,7 +484,7 @@
                     <div class="form-group has-feedback">
                         <div class="input-group">
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 h100"> 
-                                <span class="input-group-addon" id="admin-login">Código</span>  
+                                <span class="input-group-addon">Código</span>  
                             </div> 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 h100"> 
                                 <input class="form-control" ng-change="change()"  ng-model="user.adminLogin"   type="text"  placeholder="Código ou Login do Professor" aria-describedby="basic-login"/> 
@@ -503,7 +503,7 @@
                     <div class="form-group has-feedback">
                         <div class="input-group">
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 h100"> 
-                                <span class="input-group-addon" id="admin-login">Login</span> 
+                                <span class="input-group-addon">Login</span> 
 
                             </div> 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 h100"> 

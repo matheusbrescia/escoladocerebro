@@ -11,7 +11,6 @@ angular.module('myApp.view1', ['ngRoute'])
 
         .controller('View1Ctrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
             BackgroundService.setCurrentBg("view-1-background");
-
             $scope.hidden = "hidden";
             $scope.off = "hidden";
             $scope.message = "Bem vindo!";
@@ -148,6 +147,6 @@ angular.module('myApp.view1', ['ngRoute'])
                 $scope.stateGamer = false;
             }
             $timeout(function () {
-                $scope.baloon.playPause();
+                
             }, 300);
         }); 

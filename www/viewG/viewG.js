@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
+angular.module('myApp.viewG', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/viewG', {
@@ -12,13 +12,12 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
         .controller('ViewGTabCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
             BackgroundService.setCurrentBg("view-g-background");
             $scope.ec_query_players = 'http://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
-
             $scope.hidden = "hidden";
             $scope.points = [];
             $scope.statePlayer = false;
             $scope.statePoints = false;
             $scope.stateSendPoints = false;
-
+            $scope.stateGamer = false;
             $scope.show = function () {
                 $scope.hidden = "alert";
             };
@@ -38,6 +37,49 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
 
             };
 
+            $scope.cleanUser = function () {
+                console.log("saindo..." + $scope.user);
+                $scope.statePlayer = false;
+
+                $scope.user = {
+                    playerId: 0,
+                    adminId: 0,
+                    adminPass: '',
+                    adminLogin: '',
+                    fullname: '',
+                    login: '',
+                    pass: '',
+                    nascimento: '',
+                    group: '',
+                    serie: '',
+                    chamada: '',
+                    escola: '',
+                    idusers: 0,
+                    day: '',
+                    city: '',
+                    state: '',
+                    country: '',
+                    email: '',
+                    sexo: '',
+                    partner: ''
+                };
+                $scope.dashboard = {
+                    ngames: 0,
+                    acuracia: '',
+                    velocidade: '',
+                    estabilidade: '',
+                    total_time: '',
+                    pontuacao_avg: '',
+                    pontuacao_sum: '',
+                    idadmin: '',
+                    barssum: '0,0,0',
+                    barsavg: '0,0,0'
+                };
+                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
+                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
+                console.log("tu tá offline!" + $scope.user);
+
+            };
             $scope.goPath = function (view) {
 
                 $location.path(view);
@@ -142,13 +184,14 @@ angular.module('myApp.viewG', ['ngRoute', 'mediaPlayer'])
                 }
 
             } else {
+                $scope.cleanUser();
+                $scope.statePlayer = false;
                 $scope.stateGamer = false;
             }
 
 
             $timeout(function () {
-                $scope.baloon.playPause();
-
+                
             }, 100);
 
         });
