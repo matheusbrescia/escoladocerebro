@@ -84,7 +84,7 @@ angular.module('myApp.viewG', ['ngRoute'])
 
                 $location.path(view);
 
-            }; 
+            };
             $scope.checkDash = function (player) {
 
                 $.getJSON($scope.ec_query_players, {action: "dashboardbyuser", idusers: player})
@@ -181,7 +181,7 @@ angular.module('myApp.viewG', ['ngRoute'])
 
                 } else {
                     $scope.stateGamer = false;
-                } 
+                }
 
             } else {
                 $scope.cleanUser();
