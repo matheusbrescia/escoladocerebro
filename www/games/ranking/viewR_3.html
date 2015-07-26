@@ -142,7 +142,7 @@
 
             function ajaxStockPointsChart() {
 
-                $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "allmypoints", idusers: userID, idgame: dashID})
+                $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "allmypoints", idusers: userID, idgame: dashID})
                         .done(function (json) {
                             if (json !== null) {
                                 var dataset = [];

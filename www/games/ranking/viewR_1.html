@@ -71,7 +71,7 @@
 
             function ajaxPieChart() {
 
-                $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "ranking", idgame: dashID})
+                $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_query_players", {action: "ranking", idgame: dashID})
                         .done(function (json) {
                             if (json !== null) {
                                 var data = JSON.parse(json);

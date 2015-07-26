@@ -267,7 +267,7 @@ $(document).ready(function ($) {
             window.parent.saveLogObject(logObject);
         }
         catch (e) {
-            $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
+            $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
                     .done(function (rjson) {
                         if (rjson !== null) {
                             var obj = JSON.parse(rjson);

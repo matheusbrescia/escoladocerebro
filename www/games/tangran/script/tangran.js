@@ -1,5 +1,6 @@
 
 var body;
+var html;
 
 var background;
 
@@ -70,6 +71,7 @@ var stats = {};
 $(function ()
 {
     body = $('body');
+	html = $('html');
 
     gameDisplay = $('#game');
     var background = $('#background');
@@ -522,7 +524,7 @@ function drawLevel()
     var context = canvas[0].getContext('2d');
     context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    var cx = level.centerX;
+    var cx = level.centerX + 93;
     var cy = level.centerY;
 
     var points = level.points;
@@ -805,14 +807,20 @@ function onPieceMouseDown(e)
     for (var i = 0; i < pieces.length; i++)
         pieces[i].display.css('z-index', 1000 + (pieces.length - i));
 
-    body.on('mousemove', onMouseMove);
-    body.on('mouseup', onMouseUp);
+    html.on('mousemove', onMouseMove);
+    html.on('mouseup', onMouseUp);
 
     var lastX = e.pageX;
     var lastY = e.pageY;
 
     function onMouseMove(e)
     {
+		var offset = gameDisplay.offset();
+		var clientX = e.pageX - offset.left;
+		var clientY = e.pageY - offset.top;
+		
+		if(clientX <= 0 || clientX >= 527 || clientY <= 0 || clientY >= 348) return;
+		
 		clearTimeout(rotateTimeout);
 	
         var x = parseFloat(pieceDisplay.css('left').replace('px', ''));
@@ -820,7 +828,7 @@ function onPieceMouseDown(e)
 
         x += (e.pageX - lastX);
         y += (e.pageY - lastY);
-
+		
         pieceDisplay.css('left', x + 'px');
         pieceDisplay.css('top', y + 'px');
 
@@ -835,8 +843,8 @@ function onPieceMouseDown(e)
     {
 		clearTimeout(rotateTimeout);
 	
-        body.off('mousemove', onMouseMove);
-        body.off('mouseup', onMouseUp);
+        html.off('mousemove', onMouseMove);
+        html.off('mouseup', onMouseUp);
 
         if (mouseUpTimeout)
             clearTimeout(mouseUpTimeout);
