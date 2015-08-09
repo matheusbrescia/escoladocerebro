@@ -89,7 +89,7 @@ $(document).ready(function ($) {
         log("stop");
         clearInterval(nTimeInterval);
         $("#board").hide();
-        $(".peaces-logo").html("");
+        $(".peaces-logo").html("Fim do Teste");
     }
     function gameStart() {
         $("#points").text(nPoints.length);
@@ -144,7 +144,7 @@ $(document).ready(function ($) {
             dp += Math.pow(nClickIntervals[i] - avgInterval, 2);
         }
         dp = Math.pow(dp / nClickIntervals.length - 1, 0.5);
-
+ 
         var logObject = {
             acuracia: ((nRows * nColumns) / (nPoints.length - 1)),
             velocidade: ((nRows * nColumns) / (duration / 1000)),
