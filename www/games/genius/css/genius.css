@@ -69,7 +69,7 @@ html {
 
 }
 .genius_bg{
-    background-repeat: repeat;  
+    /* background-repeat: repeat; */  
 }
 body{
     width:100%;

@@ -14,7 +14,7 @@ function syncData(logObject) {
         var logArrWalk = 0;
         $.each(logArr, function (key, value) {
             var localData = JSON.parse(value);
-            $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
+            $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
                     .done(function (rjson) {
                         if (rjson !== null) {
                             var obj = JSON.parse(rjson);

@@ -176,7 +176,7 @@
 
         var infoText = document.createElement('div'), style = infoText.style;
         style.width = this.centerX*2 + 'px';
-        style.color = '#284f73';
+        style.color = '#00CCFF';
         
         style.position = 'fixed'; 
         style.top = 0+'px';

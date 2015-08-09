@@ -553,11 +553,13 @@ iframe{
 
 }
 .view-2 iframe{
-    /* border: 0px solid #8Dceff; */
+    /* border: 1px solid #8Dceff; */
     border-radius: 20px;
 
-      height: 350px;  
-     width: 530px;
+      
+    height: 348px;  
+     
+    width: 527px;
 
 
     text-align: center;
@@ -567,6 +569,7 @@ iframe{
     /* max-width: 527px; */
     min-height: 348px;
     min-width: 527px;
+    /* overflow-y: hidden; */
 } 
 
 

@@ -7,7 +7,7 @@ var lastClickTime = 0;
 
 var duration = 0;
 var level = 0;
-var h = 310;
+var h = 300;
 var nRows = 5;
 var nColumns = 5;
 var nCells = (nRows * nColumns);
@@ -73,14 +73,14 @@ function onAnimateComplete() {
 
 function drawBonus() {
     var w = $('#wrap_menu').width();
-    $('#wrap_bonus').html("<canvas id='bonus' width='" + w / 3 + "' height='" + w / 2 + "'></canvas> ");
+    $('#wrap_bonus').html("<canvas id='bonus' width='" + w / 4 + "' height='" + w / 3 + "'></canvas> ");
     $('#bonus').ready(function () {
         var canvas = document.getElementById('bonus');
         var context = canvas.getContext('2d');
         context.rect(0, 0, canvas.width, canvas.height);
         var grd = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-        grd.addColorStop(0, '#2591b0');
-        grd.addColorStop(1, '#284f73');
+        grd.addColorStop(0, '#00CCFF');
+        grd.addColorStop(1, '#eee');
         context.fillStyle = grd;
         context.fill();
 
@@ -96,7 +96,7 @@ function millisecondsToTime(milli) {
 
 function drawProgresse() {
     lastClickTime = startTime = inativeStart = new Date();
-    var w = $('#wrap_menu').width();
+    var w = $('#wrap_menu').width()/2;
     $('#wrap_progresse').html("<canvas id='progresse' width='" + w + "' height='" + w + "'></canvas> ");
     $('#progresse').ready(function () {
         var mainCanvas = document.getElementById('progresse');
@@ -105,8 +105,8 @@ function drawProgresse() {
             canvas: mainCanvas,
             centerX: w / 2,
             centerY: w / 2,
-            minRadius: w / 4,
-            arcWidth: 20,
+            minRadius: w / 3,
+            arcWidth: 8,
             gapWidth: 0,
             infoLineLength: Math.PI,
             horizLineLength: Math.PI,
@@ -115,8 +115,8 @@ function drawProgresse() {
         });
 
         circle.addEntry({
-            fillColor: '#94bb65',
-            outlineColor: '#eee',
+            fillColor: '#43e885',
+            outlineColor: '#00CCFF',
             progressListener: function () {
                 return p3;
             },
@@ -150,7 +150,7 @@ function drawProgresse() {
 
 function acertou(theCell) {
     //audioOkay();
-    $("#" + theCell).css("background", "#94bb65");
+    $("#" + theCell).css("background", "#43e885");
     $("#" + theCell).css("color", "#eee");
     if (level === 1) {
         setTimeout(function () {
@@ -323,8 +323,8 @@ function chooseLevel(lv) {
     level = lv;
     $('.clevels').hide();
     $('#divLevels').hide();
-    $("html").css("background-image", "url(img/white_carbon.png)");
-    $("html").css("background-repeat", "repeat");
+    $("html").css("background-image", "url(img/bg_looktable.png)");
+    $("html").css("background-repeat", "no-repeat");
 
     $('#wrap_menu').css("height", h);
     $('#wrap').css("visibility", "visible");
