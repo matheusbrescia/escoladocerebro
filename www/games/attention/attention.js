@@ -165,7 +165,7 @@ $(document).ready(function ($) {
         log("stop");
         clearInterval(nTimeInterval);
         $("#board").hide();
-        $(".peaces-logo").html("");
+        $(".peaces-logo").html("Fim do Teste");
     }
     function gameStart() {
         $("#board").show();
