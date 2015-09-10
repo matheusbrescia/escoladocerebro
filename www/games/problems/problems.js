@@ -14,7 +14,7 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-    var bugs = true;
+    var bugs = false;
     function log(t) {
         console.log(t);
     }
@@ -91,7 +91,7 @@ $(document).ready(function ($) {
             pecapier = peacesC[nTest - nTestPeaces * 2].value;
             pierresponse = peacesC[nTest - nTestPeaces * 2].response.split(",");
             $(".peaces-logo").html("");
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peacesC[nTest - nTestPeaces * 2].value + '" class="btn btn-primary peaces-unique ">   <img src="../../assets/img/pattern_5/' + pecapier + '.png" </img></button></div>');
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peacesC[nTest - nTestPeaces * 2].value + '" class="btn btn-primary peaces-pier ">   <img src="../../assets/img/pattern_5/' + pecapier + '.png" </img></button></div>');
         }
 
         $("#state").text(nLevel);

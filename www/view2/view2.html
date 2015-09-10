@@ -17,11 +17,10 @@
         </div>
     </div> 
 </nav> 
-<section class="view view-2">   
-
+<section class="view view-2">    
     <iframe iframe-onload="iframeLoadedCallBack()" id="{{gameId}}" src="{{gameUrl}}"></iframe> 
 </section> 
-<div id="baloon" class="baloon baloon-left  {{hidden}} " > 
+<div id="baloon" class="baloon baloon-left  {{hidden}} " ng-click="closeAlert()"> 
     <div class="baloon-baloon" >  
         <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
         <span class="baloon-label">  
@@ -29,7 +28,7 @@
         </span>  
     </div>  
 </div>
-<div id="baloon-header-logger" class="baloon-header-logger  card card-5 hidden" > 
+<div id="baloon-header-logger" class="baloon-header-logger  card card-5 hidden" ng-click="closeAlert()"> 
     <div class="baloon-baloon" >   
         <span class="baloon-label">  
 

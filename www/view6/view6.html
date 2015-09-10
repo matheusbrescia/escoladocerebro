@@ -12,7 +12,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar">   
             <img class="left-bar-img btn-img" src="assets/img/icone_times.png" alt=""/>
             <div class="stat_runningTime_display">  TEMPO </div>
-            <div id="baloon-header" class="baloon-header  {{hidden}} " > 
+            <div id="baloon-header" class="baloon-header  {{hidden}} " ng-click="closeAlert()"> 
                 <div class="baloon-reverse" >  
                     <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
                     <span class="baloon-label">  
@@ -27,7 +27,7 @@
 <section class="view view-6">    
 
 </section> 
-<div id="baloon-header-logger " class="baloon-header  card card-5 hidden" > 
+<div id="baloon-header-logger" class="baloon-header  card card-5 hidden" > 
     <div class="baloon-baloon" >   
         <span class="baloon-label">  </span> 
         <button id="game_again" class="btn fa fa-forward baloon-off" >JOGAR NOVAMENTE</button>  

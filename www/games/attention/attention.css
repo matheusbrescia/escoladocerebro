@@ -112,8 +112,8 @@ nav.navbar.navbar-default {
   /* text-align: center; */
   /* margin: 0 auto; */
 }
-.teste_model{
-  
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: transparent;
 }
 .list-group-item{
     background-color: #413466;
@@ -209,14 +209,13 @@ nav.navbar.navbar-default {
 }
  
 .baloon {
-    font-size: 1em; 
-    /* height: 35%; */  
+    font-size: 1em;
+    /* height: 35%; */
     width: 100%;
-    /* margin-top: 50%; */ 
-     
-    background-image: url(../../assets/img/baloon.png);  
-    background-repeat: no-repeat;  
-    background-size: 100% 100%; 
+    /* margin-top: 50%; */
+    background-image: url(../../assets/img/baloon.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     /* background-position: center top; */
     /* position: absolute; */
     /* top: 10%; */
