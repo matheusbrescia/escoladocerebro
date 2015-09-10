@@ -41,7 +41,6 @@ angular.module('myApp.view3', ['ngRoute'])
                 $location.path(view);
 
             };
-
             $scope.checkDash = function (player) {
 
                 $.getJSON($scope.ec_query_players, {action: "dashboardbyuser", idusers: player})
@@ -86,7 +85,47 @@ angular.module('myApp.view3', ['ngRoute'])
                         });
 
             };
-            
+
+            $scope.checkDashAll = function (player) {
+
+                $.getJSON($scope.ec_query_players, {action: "dashboardbyall"})
+                        .done(function (json) {
+                            if (json !== null) {
+
+                                var obj = JSON.parse(json);
+                                $scope.dashboardall.ngames = obj[0].ngames;
+                                $scope.dashboardall.acuracia = obj[0].acuracia;
+                                $scope.dashboardall.velocidade = obj[0].velocidade;
+                                $scope.dashboardall.estabilidade = obj[0].estabilidade;
+                                $scope.dashboardall.total_time = obj[0].total_time;
+                                $scope.dashboardall.pontuacao_avg = obj[0].pontuacao_avg;
+                                $scope.dashboardall.pontuacao_sum = obj[0].pontuacao_sum;
+                                $scope.dashboardall.idadmin = obj[0].idadmin;
+                                $scope.dashboardall.barssum = obj[0].barssum;
+                                $scope.dashboardall.barsavg = obj[0].barsavg;
+                                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
+
+                                $scope.checkDash(player);
+                            } else {
+                                $scope.$apply(function () {
+                                    $timeout(function () {
+                                        $scope.showAlert("Sem dados no dashboard!");
+
+                                    }, 5000);
+
+                                });
+                            }
+                        })
+                        .fail(function (jqxhr, textStatus, error) {
+                            $scope.$apply(function () {
+
+                                $scope.showAlert("Você parece estar OFF-LINE!");
+                            });
+
+                        });
+
+            };
+
             $scope.syncData = function () {
 
                 $scope.showAlert("Sincronizando...");
@@ -112,8 +151,8 @@ angular.module('myApp.view3', ['ngRoute'])
                                                 $scope.statePoints = false;
 
                                                 $scope.showAlert("Parabéns, todos os " + logArr.length + " dados enviados!");
-                                                $timeout(function () { 
-                                                    $scope.checkDash($scope.user.playerId);
+                                                $timeout(function () {
+                                                    $scope.checkDashAll($scope.user.playerId);
                                                 }, 300);
                                             }
                                         });
@@ -167,6 +206,18 @@ angular.module('myApp.view3', ['ngRoute'])
                     barssum: '0,0,0',
                     barsavg: '0,0,0'
                 };
+                $scope.dashboardall = {
+                    ngames: 0,
+                    acuracia: '',
+                    velocidade: '',
+                    estabilidade: '',
+                    total_time: '',
+                    pontuacao_avg: '',
+                    pontuacao_sum: '',
+                    idadmin: '',
+                    barssum: '0,0,0',
+                    barsavg: '0,0,0'
+                };
                 localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
                 localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
                 $scope.showAlert("Nenhum jogador definido.");
@@ -176,7 +227,8 @@ angular.module('myApp.view3', ['ngRoute'])
                 $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
                 if ($scope.user.playerId > 0) {
                     $scope.statePlayer = true;
-                    $scope.checkDash($scope.user.playerId);
+
+                    $scope.checkDashAll($scope.user.playerId);
                 } else {
                     $scope.statePlayer = false;
                     $scope.cleanUser();
@@ -211,6 +263,7 @@ angular.module('myApp.view3', ['ngRoute'])
             }
             if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
                 $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
+                $scope.dashboardall = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
                 if ($scope.dashboard.ngames > 0) {
                     $scope.stateGamer = true;
                 } else {
@@ -221,7 +274,7 @@ angular.module('myApp.view3', ['ngRoute'])
                 $scope.stateGamer = false;
             }
             $timeout(function () {
-                
+
             }, 300);
 
         })
@@ -314,6 +367,44 @@ angular.module('myApp.view3', ['ngRoute'])
                             .text(function (d) {
                                 return d + "";
                             });
+                }
+            };
+        })
+        .directive("sparklinechart", function () {
+
+            return {
+                restrict: "E",
+                scope: {
+                    data: "@"
+                },
+                compile: function (tElement, tAttrs, transclude) {
+                    tElement.replaceWith("<span>" + tAttrs.data + "</span>");
+                    return function (scope, element, attrs) {
+                        attrs.$observe("data", function (newValue) {
+                            element.html(newValue);
+                            element.sparkline('html',
+                                    {type: 'line',
+                                        width: '100%',
+                                        height: '100px',
+                                        lineColor: '#8688c7',
+                                        barWidth: 11,
+                                        sliceColors: ['#8688c7', '#1aacc3', '#9de49d', '#9074b1', '#66aa00', '#dd4477'],
+                                        barColor: '#1aacc3',
+                                        borderWidth: 1,
+                                        borderColor: '#8688c7',
+                                        tooltipFormat: '<span style="color: {{color}}">&#9679;</span> {{offset:names}} ({{percent.1}}%)',
+                                        tooltipValueLookups: {
+                                            'names': {
+                                                0: 'acuracia ',
+                                                1: 'velocidade',
+                                                2: 'estabilidade'
+                                            }
+                                        }
+
+                                    }
+                            );
+                        });
+                    };
                 }
             };
         });

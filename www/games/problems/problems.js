@@ -7,26 +7,96 @@ $(document).ready(function ($) {
     var nTimeInterval = null;
     var nLevel = 1;
     var nPoints = [];
-    var peaces = [];
-    var clone_peaces = [];
+    var peacesA = [];
+    var peacesB = [];
+    var peacesC = [];
     var nPlay = true;
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-    var bugs = false;
+    var bugs = true;
     function log(t) {
         console.log(t);
     }
+    function gameStart() {
+        $("#points").text(nPoints.length);
+        $("#state").text(nLevel);
+        for (var i = 0; i < nTestPeaces; i++) {
+            peacesA.push({"value": ("peaces_" + i), "state": false, "response": ("response_" + i)});
+        }
+        peacesC = [{"value": "p1", "state": false, "response": "bixos-04,bixos-02,bixos-03,bixos-01"},
+            {"value": "p2", "state": false, "response": "bixos-02,bixos-01,bixos-03,bixos-04"},
+            {"value": "p3", "state": false, "response": "bixos-01,bixos-02,bixos-03,bixos-04"},
+            {"value": "p4", "state": false, "response": "bixos-04,bixos-02,bixos-03,bixos-01"},
+            {"value": "p5", "state": false, "response": "bixos-04,bixos-02,bixos-03,bixos-01"},
+            {"value": "p6", "state": false, "response": "bixos-02,bixos-01,bixos-03,bixos-04"},
+            {"value": "p7", "state": false, "response": "bixos-01,bixos-02,bixos-03,bixos-04"},
+            {"value": "p8", "state": false, "response": "bixos-04,bixos-02,bixos-03,bixos-01"},
+            {"value": "p9", "state": false, "response": "bixos-02,bixos-01,bixos-03,bixos-04"},
+            {"value": "p10", "state": false, "response": "bixos-02,bixos-01,bixos-03,bixos-04"}];
+        peacesB = [{value: "pecas-38,pecas-40,pecas-39,pecas-45", response: "bixos-05,bixos-02,bixos-03,bixos-04"}, {value: "pecas-02,bixos-15,pecas-01,pecas-45", response: "pecas-43,pecas-23,pecas-24,pecas-25"}, {value: "bixos-02,bixos-03,bixos-05,pecas-45", response: "bixos-10,bixos-09,bixos-08,bixos-07"}, {value: "bixos-02,bixos-12,bixos-14,pecas-45", response: "bixos-10,bixos-06,bixos-13,bixos-03"}, {value: "pecas-08,pecas-04,pecas-07,pecas-45", response: "pecas-44,bixos-11,pecas-33,pecas-27"}, {value: "pecas-05,pecas-18,pecas-19,pecas-45", response: "pecas-20,pecas-35,pecas-21,pecas-31"}, {value: "pecas-09,pecas-10,pecas-11,pecas-45", response: "pecas-12,pecas-42,pecas-41,pecas-36"}, {value: "pecas-32,pecas-22,pecas-38,pecas-45", response: "pecas-06,pecas-40,pecas-17,pecas-26"}, {value: "pecas-17,pecas-13,pecas-16,pecas-45", response: "pecas-37,pecas-33,pecas-22,pecas-27"}, {value: "pecas-14,pecas-15,pecas-29,pecas-45", response: "pecas-30,pecas-28,pecas-34,pecas-03"}, {value: "pecas-14,pecas-09,pecas-41,pecas-45", response: "pecas-31,pecas-02,pecas-13,pecas-17"}, {value: "bixos-02,bixos-03,bixos-14,pecas-45", response: "bixos-07,pecas-04,pecas-05,pecas-17"}, {value: "pecas-04,pecas-08,pecas-44,pecas-45", response: "pecas-01,pecas-05,pecas-27,pecas-07"}, {value: "pecas-27,bixos-14,pecas-01,pecas-45", response: "pecas-44,pecas-30,bixos-09,pecas-18"}, {value: "pecas-18,pecas-20,pecas-35,pecas-45", response: "pecas-34,bixos-13,pecas-21,pecas-10"}, {value: "pecas-42,pecas-41,pecas-36,pecas-45", response: "pecas-09,pecas-02,bixos-11,pecas-26"}, {value: "bixos-12,bixos-03,bixos-06,pecas-45", response: "bixos-05,pecas-18,pecas-25,pecas-03"}, {value: "bixos-04,pecas-06,bixos-11,pecas-45", response: "bixos-07,pecas-07,pecas-05,pecas-01"}, {value: "pecas-17,pecas-10,pecas-38,pecas-45", response: "pecas-25,pecas-05,pecas-40,bixos-06"}, {value: "bixos-15,bixos-11,bixos-13,pecas-45", response: "bixos-08,bixos-03,bixos-10,bixos-09"}];
+        if (bugs) {
+
+        } else {
+            peacesA.sort(function () {
+                return .5 - Math.random();
+            });
+            peacesB.sort(function () {
+                return .5 - Math.random();
+            });
+            peacesC.sort(function () {
+                return .5 - Math.random();
+            });
+        }
+
+        //  clone_peaces = peacesA.slice();
+        //   clone_peaces = peacesA.slice();
+        log(JSON.stringify(peacesA))
+        log(JSON.stringify(peacesB))
+        log(JSON.stringify(peacesC))
+    }
     function gamePscicotest() {
         var board = [];
+        var pecalogo = [];
+        var pecaresponse = [];
+        var pecapier = [];
+        var pierresponse = [];
+
         var nBreak = (nColumns - 1);
-        var p = peaces[nTest].value.split("_");
-        if (nTest > 5) {
-            nLevel = 2;
-            $("#state").text(nLevel);
+
+        if (nTest < nTestPeaces) {
+            pecalogo = peacesA[nTest].value.split("_");
+            if (nTest > nTestPeaces / 2) {
+                nLevel = 2;
+            }
+            $(".peaces-logo").html("");
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peacesA[nTest].value + '" class="btn btn-primary peaces-unique ">   <img src="../../assets/img/pattern_3/ts' + pecalogo[1] + '.png" </img></button></div>');
         }
-        $(".peaces-logo").html("");
-        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="../../assets/img/pattern_3/ts' + p[1] + '.png" </img></button></div>');
+
+        if (nTest >= nTestPeaces && nTest < nTestPeaces * 2) {
+            nLevel = 3;
+            pecalogo = peacesB[nTest - nTestPeaces].value.split(",");
+            pecaresponse = peacesB[nTest - nTestPeaces].response.split(",");
+            $(".peaces-logo").html('');
+            $(".peaces-logo").append('<div class="row center-block">');
+            $(".peaces-logo").append('<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><button type="button" data-toggle="button"  " class="btn btn-primary ">   <img src="../../assets/img/pattern_4/' + pecalogo[0] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append('<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><button type="button" data-toggle="button"  " class="btn btn-primary ">   <img src="../../assets/img/pattern_4/' + pecalogo[1] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append('<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><button type="button" data-toggle="button"  " class="btn btn-primary ">   <img src="../../assets/img/pattern_4/' + pecalogo[2] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append('<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><button type="button" data-toggle="button"  " class="btn btn-primary ">   <img src="../../assets/img/pattern_4/' + pecalogo[3] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append("</div>");
+
+        }
+
+        if (nTest >= nTestPeaces * 2) {
+            pecapier = peacesC[nTest - nTestPeaces * 2].value;
+            pierresponse = peacesC[nTest - nTestPeaces * 2].response.split(",");
+            $(".peaces-logo").html("");
+            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peacesC[nTest - nTestPeaces * 2].value + '" class="btn btn-primary peaces-unique ">   <img src="../../assets/img/pattern_5/' + pecapier + '.png" </img></button></div>');
+        }
+
+        $("#state").text(nLevel);
+        //$(".peaces-logo").append("<h4> Escolha uma imagem abaixo </h4>");
+
         for (var i = 0; i < 4; i++) {
             board.push(i + 1);
         }
@@ -38,6 +108,7 @@ $(document).ready(function ($) {
             });
         }
         var gamePage = "<div class=\"layout board-problems\" id=\"layout\">";
+
         $.each(board, function (i) {
             var str = board[i];
 
@@ -45,8 +116,20 @@ $(document).ready(function ($) {
                 gamePage += '<div class="row center-block">';
             }
             gamePage += '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">';
-            gamePage += '<button type="button" data-toggle="button"   class="btn btn-primary btn-board">' + str + '<img src="../../assets/img/pattern_3/ts' + nTest + '_' + str + '.png" </img></button></div>';
+            if (nTest < nTestPeaces) {
+                gamePage += '<button type="button" data-toggle="button" class="btn btn-primary btn-board">' + str + '<img src="../../assets/img/pattern_3/ts' + pecalogo[1] + '_' + str + '.png" </img></button></div>';
 
+            }
+
+            if (nTest >= nTestPeaces && nTest < nTestPeaces * 2) {
+                gamePage += '<button type="button" data-toggle="button" class="btn btn-primary btn-board">' + str + '<img src="../../assets/img/pattern_4/' + pecaresponse[i] + '.png" </img></button></div>';
+
+            }
+
+            if (nTest >= nTestPeaces * 2) {
+                gamePage += '<button type="button" data-toggle="button" class="btn btn-primary btn-board">' + str + '<img src="../../assets/img/pattern_5/' + pierresponse[i] + '.png" </img></button></div>';
+
+            }
             if ((i % nColumns) == nBreak) {
                 gamePage += "</div> ";
             }
@@ -54,6 +137,8 @@ $(document).ready(function ($) {
         });
         gamePage += " </div>";
         $("#board").html(gamePage);
+
+
         $(".btn-board").on("click", function (e) {
 
             $(this).prop('disabled', true);
@@ -70,7 +155,7 @@ $(document).ready(function ($) {
             log("total_clicks " + nClicks)
             log("$(this).text() " + $(this).text())
 
-            if (nTest === nTestPeaces) {
+            if (nTest === (nTestPeaces * 2 + 10)) {
                 gameStop();
                 $("#test_model_end").show();
                 nPlay = false;
@@ -80,9 +165,9 @@ $(document).ready(function ($) {
             nClicks++;
             gamePscicotest();
         });
-        nTest++;
         $("#board").addClass("jumbotron");
         $("#peaces-logo").addClass("jumbotron");
+        nTest++;
         log("gamePscicotest nTest" + nTest)
     }
     function gameStop() {
@@ -91,26 +176,7 @@ $(document).ready(function ($) {
         $("#board").hide();
         $(".peaces-logo").html("Fim do Teste");
     }
-    function gameStart() {
-        $("#points").text(nPoints.length);
-        $("#state").text(nLevel);
-        for (var i = 0; i < nTestPeaces; i++) {
-            peaces.push({"value": ("peaces_" + i), "state": false, "response": ("response_" + i)});
-        }
 
-        if (bugs) {
-
-        } else {
-            peaces.sort(function () {
-                return .5 - Math.random();
-            });
-
-        }
-
-        clone_peaces = peaces.slice();
-        log(JSON.stringify(peaces))
-
-    }
     function gamePlayerOkayDude() {
         $("#board").show();
         $(".teste_model").hide();
@@ -144,7 +210,7 @@ $(document).ready(function ($) {
             dp += Math.pow(nClickIntervals[i] - avgInterval, 2);
         }
         dp = Math.pow(dp / nClickIntervals.length - 1, 0.5);
- 
+
         var logObject = {
             acuracia: ((nRows * nColumns) / (nPoints.length - 1)),
             velocidade: ((nRows * nColumns) / (duration / 1000)),

@@ -53,18 +53,23 @@
             <p> {{user.fullname}}</p> 
             <span class="control-label">Grupo:</span>
             <p> {{user.group}}</p>
+            
+            
+            <barsavg data="{{dashboard.barsavg}}"></barsavg> 
+            <barssum data="{{dashboard.barssum}}"></barssum>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-show="stateGamer"> 
-            Médias
-            <barsavg data="{{dashboard.barsavg}}"></barsavg>
-            <p></p>
-
+            Minhas Métricas <p> </p>
+            
+            <sparklinechart data="{{dashboard.barsavg}}"></sparklinechart>
+           
         </div> 
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100"> 
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100">  
 
-
-            Métricas
-            <barssum data="{{dashboard.barssum}}"></barssum>
+            Outros jogadores
+            <p> </p>
+            
+            <sparklinechart data="{{dashboardall.barsavg}}"></sparklinechart>
 
         </div> 
         <!--        <div ng-app="chartApp" ng-controller="SalesController">
@@ -75,7 +80,7 @@
 
 </section> 
 
-<div class="baloon baloon-left  {{hidden}}" > 
+<div class="baloon baloon-left card card-5 {{hidden}}" > 
     <div class="baloon-baloon" >  
         <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
 

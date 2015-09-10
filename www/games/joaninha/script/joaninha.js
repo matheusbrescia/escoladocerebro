@@ -339,7 +339,7 @@ RushHourGame.prototype.initializePieces = function()
 		var c = Math.floor(Math.random()*colors.length);
 		var color = colors[c];
 		var source = piece.object.source;
-		var pieceStyle = 'position:absolute;';
+		var pieceStyle = 'position:absolute; cursor: all-scroll;';
 		piece.dynamicSource = (source.indexOf('_left') > -1 || source.indexOf('_right') > -1 && source.indexOf('_up') > -1 || source.indexOf('_down') > -1);
 		
 		var pieceDisplay = $('<div id="'+piece.id+'" style="'+pieceStyle+'"></div>');

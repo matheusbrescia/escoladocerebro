@@ -1,23 +1,20 @@
 <!DOCTYPE html> 
 <html>
     <head> 
-
-        <title>Bem Vindos ao Ranking Escola do Cérebro</title> 
+<title>Bem Vindos ao Ranking Escola do Cérebro</title> 
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    
         <meta name="author" content="Cognisense Tecnologia Ltda">  
         <meta name="keywords" content="" /> 
         <meta name="description" content="" />    
-
+        <link href="../../assets/css/app.css" rel="stylesheet" type="text/css"/>
         <link href="charts.css" rel="stylesheet" type="text/css"/>
-
-        <script src="../../bower_components/amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script>
-        <script src="../../bower_components/amcharts-stock/dist/amcharts/serial.js" type="text/javascript"></script>
-
-        <script src="../../bower_components/amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script> 
-        <script src="../../bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
-
+        <script src="amcharts-stock/dist/amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="amcharts-stock/dist/amcharts/serial.js" type="text/javascript"></script>
+        <script src="amcharts-stock/dist/amcharts/amstock.js" type="text/javascript"></script>  
+        <script src="amcharts/dist/amcharts/themes/chalk.js" type="text/javascript"></script>
+        <script src="../../assets/js/lib.min.js" type="text/javascript"></script>
     </head> 
     <body> 
          <header>
@@ -47,7 +44,7 @@
                     "type": "serial",
                     "theme": theme,
                     "marginRight": 30,
-                    "pathToImages": "../../bower_components/amcharts-stock/dist/amcharts/images/",
+                    "pathToImages": "amcharts-stock/dist/amcharts/images/",
                     "legend": {
                         "equalWidths": false,
                         "periodValueText": "total: [[value.sum]]",
@@ -63,19 +60,19 @@
                             "title": "Minha evolução"
                         }],
                     "graphs": [{
-                            "balloonText": "<img src='../../img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+                            "balloonText": "<img src='../../assets/img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
                             "fillAlphas": 0.6,
                             "lineAlpha": 0.4,
                             "title": "Minha pontuação",
                             "valueField": "value1"
                         }, {
-                            "balloonText": "<img src='../../img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+                            "balloonText": "<img src='../../assets/img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
                             "fillAlphas": 0.6,
                             "lineAlpha": 0.4,
                             "title": "Outros jogadores",
                             "valueField": "value2"
                         }, {
-                            "balloonText": "<img src='../../img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+                            "balloonText": "<img src='../../assets/img/icone_trofeu.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
                             "fillAlphas": 0.6,
                             "lineAlpha": 0.4,
                             "hidden": true,
@@ -101,7 +98,7 @@
                     "export": {
                         "enabled": true,
                         "libs": {
-                            "path": "../../bower_components/amcharts-stock/dist/amcharts/plugins/export/libs/"
+                            "path": "amcharts-stock/dist/amcharts/plugins/export/libs/"
                         }
                     }
                 });

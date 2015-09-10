@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+<html>
+    <head> 
+        <title>Psicoteste Resolução de Problemas</title> 
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">  
+        <meta name="description" content="Escola do Cérebro" />
+        <meta name="keywords" content="cognisense, education, braingames, games, cognitive, seriousgames, escola do cérebro, escola, games digitais, educação, pedagogia" />
+        <meta name="author" content="Escola do Cérebro" />  
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">    
+        <link href="../../assets/css/lib.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../../assets/js/lib.min.js" type="text/javascript"></script>
+        <link href="problems_1.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="problems_1.js" type="text/javascript"></script>
+        <style type="text/css"> body, html { -webkit-tap-highlight-color: rgba(0,0,0,0); } </style>
+    </head> 
+    <body>  
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-T" aria-expanded="false" aria-controls="navbar-T">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand "   ></div>
+
+                </div>
+                <div id="navbar-T" class="navbar-collapse collapse ">
+
+                    <ul class="nav navbar-nav hidden">
+                        <li role="presentation" class="active"><a href="#" class="btn  ">FASE <span   id="state" class="badge">1 </span> </a></li>
+
+                        <li role="presentation"><a href="#" class="btn  ">PONTOS <span  id="points" class="badge">0 </span> </a></li>  
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right hidden">
+
+                        <li role="presentation" ><a href="#" class="btn time "><img src="../../assets/img/icone_times.png" alt=""  />  <span  id="time" class="badge">0 </span> </a></li>
+
+                    </ul>
+                </div> 
+            </div>
+        </nav>
+        <div class="container">
+            <div class="jumbotron hello"> 
+                <div class="btn-group btn-toggle footer-test hidden"> 
+                    <button class="btn btn-xs btn-default active">APLICAÇÃO</button>
+                    <button class="btn btn-xs btn-danger ">TESTE</button>
+                </div>
+                <div class="baloon baloon-left  " > 
+                    <div class="baloon-baloon" >   
+                        <span class="baloon-label">  
+                            Nesse game você deve decidir o melhor padrão.
+                        </span>
+                        <button class="btn btn-primary btn-lg"  id="btn_start_test">COMEÇAR</button>
+                    </div>  
+                </div>
+                <img src="../../assets/img/icon_user_profile.png" alt="" class="robot"/> 
+            </div>
+            <div id="test_model_1" class="jumbotron teste_model">
+
+                <div class="baloon baloon-left  " > 
+                    <div class="baloon-baloon" >  
+
+                        <span class="baloon-label">  
+                            Escolha o melhor padrão para a sequência. Você está pronto?
+                        </span>
+                        <button class="btn btn-xs btn-danger ">OKAY</button>
+                    </div>  
+                </div>
+                <img src="../../assets/img/icon_user_profile.png" alt="" class="robot"/>
+
+            </div>
+            <div id="test_model_2" class="jumbotron teste_model">
+
+                <div class="baloon baloon-left  " > 
+                    <div class="baloon-baloon" >  
+
+                        <span class="baloon-label">  
+                            Escolha o melhor padrão para a sequência. Você está pronto?
+                        </span>
+                        <button class="btn btn-xs btn-danger ">OKAY</button>
+                    </div>  
+                </div>
+                <img src="../../assets/img/icon_user_profile.png" alt="" class="robot"/>
+
+
+            </div>
+            <div id="test_model_end" class="jumbotron teste_model">
+                <div class="container">
+                    <h3>Suas estatísticas: </h3> 
+                    <div class="game-stats" data-game-stats-id="list-group-badges">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge total_times">0</span>
+                                Tempo total
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge total_points">0</span>
+                                Total de acertos
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge total_clicks">0</span>
+                                Número de tentativas
+                            </li>
+                        </ul>
+                        <a href="problems_1.html" class="btn btn-success">INICAR</a>
+                    </div>
+                </div>
+            </div>
+            <div class="stage"> 
+                <div id="peaces-logo" class="peaces-logo center-block row"  ></div>   
+                <div id="board" class="board"> </div>
+            </div>
+
+        </div>
+        <footer>
+
+        </footer>
+
+    </body>  
+</html>
