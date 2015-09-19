@@ -129,6 +129,7 @@ angular.module('myApp.view3', ['ngRoute'])
                                         var measurements = [];
                                         localStorage.setItem('org.escoladocerebro.measurements', JSON.stringify(measurements));
                                         $scope.points = [];
+                                        $scope.statePoints = false;
                                         $scope.showAlert("Parabéns, todos os " + sampleLength + " dados enviados!");
                                         return true;
                                     }
@@ -213,7 +214,7 @@ angular.module('myApp.view3', ['ngRoute'])
                     var localData = JSON.parse(value);
                     console.log(localData);
                     //localData.playerId = $scope.user.playerId;
-                    $scope.logToSend++;
+                    
                     $scope.points.push(localData);
                     $scope.statePoints = true;
                     $.each(localData, function (k, v) {
