@@ -1,25 +1,34 @@
- 
-html,body { 
+ body, html { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+html,body {
     background: transparent;
     font-size: 1em;
-    font-family: "OCR A Std" , "OCRastd"; 
+    font-family: "OCR A Std" , "OCRastd";
     -webkit-transition: All .6s ease-in-out;
     -moz-transition: All .6s ease-in-out;
     -ms-transition: All .6s ease-in-out;
     -o-transition: All .6s ease-in-out;
-    transition: All .6s ease-in-out; 
+    transition: All .6s ease-in-out;
+    /* min-height: 600px; */
 }
 .peaces-logo{
     margin:0 auto;
     text-align:center;
     width: 25%;
+    background-color: #FFFFFF;
+    border-bottom: 5px #89DEAA solid;
 }
- 
+.btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
+    background-color: transparent;
+    border-color: #2e6da4;
+}
+.btn-margin{
+    margin: 10px;
+}
 .stage{
    /* position: absolute; */
-   top: 0%;
-   left:5%;
-   right:5%;
+   /* top: 0%; */
+   /* left: 16%; */
+   /* right:5%; */
 }
 
 .layout .row  {
@@ -63,10 +72,12 @@ html,body {
 }
 nav.navbar.navbar-default {
     border-color: transparent;
-    z-index: 100000000;
+    z-index: -100000000;
     position: absolute;
-    bottom: 0;
+    top: 0;
     width: 100%;
+    left: 0;
+    right: 0;
 }
 .btn img{
 
@@ -88,10 +99,11 @@ nav.navbar.navbar-default {
     font-size: 1em;
 }
 .btn{
-    color: #00CCFF;  
-    background: #413466;  
-    border: 1px #8676b5 solid;  
+    color: #00CCFF;
+    background: #413466;
+    border: 1px #8676b5 solid;
     font-size: 1em;
+    /* padding: 0; */
 }
 .time img{
    width: 32px;
@@ -107,19 +119,16 @@ nav.navbar.navbar-default {
     background-color: #9F89D6;
     border-color: #413466;
 }
-.jumbotron {
-    padding: 5px 15px;
+  .jumbotron {
+    padding: 0px;
     margin-bottom: 10px;
-    color: white;
-    background-color: rgba(102, 52, 78, 0.8);
-    border: 2px solid #c57ba2;
+    color: #00CCFF;
+    /* background-color: #F8F8F9; */
+    /* border: 2px solid #c57ba2; */
     /* border-radius: 8px; */
 }
-.container .jumbotron, .container-fluid .jumbotron {
-  border-radius: 20px;
-  /* text-align: center; */
-  /* margin: 0 auto; */
-}
+  
+ 
 .teste_model{
   
 }
@@ -147,27 +156,25 @@ nav.navbar.navbar-default {
     /* min-height: 32px; */
     padding: 2%;
     border:0px;
-    background:transparent;
+    /* background:transparent; */
 }
 .board-memory .row{
-  
   padding: 5% 0% 5% 0%;
-  margin-left: 25%;
+  /* margin-left: 25%; */
 }
 .board-attention .row{
-  
-  padding: 1% 0% 1% 0%;
+  padding: 2px 0% 2px 0%;
   margin-left: 7%;
 }
 .board-attention .btn{
-  width:32px;
-  height:32px;
+  width: 48px;
+  height: 48px;
 }
 .board-problems .row{
   padding: 5% 0% 5% 0%;
 }
 .peaces-logo .btn {
-   /* padding: 5%; */
+   padding: 0;
    font-size:0;
    width: 100%;
    height: 100%;
@@ -191,7 +198,7 @@ nav.navbar.navbar-default {
 .board  {
 
     padding-top: 0%;
-}
+border: 2px #89DEAA solid;}
 .peaces-logo img{
 
     /* width: 100%; */
@@ -217,14 +224,13 @@ nav.navbar.navbar-default {
 }
  
 .baloon {
-    font-size: 1em; 
-    /* height: 35%; */  
+    font-size: 1em;
+    /* height: 35%; */
     width: 100%;
-    /* margin-top: 50%; */ 
-     
-    background-image: url(../../assets/img/baloon.png);  
-    background-repeat: no-repeat;  
-    background-size: 100% 100%; 
+    /* margin-top: 50%; */
+    /* background-image: url(../../assets/img/baloon.png); */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     /* background-position: center top; */
     /* position: absolute; */
     /* top: 10%; */
@@ -246,7 +252,7 @@ nav.navbar.navbar-default {
 }
 .baloon-label {
     text-align: left;
-    color:#FFFFFF; 
+    color: #00CCFF;
 }
 .robot{
     margin-left:80%;
@@ -261,5 +267,24 @@ nav.navbar.navbar-default {
   padding-right: 0px;
   padding-left: 0px;
   width: 100%;
+  /* padding-top: 0%; */
   /* position: absolute; */
 }   
+
+.center{
+    margin: 0 auto;
+    text-align: center;
+}
+.container {
+    padding-right: 10%;
+    padding-left: 10%;
+    margin-right: auto;
+    margin-left: auto;
+    /* padding: 1px; */
+}
+@media (min-width: 768px){
+.navbar-nav>li>a {
+    /* padding-top: 3%; */
+    /* padding-bottom: 3%; */
+    /* z-index: -100; */
+}}

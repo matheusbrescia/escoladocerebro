@@ -19,7 +19,9 @@ angular.module('myApp.view2', ['ngRoute'])
             $scope.stateSendPoints = false;
             $scope.title = "Games ";
             $scope.fc = 0;
-
+            $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
+            $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
+            $scope.measurements = JSON.parse(window.localStorage['org.escoladocerebro.measurements'] || '{}');
             $scope.show = function () {
                 $scope.hidden = "alert";
             };
@@ -29,14 +31,10 @@ angular.module('myApp.view2', ['ngRoute'])
             };
             $scope.showAlert = function (txt) {
                 $scope.hidden = "alert";
-                $scope.message = txt;
-
-                console.log(txt)
+                $scope.message = txt; 
             };
-            $scope.closeAlert = function (txt) {
-
-                $scope.hidden = "hidden";
-
+            $scope.closeAlert = function (txt) { 
+                $scope.hidden = "hidden"; 
             };
             if (SettingsService.get('game')) {
                 $scope.gameIcon = "icone-" + SettingsService.get('game');
@@ -55,8 +53,7 @@ angular.module('myApp.view2', ['ngRoute'])
             $scope.iframeLoadedCallBack = function () {
                 console.log("iframeLoadedCallBack:" + $scope.fc)
                 if ($scope.fc < 1) {
-                     document.getElementById($scope.gameId).src += '';
-
+                    document.getElementById($scope.gameId).src += ''; 
                 }
                 $scope.fc++;
 
@@ -65,7 +62,7 @@ angular.module('myApp.view2', ['ngRoute'])
                     $scope.off = "hidden";
                 }
                 $scope.syncData = function () {
-                    localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
+                     
                     $scope.showAlert("Sincronizando...");
                     if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
                         var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
@@ -74,7 +71,7 @@ angular.module('myApp.view2', ['ngRoute'])
                             var localData = JSON.parse(value);
                             localData.playerId = $scope.user.playerId;
                             localData.adminId = $scope.user.adminId;
-                            $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
+                            $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
                                     .done(function (rjson) {
                                         if (rjson !== null) {
                                             var obj = JSON.parse(rjson);
@@ -147,65 +144,11 @@ angular.module('myApp.view2', ['ngRoute'])
                     barssum: '0,0,0',
                     barsavg: '0,0,0'
                 };
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
+                window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
+                window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
                 $scope.showAlert("Nenhum jogador definido.");
             };
-
-            if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {
-                $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
-                if ($scope.user.playerId > 0) {
-                    $scope.statePlayer = true;
-                    $scope.showAlert("Toque para iniciar o game " + $scope.user.fullname + ".");
-
-                } else {
-                    $scope.statePlayer = false;
-                    $scope.cleanUser();
-                }
-
-            } else {
-                $scope.cleanUser();
-                $scope.statePlayer = false;
-
-            }
-            if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr && localStorage.brComCognisenseEscolaDoCerebroLogObjectArr != 0) {
-                var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
-                $scope.logToSend = 0;
-                $.each(logArr, function (key, value) {
-                    //console.log('DashboardCtrl:' + key + ' = ' + value);
-                    var localData = JSON.parse(value);
-                    console.log(localData);
-                    if (localData !== null) {
-                        //localData.playerId = $scope.user.playerId;
-                        $scope.logToSend++;
-                        $scope.points.push(localData);
-                        $scope.statePoints = true;
-                        $.each(localData, function (k, v) {
-                            // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
-                        });
-                    }
-                });
-
-                // $scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
-            } else {
-                $scope.logToSend = 0;
-                // $scope.showAlert("Parabéns, todos seus dados estão sincronizados!");
-            }
-            if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
-                $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
-                if ($scope.dashboard.ngames > 0) {
-                    $scope.stateGamer = true;
-                } else {
-                    $scope.stateGamer = false;
-                }
-
-            } else {
-                $scope.stateGamer = false;
-            }
-            $timeout(function () {
-                //    $scope.closeAlert("");
-            }, 5000);
-
+ 
 
         });
  

@@ -59,15 +59,15 @@ nav{
     width: 100%;  
     height: 100%;  
     /* text-align: center; */
-}
-.container{
-    /* padding-right: 2%; */
-    height: 100%;   
-    /* padding-left: 2%; */ 
 } 
 .modal-header{
-    border-bottom: 0px solid #e5e5e5; 
+    border-bottom: 0px solid #e5e5e5;
     /* min-height: 0; */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1000000000;
+    cursor: pointer;
 }
 .datepicker{
     color: #9F89D6;  
@@ -118,12 +118,12 @@ input, select, .form-control{
     color: #9F89D6;  
 }
 iframe{
-    
-    border: 0px;  
-    height: 100%;  
-    width: 100% ;  
-    margin: 0 auto;  
-     
+    border: 0px;
+    height: 100%;
+    width: 100% ;
+    margin: 0 auto;
+    /* position: absolute; */
+    border-radius: 20px;
 } 
 
 .thumbnail{
@@ -260,27 +260,27 @@ iframe{
     background-position: top center;
     background-size: 100% 100%;
     position: absolute;
-    top: 35%;
+    top: 10%;
     right: 1%;
     /* width: 70%; */
     cursor: pointer;
     z-index: 10000000000000;
 }
 .baloon-header-logger{
-     font-size: 1em; 
-    height: 35%;  
-    width: 100%;
-    /* margin-top: 50%; */ 
-     background-image: url(../img/baloon.png);  
-    background-repeat: no-repeat;  
-   background-position: top center;  
-    background-size: 100%;
-    position: absolute;
-    top: 10%;
-    left: 70%;
-    width: 20%;
-    cursor: pointer;
-    z-index: 10000000000000;
+     font-size: 1em;
+     height: 35%;
+     width: 100%;
+     /* margin-top: 50%; */
+     background-color: #0CF;
+     background-repeat: no-repeat;
+     background-position: top center;
+     background-size: 100%;
+     position: absolute;
+     top: 10%;
+     right: 5%;
+     width: 20%;
+     cursor: pointer;
+     z-index: 10000000000000;
 }
 .baloon-left {
      /* top: 45%; */
@@ -542,9 +542,7 @@ iframe{
 }
 
 .view-1, .view-T {
-    width: 80%;
-
-
+    width: 600px;
 }
 
 .view-T-background{ 
@@ -638,25 +636,18 @@ iframe{
     background-size: 100%;
 }
 .view-4 {
-    width: 100%; 
-
-    height: 100%; 
-
-    padding-top: 9%; 
-
+    width: 100%;
+    height: 100%;
+    padding-top: 9%;
+    min-height: 600px;
 }
 .view-4 iframe{
     border: 0px solid #8Dceff;
     /* border-radius: 5px; */
-
-    height: 100%; 
-
-    width: 100%; 
-
-
-    margin: 0 auto; 
-
-
+    height: 100%;
+    width: 100%;
+    min-height: 600px;
+    margin: 0 auto;
 } 
 
 .view-5-background{ 
@@ -725,19 +716,17 @@ iframe{
 } 
 
 .modal-content{
-    background-image: url(../img/modal_content.png); 
-
-    background-repeat: no-repeat; 
-    background-position: top center;  
+    background-image: url(../img/modal_content.png);
+    background-repeat: no-repeat;
+    background-position: top center;
     background-size: 100%;
     background-color: transparent;
     border-radius: 20px;
 }
 .modal-dialog{
-    width: 98%;
+    width: 99%;
     margin:0 auto;
-    margin-top:1%;
-    
+    /* margin-top:1%; */
 }
 .modal-body{
     padding:10%;
@@ -745,29 +734,32 @@ iframe{
 
 .modal-header .fa-close{
     float: right;
-    margin-top: -2%;
-    margin-right: -2%;
+    margin-top: 0%;
+    margin-right: 0%;
+    z-index: 100000000000000;
+    /* position: absolute; */
+    /* right: 0; */
+    cursor: pointer;
 }
 
 
 #modal_psicotest .modal-content{
-    background-image: url(../img/background_test.png); 
-
-    background-repeat: no-repeat; 
- background-position: top center;  
-    background-size: 100%;
+    background-image: url(../img/background_test.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% 100%;
     background-color: transparent;
-   height:90%;
+    height: 600px;
 }
 #modal_psicotest .modal-body{
     padding:0%;
-    height: 100%;
-
+    height: 99%;
+    margin-top: 3px;
 }
 #modal_psicotest .modal-dialog{
     /* padding: 5%; */
+    min-height: 600px;
     height: 100%;
-    
 }
 .modal-footer{
     text-align:center;

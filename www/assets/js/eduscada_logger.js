@@ -5,84 +5,57 @@ function setStat(key, value) {
         display.html(value);//display.text(parseFloat(value).toFixed(0));
 
 }
- 
-function syncData(logObject) {
+function playAgain(sample, message) {
+    $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(sample.pontuacao) + " pontos em " + Math.round(sample.time / 1000) + " segundos. " + message);
+    $("#baloon-header-logger").removeClass("hidden");
+    $("#game_again").on("click", function () {
+        $("#baloon-header-logger").toggleClass("hidden");
+        document.getElementById(sample.gameId).src = "games/" + sample.gameId + "/" + sample.gameId + ".html";
+    });
+     
+    console.log(message);
 
-    console.log("Sincronizando...");
-    if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
-        var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
-        var logArrWalk = 0;
-        $.each(logArr, function (key, value) {
-            var localData = JSON.parse(value);
-            $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
-                    .done(function (rjson) {
-                        if (rjson !== null) {
-                            var obj = JSON.parse(rjson);
-                            logArrWalk++;
-                            if (logArr.length === logArrWalk) {
-                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = "";
-                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength = 0;
-
-                                $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(logObject.pontuacao) + " pontos em " + Math.round(logObject.time / 1000) + " segundos.");
-                                $("#baloon-header-logger").toggleClass("hidden");
-                                $("#game_again").on("click", function () {
-                                    $("#baloon-header-logger").toggleClass("hidden");
-                                    document.getElementById(logObject.gameId).src = "games/" + logObject.gameId + "/" + logObject.gameId + ".html";
-                                });
-
-                                console.log("syncData atualizado, jogue novamente!" + obj);
-
-                                return true;
-                            }
-
-                        } else {
-                            return false;
-                        }
-                    })
-                    .fail(function (jqxhr, textStatus, error) {
-                        console.log("Você parece estar off-line!");
-
-                        return false;
-                    });
-        });
-    } else {
-        console.log("Você ainda não tem pontos nessa sessão!");
-        return false;
-    }
 }
-function saveLogObject(logObject) {
+function syncData(sample) {
+    var measurements = JSON.parse(localStorage.getItem('org.escoladocerebro.measurements')) || [];
+    console.log("Sincronizando..." + measurements.length + " dados.");
+    var sampleWalker = 0;
+    var sampleLength = measurements.length;
+    $.each(measurements, function (key, value) {
+        var lastSample = JSON.parse(value);
+        $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(lastSample)})
+                .done(function (json) {
+                    if (json !== null) {
+                        sampleWalker++;
+                        if (sampleLength === sampleWalker) {
+                            var measurements = [];
+                            localStorage.setItem('org.escoladocerebro.measurements', JSON.stringify(measurements));
+                            playAgain(sample, "Seus dados da jogada foram salvos!");
+                            return true;
+                        }
+                        console.log("Sincronizando..." + sampleWalker + " dados.");
+                    } else {
+                        playAgain(sample, "Aconteceu algum bug ao enviar os dados!");
+                        return false;
+                    }
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                    playAgain(sample, "Você parece estar off-line!");
+                    return false;
+                });
+    });
+}
+function saveLogObject(sample) {
+    var user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
+    sample.playerId = user.playerId;
+    sample.adminId = user.adminId;
+    sample.fullname = user.fullname;
+    
+    localStorage.setItem("org.escoladocerebro.sample", JSON.stringify(sample));
+    var measurements = JSON.parse(localStorage.getItem('org.escoladocerebro.measurements')) || [];
+    measurements.push(JSON.stringify(sample));
+    localStorage.setItem('org.escoladocerebro.measurements', JSON.stringify(measurements));
+    
+    var sync = syncData(sample);
 
-    if (typeof (Storage) !== "undefined") {
-
-        if (localStorage.brComCognisenseEscolaDoCerebroUserProfile) {
-            logProfile = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
-            logObject.playerId = logProfile.playerId;
-            logObject.adminId = logProfile.adminId;
-            logObject.fullname = logProfile.fullname;
-        }
-        else {
-
-            logObject.playerId = 0;
-            logObject.fullname = 'convidado';
-            logObject.adminId = 138;
-        }
-
-        if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
-            localStorage.brComCognisenseEscolaDoCerebroLogObjectArr += "|" + JSON.stringify(logObject);
-            console.log("Parabéns, você fez " + Math.round(logObject.pontuacao) + " pontos nessa partida.");
-
-            //  $(".icone-" + logObject.gameId).trigger("click");
-        }
-        else {
-            localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = JSON.stringify(logObject);
-            // $(".icone-" + logObject.gameId).trigger("click");
-            console.log("Parabéns, você fez " + Math.round(logObject.pontuacao) + " pontos nessa partida.");
-        }
-        var sync = syncData(logObject);
-
-
-    }
-    else {
-        alert("-\(°_o)/¯ Tente com o navegador Google Chrome ou Firefox");
-    }
 }

@@ -4,8 +4,8 @@ $(document).ready(function ($) {
     var nTest = 0;
     var nClicks = 0;
     var nTimeInterval = null;
-    var nTimeToStart = 30000;
-    var nTimeToTest = 10000;
+    var nTimeToStart = 0;
+    var nTimeToTest = 20000;
     var nLevel = 1;
     var nPoints = [];
     var nPeaces = [];
@@ -13,7 +13,7 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-    var bugs = false;
+
     function log(t) {
         console.log(t);
     }
@@ -107,23 +107,27 @@ $(document).ready(function ($) {
 
         });
         gamePage += " </div>";
+
         if (nLevel == 1) {
             $(".peaces-logo").html("");
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
-
+            
+            $(".peaces-logo").append('<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div></div> ');
+             
         }
         if (nLevel == 2) {
             $(".peaces-logo").html("");
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div>');
-
+          
+            $(".peaces-logo").append('<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append('<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div></div> ');
+             
         }
         if (nLevel == 3) {
             $(".peaces-logo").html("");
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div>');
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div>');
-            $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + nPeaces[2] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[2] + '.png" </img></button></div>');
-
+            
+            $(".peaces-logo").append('<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append('<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append('<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><button type="button" data-toggle="button" id="cur_' + nPeaces[2] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[2] + '.png" </img></button></div></div> ');
+            
         }
 
         $("#board").html(gamePage);
@@ -157,15 +161,16 @@ $(document).ready(function ($) {
             log("nClicks " + nClicks)
         });
         $("#board").addClass("jumbotron");
-         $("#peaces-logo").addClass("jumbotron");
-        
+        $("#peaces-logo").addClass("jumbotron");
+
         log("gamePscicotest nTest" + nTest)
     }
     function gameStop() {
         log("stop");
         clearInterval(nTimeInterval);
         $("#board").hide();
-        $(".peaces-logo").html("Fim do Teste");
+
+        $(".peaces-logo").html("");
     }
     function gameStart() {
         $("#board").show();
@@ -174,7 +179,7 @@ $(document).ready(function ($) {
         $("#state").text(nLevel);
         gameRunner();
         nTimeInterval = setInterval(function () {
-             gameRunner();
+            gameRunner();
         }, nTimeToTest);
     }
     function gameRunner() {
@@ -183,14 +188,14 @@ $(document).ready(function ($) {
             gameStop();
             $("#test_model_2").show();
             nLevel = 2;
-            setTimeout(gameStart, nTimeToStart);
+
             return true;
         }
         if (nTest == 10 && nLevel < 3) {
             gameStop();
             $("#test_model_3").show();
             nLevel = 3;
-            setTimeout(gameStart, nTimeToStart);
+            //setTimeout(gameStart, nTimeToStart);
             return true;
         }
         if (nTest == 15) {
@@ -198,6 +203,8 @@ $(document).ready(function ($) {
             gameStop();
             $("#test_model_end").show();
             nPlay = false;
+
+            $(".peaces-logo").html("Fim do Teste");
             onAnimateComplete();
             return true;
         }
@@ -272,7 +279,7 @@ $(document).ready(function ($) {
                         if (rjson !== null) {
                             var obj = JSON.parse(rjson);
                             console.log("Ranking OFF atualizado, jogue novamente!");
-                            console.log(obj)
+                             
                         } else {
                             return false;
                         }
@@ -294,13 +301,17 @@ $(document).ready(function ($) {
     $("#btn_start_test").on("click", function () {
 
         $(".hello").hide();
-        $("#test_model_1").show();
+        // $("#test_model_1").show();
         $("#navbar-T ul").removeClass("hidden");
         nStartTime = new Date();
         nLastClickTime = new Date();
         setTimeout(gameStart, nTimeToStart);
         setTimeout(gameTime, 1000);
     });
+    $(".btn_start_test").on("click", function () {
+        setTimeout(gameStart, nTimeToStart);
+    });
+
     $(".btn-toggle .btn").on("click", function () {
         $(".btn-toggle .btn").toggleClass("active")
         if ($(this).text() == "TESTE") {
@@ -310,11 +321,11 @@ $(document).ready(function ($) {
             bugs = true;
         } else {
             alert("MODO APLICAÇÃO: vá em frente, 30s para instrução e 10s para resposta")
-            nTimeToStart = 30000;
-            nTimeToTest = 10000;
+            nTimeToStart = 10;
+            nTimeToTest = 20000;
             bugs = false;
         }
     });
     $(".teste_model").hide();
- 
+
 });

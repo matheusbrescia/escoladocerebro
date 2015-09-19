@@ -20,6 +20,9 @@ angular.module('myApp.view6', ['ngRoute'])
             $scope.stateGamer = false;
             $scope.title = "Games ";
             $scope.fc = 0;
+            $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
+            $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
+            $scope.measurements = JSON.parse(window.localStorage['org.escoladocerebro.measurements'] || '{}').split("|");
             $scope.show = function () {
                 $scope.hidden = "alert";
             };
@@ -71,7 +74,7 @@ angular.module('myApp.view6', ['ngRoute'])
                             var localData = JSON.parse(value);
                             localData.playerId = $scope.user.playerId;
                             localData.adminId = $scope.user.adminId;
-                            $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
+                            $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
                                     .done(function (rjson) {
                                         if (rjson !== null) {
                                             var obj = JSON.parse(rjson);
@@ -100,7 +103,7 @@ angular.module('myApp.view6', ['ngRoute'])
                     }
                 };
                 $timeout(function () {
-                   
+
                     $('#modal').modal('show');
                 }, 300);
             };
@@ -148,8 +151,8 @@ angular.module('myApp.view6', ['ngRoute'])
                     barssum: '0,0,0',
                     barsavg: '0,0,0'
                 };
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
+                window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
+                window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
                 $scope.showAlert("Nenhum jogador definido.");
             };
 

@@ -18,11 +18,15 @@ angular.module('myApp.viewH', ['ngRoute'])
             $scope.stateAdmin = false;
             $scope.statePlayer = false;
             $scope.stateGamer = false;
+            $scope.stateMeasurements = 0;
+            $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
+            $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
+            $scope.measurements = JSON.parse(window.localStorage['org.escoladocerebro.measurements'] || '{}');
             $scope.goPath = function (view) {
                 $location.path(view);
             };
             $scope.cleanUser = function () {
-                console.log("saindo..." + $scope.user);
+                
                 $scope.statePlayer = false;
                 $scope.user = {
                     playerId: 0,
@@ -58,65 +62,29 @@ angular.module('myApp.viewH', ['ngRoute'])
                     barssum: '0,0,0',
                     barsavg: '0,0,0'
                 };
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
+                window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
+                window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
 
             };
 
-            if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {
-                $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
-                if ($scope.user.playerId > 0) {
-                    $scope.statePlayer = true;
-                    // $scope.showAlert("Escolha um caminho " + $scope.user.fullname + ".");
-
-                } else {
-                    $scope.statePlayer = false;
-                    $scope.cleanUser();
-                }
-
+            if ($scope.user.playerId > 0) {
+                $scope.statePlayer = true;
+                console.log("statePlayer:" + $scope.user.playerId);
             } else {
-                $scope.cleanUser();
                 $scope.statePlayer = false;
-
+                $scope.cleanUser();
             }
-            if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr && localStorage.brComCognisenseEscolaDoCerebroLogObjectArr != 0) {
-                var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
-                $scope.logToSend = 0;
-                $.each(logArr, function (key, value) {
-                    //console.log('DashboardCtrl:' + key + ' = ' + value);
-
-                    var localData = JSON.parse(value);
-                    console.log(localData);
-                    //localData.playerId = $scope.user.playerId;
-                    $scope.logToSend++;
-                    $scope.points.push(localData);
-                    $scope.statePoints = true;
-                    $.each(localData, function (k, v) {
-                        // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
-                    });
-                });
-
-                //$scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
+            
+            if ($scope.measurements.length > 0) {
+                $scope.stateMeasurements = true;
+                console.log("stateMeasurements:" + $scope.measurements.length);
             } else {
-                $scope.logToSend = 0;
-                //$scope.showAlert("Parabéns, todos seus dados estão sincronizados!");
+                $scope.stateMeasurements = false;
+                $scope.cleanUser();
             }
-            if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
-                $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
-                if ($scope.dashboard.ngames > 0) {
-                    $scope.stateGamer = true;
-                } else {
-                    $scope.stateGamer = false;
-                }
-
-            } else {
-                $scope.stateGamer = false;
-            }
-
-
             $timeout(function () {
                 $scope.hidden = "";
-                
+
             }, 100);
 
 

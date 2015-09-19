@@ -44,7 +44,7 @@ html,body {
 
 }
 .board-background{
-    background-image: url(../../assets/img/test_title.png); 
+    background-image: url(../img/test_title.png); 
 
     background-repeat: no-repeat; 
 
@@ -55,7 +55,7 @@ html,body {
     background-size: 100% 100%;
 }
 .peaces-background{
-    background-image: url(../../assets/img/test_title.png); 
+    background-image: url(../img/test_title.png); 
 
     background-repeat: no-repeat; 
 
@@ -159,9 +159,8 @@ nav.navbar.navbar-default {
     /* background:transparent; */
 }
 .board-memory .row{
-  
   padding: 5% 0% 5% 0%;
-  margin-left: 25%;
+  /* margin-left: 25%; */
 }
 .board-attention .row{
   padding: 2px 0% 2px 0%;
@@ -229,7 +228,7 @@ border: 2px #89DEAA solid;}
     /* height: 35%; */
     width: 100%;
     /* margin-top: 50%; */
-    /* background-image: url(../../assets/img/baloon.png); */
+    /* background-image: url(../img/baloon.png); */
     background-repeat: no-repeat;
     background-size: 100% 100%;
     /* background-position: center top; */
@@ -246,7 +245,7 @@ border: 2px #89DEAA solid;}
     margin-top: 3%;
 }
 .baloon-reverse { 
-    background-image: url(../../assets/img/baloon-reverse.png);  
+    background-image: url(../img/baloon-reverse.png);  
     background-repeat: no-repeat;  
     background-size: 100% 100%;  
     padding: 19%; 

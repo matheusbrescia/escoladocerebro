@@ -26,7 +26,7 @@ angular.module('myApp', [
     }])
         .controller('MainController', ['$scope', 'BackgroundService', function ($scope, backgroundService) {
                 $scope.bgService = backgroundService;
-
+                
             }])
 
         .service('SettingsService', function () {
@@ -86,7 +86,7 @@ angular.module('myApp', [
                 }
             };
         })
-        
+
         .filter('trusted', ['$sce', function ($sce) {
                 return function (url) {
                     return $sce.trustAsResourceUrl(url);

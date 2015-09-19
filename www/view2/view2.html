@@ -1,8 +1,7 @@
 <nav class="nav nav-2"> 
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" > 
-
-            <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('view1')"/> 
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" >  
+            <img src="assets/img/button_back.png" alt="" class="btn-img pointer card-3" ng-click="goPath('view1')"/> 
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
             <img class="title-img" src="assets/img/title.png" alt=""/>
@@ -12,15 +11,14 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar">   
             <img class="left-bar-img " src="assets/img/icone_times.png" alt=""/>
-            <div class="  stat_runningTime_display">  TEMPO </div>
-
+            <div class="  stat_runningTime_display">  TEMPO </div> 
         </div>
     </div> 
 </nav> 
 <section class="view view-2">    
-    <iframe iframe-onload="iframeLoadedCallBack()" id="{{gameId}}" src="{{gameUrl}}"></iframe> 
+    <iframe iframe-onload="iframeLoadedCallBack()" id="{{gameId}}" src="{{gameUrl}}" class="card-4"></iframe> 
 </section> 
-<div id="baloon" class="baloon baloon-left  {{hidden}} " ng-click="closeAlert()"> 
+<div id="baloon" class="baloon baloon-left card card-5 {{hidden}} " ng-click="closeAlert()"> 
     <div class="baloon-baloon" >  
         <button class="btn fa fa-close baloon-btn" ng-click="closeAlert()"></button>  
         <span class="baloon-label">  
@@ -30,9 +28,7 @@
 </div>
 <div id="baloon-header-logger" class="baloon-header-logger  card card-5 hidden" ng-click="closeAlert()"> 
     <div class="baloon-baloon" >   
-        <span class="baloon-label">  
-
-        </span> 
-        <button id="game_again" class="btn fa fa-forward baloon-off" >JOGAR NOVAMENTE</button>  
+        <span class="baloon-label">  </span> 
+        <button id="game_again" class="btn fa fa-gamepad baloon-off" >JOGAR NOVAMENTE</button>  
     </div>  
 </div>

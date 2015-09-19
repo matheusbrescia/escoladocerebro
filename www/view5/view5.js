@@ -11,9 +11,7 @@ angular.module('myApp.view5', ['ngRoute'])
 
         .controller('View5TabCtrl', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-5-background");
-            $scope.ec_query_players = 'http://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
-            $scope.crypta = "http://escoladocerebro.org/crypta.php";
-            $scope.logLength = localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength;
+
             $scope.hidden = "hidden";
             $scope.off = "hidden";
             $scope.title = "Perfil do Jogador";
@@ -22,7 +20,11 @@ angular.module('myApp.view5', ['ngRoute'])
             $scope.stateAdmin = false;
             $scope.statePlayer = false;
             $scope.stateCoded = false;
-
+            $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
+            $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
+            $scope.measurements = JSON.parse(window.localStorage['org.escoladocerebro.measurements'] || '{}');
+            $scope.ec_query_players = 'https://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
+            $scope.crypta = "https://escoladocerebro.org/crypta.php";
             $scope.circles = [];
 
             $scope.show = function () {
@@ -67,6 +69,40 @@ angular.module('myApp.view5', ['ngRoute'])
                 }
 
             };
+            $scope.syncData = function () {
+
+                $scope.showAlert("Sincronizando..." + $scope.measurements.length + " dados.");
+                var sampleWalker = 0;
+                var sampleLength = $scope.measurements.length;
+                $.each($scope.measurements, function (key, value) {
+                    var lastSample = JSON.parse(value);
+                    lastSample.playerId = $scope.user.playerId;
+                    lastSample.adminId = $scope.user.adminId;
+                    $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(lastSample)})
+                            .done(function (json) {
+                                if (json !== null) {
+                                    sampleWalker++;
+                                    if (sampleLength === sampleWalker) {
+                                        var measurements = [];
+                                        localStorage.setItem('org.escoladocerebro.measurements', JSON.stringify(measurements));
+                                        $scope.points = [];
+                                        $scope.showAlert("Parabéns, todos os " + sampleLength + " dados enviados!");
+                                        return true;
+                                    }
+                                    console.log("Sincronizando..." + sampleWalker + " dados.");
+                                } else {
+                                    $scope.showAlert("Aconteceu algum bug ao enviar os dados!");
+                                    return false;
+                                }
+                            })
+                            .fail(function (jqxhr, textStatus, error) {
+                                $scope.showAlert("Você parece estar off-line!");
+                                return false;
+                            });
+                });
+
+            };
+
             $scope.checkCode = function () {
                 $scope.circles = [];
                 $scope.showAlert("Verificando código...");
@@ -113,13 +149,13 @@ angular.module('myApp.view5', ['ngRoute'])
                                     if (obj[0].adminId > 0) {
                                         $scope.$apply(function () {
                                             $scope.user.adminId = obj[0].adminId;
-                                            localStorage.adminId = $scope.user.adminId;
                                             $scope.stateAdmin = true;
                                             $scope.stateCoded = true;
                                             $scope.stateProfessor = true;
 
                                             $scope.showAlert("Bem vindo " + $scope.user.adminLogin);
                                             $scope.adminChecked = "Sair";
+                                            window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
                                             $scope.checkCode();
                                         });
                                     } else {
@@ -150,67 +186,66 @@ angular.module('myApp.view5', ['ngRoute'])
 
                 }
 
-                $timeout(function () {
-                    // myPopup.close(); //close the popup after 3 seconds for some reason
-                }, 3000);
             };
-            $scope.checkUser = function () {
-                console.log("checking... " + $scope.user.login + " " + $scope.user.pass);
-                $scope.showAlert("Momentinho " + $scope.user.login + "...");
+            $scope.checkUser = function (state) {
+                console.log("checkUser: " + $scope.user.login + " " + $scope.user.pass);
+
                 var pass = "";
                 var digits = $scope.user.pass.toString().split('');
                 for (var i = 0; i < digits.length; i++) {
                     pass += "target" + digits[i];
                 }
+                $scope.showAlert("Momentinho...");
+                if ($scope.user.login === "" || $scope.user.pass === "") {
+                    $scope.showAlert("Digite um login e senha ou crie um novo!");
+                } else {
+                    $.getJSON($scope.ec_query_players, {action: "login", login: $scope.user.login, pass: pass})
+                            .done(function (json) {
+                                if (json !== null) {
+                                    $scope.user = JSON.parse(json)[0];
+                                    window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
+                                    if (Math.round($scope.user.idusers) > 0) {
 
-                $.getJSON($scope.ec_query_players, {action: "login", login: $scope.user.login, pass: pass})
-                        .done(function (json) {
-                            if (json !== null) {
-                                var obj = JSON.parse(json);
-                                if (obj[0].idusers > 0) {
-                                    $scope.$apply(function () {
+                                        $scope.$apply(function () {
+                                            $scope.statePlayer = true;
 
-                                        $scope.user.playerId = obj[0].idusers;
-                                        $scope.user.nascimento = obj[0].day;
-                                        $scope.user.adminId = obj[0].adminId;
-                                        $scope.user.fullname = obj[0].fullname;
-                                        $scope.user.idusers = obj[0].idusers;
-                                        $scope.user.escola = obj[0].escola;
-                                        $scope.user.serie = obj[0].serie;
-                                        $scope.user.sexo = obj[0].sexo;
-                                        $scope.user.group = obj[0].group;
-                                        $scope.user.chamada = obj[0].chamada;
-                                        $scope.user.city = obj[0].city;
-                                        $scope.user.state = obj[0].state;
-                                        $scope.user.country = obj[0].country;
-                                        $scope.user.email = obj[0].email;
-                                        $scope.user.partner = obj[0].partner;
+                                            $scope.showAlert("Bem Vindo, " + $scope.user.login);
 
-                                        $scope.showAlert("Aqui você pode editar seu perfil " + $scope.user.login + ".");
-                                        localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-                                        $scope.statePlayer = true;
-                                        $scope.checkDash($scope.user.playerId);
-                                        console.log(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
-                                    });
+                                            $scope.checkDash($scope.user.playerId);
+
+                                            if (state === "checkin") {
+                                                $timeout(function () {
+
+                                                    $location.path("viewG");
+                                                }, 500);
+
+                                            }
+                                        });
+                                    } else {
+                                        $scope.$apply(function () {
+                                            $scope.statePlayer = false;
+                                            $scope.showAlert("Login e Senha do Jogador não conferem!");
+
+                                        });
+                                    }
                                 } else {
                                     $scope.$apply(function () {
-
-                                        $scope.showAlert("Login e Senha do Jogador não conferem! Faça Login ou Crie um Perfil!");
+                                        $scope.statePlayer = false;
+                                        $scope.showAlert("Login e Senha do Jogador não conferem!");
 
                                     });
                                 }
-                            } else {
+                            })
+                            .fail(function (jqxhr, textStatus, error) {
                                 $scope.$apply(function () {
-
-                                    $scope.showAlert("Login e Senha do Jogador não conferem! Faça Login ou Crie um Perfil!");
-
+                                    $scope.off = "off";
+                                    $scope.statePlayer = false;
+                                    $scope.showAlert("Você parece estar OFF-LINE!");
                                 });
-                            }
-                        })
-                        .fail(function (jqxhr, textStatus, error) {
 
-                            $scope.showAlert("Você parece estar off-line!");
-                        });
+                            });
+
+                }
 
 
 
@@ -221,22 +256,9 @@ angular.module('myApp.view5', ['ngRoute'])
                         .done(function (json) {
                             if (json !== null) {
 
-                                var obj = JSON.parse(json);
-                                $scope.dashboard.ngames = obj[0].ngames;
-                                $scope.dashboard.acuracia = obj[0].acuracia;
-                                $scope.dashboard.velocidade = obj[0].velocidade;
-                                $scope.dashboard.estabilidade = obj[0].estabilidade;
-                                $scope.dashboard.total_time = obj[0].total_time;
-                                $scope.dashboard.pontuacao_avg = obj[0].pontuacao_avg;
-                                $scope.dashboard.pontuacao_sum = obj[0].pontuacao_sum;
-                                $scope.dashboard.idadmin = obj[0].idadmin;
-                                $scope.dashboard.barssum = obj[0].barssum;
-                                $scope.dashboard.barsavg = obj[0].barsavg;
+                                $scope.dashboard = JSON.parse(json)[0];
+                                window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
 
-                                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
-//                                var obj = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
-//                                console.log(obj[0].ngames);
-//                                console.log($scope.dashboard[0].ngames);
                                 $timeout(function () {
                                     $scope.showAlert("Você tem " + $scope.dashboard.ngames + " dados no dashboard!");
                                 }, 5000);
@@ -271,12 +293,11 @@ angular.module('myApp.view5', ['ngRoute'])
                             if (json !== null) {
                                 var obj = JSON.parse(json);
                                 if (obj[0].idusers > 0) {
-                                    $scope.checkUser();
+                                    $scope.checkUser("");
                                 } else {
                                     $scope.$apply(function () {
                                         $scope.showAlert("Login de Jogador já existe! Escolha outro nome ou apelido para LOGIN.");
                                     });
-
 
                                 }
                             } else {
@@ -293,7 +314,6 @@ angular.module('myApp.view5', ['ngRoute'])
 
                         });
 
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
 
             };
             $scope.saveUser = function () {
@@ -306,7 +326,7 @@ angular.module('myApp.view5', ['ngRoute'])
                         escola: $scope.user.escola,
                         serie: $scope.user.serie,
                         group: $scope.user.group,
-                        day: $scope.user.nascimento,
+                        day: $scope.user.day,
                         city: $scope.user.city,
                         state: $scope.user.state,
                         country: $scope.user.country,
@@ -319,7 +339,9 @@ angular.module('myApp.view5', ['ngRoute'])
                         if (json !== null) {
                             var obj = JSON.parse(json);
                             if (obj[0].idusers > 0) {
+
                                 $scope.$apply(function () {
+                                    $scope.checkUser("");
                                     $scope.showAlert("Pronto, " + $scope.user.fullname + "  atualizado! Parabéns!");
                                 });
 
@@ -343,9 +365,7 @@ angular.module('myApp.view5', ['ngRoute'])
 
                 }
 
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-                console.log("USER_UPDATE " + localStorage.brComCognisenseEscolaDoCerebroUserProfile)
-            }; 
+            };
             $scope.cleanUser = function () {
                 console.log("cleanUser... " + $scope.user);
 
@@ -359,13 +379,12 @@ angular.module('myApp.view5', ['ngRoute'])
                     fullname: '',
                     login: '',
                     pass: '',
-                    nascimento: '',
+                    day: '',
                     group: '',
                     serie: '',
                     chamada: '',
                     escola: '',
                     idusers: 0,
-                    day: '',
                     city: '',
                     state: '',
                     country: '',
@@ -385,10 +404,9 @@ angular.module('myApp.view5', ['ngRoute'])
                     barssum: '0,0,0',
                     barsavg: '0,0,0'
                 };
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-                localStorage.brComCognisenseEscolaDoCerebroUserDashboard = JSON.stringify($scope.dashboard);
-                console.log("cleanUser... " + $scope.user.login + " " + $scope.user.pass);
-
+                window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
+                window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
+                $scope.showAlert("Nenhum jogador definido.");
             };
             $scope.logout = function ( ) {
                 $scope.cleanUser();
@@ -396,11 +414,9 @@ angular.module('myApp.view5', ['ngRoute'])
             };
             $scope.changePass = function (pass) {
                 $scope.user.pass += pass;
-                console.log(pass)
             };
             $scope.changeCircle = function (item) {
                 $scope.user.group = item.label;
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
 
                 if (item.value > 0) {
 
@@ -409,6 +425,7 @@ angular.module('myApp.view5', ['ngRoute'])
 
                     $scope.showAlert("Você está sem Grupo!");
                 }
+                window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
             };
             $scope.addCircle = function ( ) {
                 //$scope.user.group = $scope.group ;
@@ -419,113 +436,26 @@ angular.module('myApp.view5', ['ngRoute'])
                     $scope.showAlert("Grupo " + $scope.circle.label + " adicionado!");
 
                 }
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-
+                window.localStorage['org.escoladocerebro.user'] = JSON.stringify($scope.user);
             };
 
-            $scope.syncData = function () {
-
-                localStorage.brComCognisenseEscolaDoCerebroUserProfile = JSON.stringify($scope.user);
-                console.log(localStorage.brComCognisenseEscolaDoCerebroUserProfile)
-
-                $scope.showAlert("Sincronizando...");
-                if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr) {
-                    var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
-                    var i = 0;
-
-                    $.each(logArr, function (key, value) {
-                        var localData = JSON.parse(value);
-                        localData.playerId = $scope.user.playerId;
-                        localData.adminId = $scope.user.adminId;
-
-                        $.getJSON("http://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(localData)})
-                                .done(function (rjson) {
-
-                                    if (rjson !== null) {
-                                        var obj = JSON.parse(rjson);
-                                        i++;
-                                        $scope.$apply(function () {
-                                            if (logArr.length === i) {
-                                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArr = "";
-                                                localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength = 0;
-                                                $scope.points = [];
-
-                                                $scope.logLength = localStorage.brComCognisenseEscolaDoCerebroLogObjectArrLength;
-                                                $scope.showAlert("Parabéns, todos os " + logArr.length + " dados enviados!");
-                                            }
-                                        });
-
-                                    }
-                                })
-                                .fail(function (jqxhr, textStatus, error) {
-
-                                    $scope.showAlert("Você parece estar off-line!");
-                                });
-                    });
-
-                } else {
-
-                    $scope.showAlert("Você ainda não tem pontos nessa sessão!");
-                }
-            };
-            
             $scope.goPath = function (view) {
 
-                   $location.path(view);
+                $location.path(view);
 
             };
-            if (localStorage.brComCognisenseEscolaDoCerebroUserProfile && localStorage.brComCognisenseEscolaDoCerebroUserProfile != 0) {
-                $scope.user = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserProfile);
-                if ($scope.user.playerId > 0) {
-                    $scope.statePlayer = true;
-                } else {
-                    $scope.statePlayer = false;
-                    $scope.cleanUser();
-                   
-                }
-                 $scope.showAlert("Após preencher os campos clique em Salvar");
+            if ($scope.user.playerId > 0) {
+                $scope.statePlayer = true;
             } else {
-                $scope.cleanUser();
                 $scope.statePlayer = false;
-                  $scope.showAlert("Após preencher os campos clique em Salvar");
+                $scope.cleanUser();
             }
-            if (localStorage.brComCognisenseEscolaDoCerebroLogObjectArr && localStorage.brComCognisenseEscolaDoCerebroLogObjectArr != 0) {
-                var logArr = localStorage.brComCognisenseEscolaDoCerebroLogObjectArr.split("|");
-                $scope.logToSend = 0;
-                $.each(logArr, function (key, value) {
-                    //console.log('DashboardCtrl:' + key + ' = ' + value);
 
-                    var localData = JSON.parse(value);
-                    console.log(localData);
-                    //localData.playerId = $scope.user.playerId;
-                    $scope.logToSend++;
-                    $scope.points.push(localData);
-                    $scope.statePoints = true;
-                    $.each(localData, function (k, v) {
-                        // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
-                    });
-                });
-
-                $scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
-            } else {
-                $scope.logToSend = 0;
-               
-            }
-            if (localStorage.brComCognisenseEscolaDoCerebroUserDashboard && localStorage.brComCognisenseEscolaDoCerebroUserDashboard != 0) {
-                $scope.dashboard = JSON.parse(localStorage.brComCognisenseEscolaDoCerebroUserDashboard);
-                if ($scope.dashboard.ngames > 0) {
-                    $scope.stateGamer = true;
-                } else {
-                    $scope.stateGamer = false;
-                }
-
+            if ($scope.dashboard.ngames > 0) {
+                $scope.stateGamer = true;
             } else {
                 $scope.stateGamer = false;
             }
 
-         
-            $timeout(function () {
-                
-            }, 100);
 
         });

@@ -1,7 +1,7 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" > 
-            <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/>   
+            <img src="assets/img/button_back.png" alt="" class="btn-img pointer card-3" ng-click="goPath('viewG')"/>   
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
             <img class="title-img" src="assets/img/title.png" alt=""/>
@@ -427,7 +427,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 h100">  
             <div class="form-group has-feedback  item-select">
                 <span class="control-label">Data de Nascimento</span>  
-                <input type="text" placeholder="Data de Nascimento" class="form-control" ng-change="change()" ng-model="user.nascimento"   name="nascimento" my-datepicker>
+                <input type="text" placeholder="Data de Nascimento" class="form-control" ng-change="change()" ng-model="user.day"   name="day" my-datepicker>
 
                 <p></p>
                 <p></p>
@@ -559,7 +559,7 @@
                         <span class="input-group-addon" > ID: {{user.playerId}}.</span>  
                     </div>
                     <div class="has-feedback">
-                        <span class="input-group-addon"> O {{user.fullname}} possuí {{logLength}} jogadas.</span> 
+                        <span class="input-group-addon"> O {{user.fullname}} possuí {{measurements.length}} jogadas.</span> 
 
                     </div>
                     <div class="has-feedback">

@@ -1,7 +1,7 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" > 
-            <img src="assets/img/button_back.png" alt="" class="btn-img pointer" ng-click="goPath('viewG')"/> 
+            <img src="assets/img/button_back.png" alt="" class="btn-img pointer card-3" ng-click="goPath('viewG')"/> 
 
             <div class="trophy"> 
                 <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>
@@ -30,7 +30,7 @@
     <div class="row">
 
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100"> 
-            <span class="control-label alert-warning" ng-show="statePoints">Você precisa sincronizar {{logToSend}} dados. </span>
+            <span class="control-label alert-warning" ng-show="statePoints">Você precisa sincronizar {{measurements.length}} dados. </span>
             <span class="control-label alert-success" ng-show="!statePoints">Você não tem dados para sincronizar! Jogue algum game! </span>
             <div class="list_points" ng-show="statePoints"> 
                 <div ng-repeat="point in points" class="form-group"> 
