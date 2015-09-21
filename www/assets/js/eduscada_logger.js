@@ -6,7 +6,8 @@ function setStat(key, value) {
 
 }
 function playAgain(sample, message) {
-    $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(sample.pontuacao) + " pontos em " + Math.round(sample.time / 1000) + " segundos. " + message);
+   
+    $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(sample.pontuacao || 0) + " pontos em " + Math.round(sample.time / 1000) + " segundos. " + message);
     $("#baloon-header-logger").removeClass("hidden");
     $("#game_again").on("click", function () {
         $("#baloon-header-logger").toggleClass("hidden");

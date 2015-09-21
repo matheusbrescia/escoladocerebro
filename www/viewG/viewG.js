@@ -31,8 +31,6 @@ angular.module('myApp.viewG', ['ngRoute'])
             $scope.showAlert = function (txt) {
                 $scope.hidden = "alert";
                 $scope.message = txt;
-
-                console.log(txt)
             };
             $scope.closeAlert = function (txt) {
 
@@ -98,12 +96,12 @@ angular.module('myApp.viewG', ['ngRoute'])
                                 window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
 
                                 $timeout(function () {
-                                    $scope.showAlert("Você tem " + $scope.dashboard.ngames + " dados no dashboard!");
+                                    $scope.showAlert("Você tem " + $scope.dashboard.ngames + " jogadas no dashboard!");
                                 }, 5000);
                             } else {
                                 $scope.$apply(function () {
                                     $timeout(function () {
-                                        $scope.showAlert("Sem dados no dashboard!");
+                                        $scope.showAlert("Sem jogadas no dashboard!");
 
                                     }, 5000);
 
@@ -120,7 +118,7 @@ angular.module('myApp.viewG', ['ngRoute'])
 
             };
             console.log('$scope.user.playerId :' + $scope.user.playerId);
-//
+
             if (Math.round($scope.user.idusers) > 0) {
                 $scope.statePlayer = true;
                 $scope.checkDash($scope.user.playerId);
@@ -128,38 +126,20 @@ angular.module('myApp.viewG', ['ngRoute'])
 
             } else {
                 $scope.statePlayer = false;
-                // $scope.cleanUser();
+                $scope.cleanUser();
             }
-//            $.each($scope.measurements, function (key, value) {
-//                //console.log('DashboardCtrl:' + key + ' = ' + value);
-//
-//                var localData = JSON.parse(value);
-//                console.log(localData);
-//                //localData.playerId = $scope.user.playerId;
-//                $scope.logToSend++;
-//                $scope.points.push(localData);
-//                $scope.statePoints = true;
-//                $.each(localData, function (k, v) {
-//                    // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
-//                });
-//            });
-
-            //$scope.showAlert("Você possuí dados  (" + $scope.logToSend + ")  para sincronizar!");
-            if ($scope.dashboard.ngames > 0) {
-                $scope.stateGamer = true;
-                if ($scope.dashboard.ngames > 10) {
-                    $scope.stateTesty = true;
-
-                }
-
+            
+            if ($scope.dashboard.ngames >= 50) {
+                $scope.stateGamer = true; 
             } else {
                 $scope.stateGamer = false;
+                $timeout(function () {
+                    $scope.showAlert("Você precisa jogar mais " + (50 - $scope.dashboard.ngames) + " para liberar os testes.");
+                }, 100);
             }
 
 
-            $timeout(function () {
 
-            }, 100);
 
         });
  

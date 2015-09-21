@@ -13,10 +13,7 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-
-    function log(t) {
-        console.log(t);
-    }
+ 
     function gamePscicotest() {
         nPeaces = [];
         nTest++;
@@ -24,6 +21,7 @@ $(document).ready(function ($) {
         for (var i = 0; i < 22; i++) {
             peaces.push({"value": ("peaces_" + i), "state": false});
         }
+        console.log("PECAS: "+ JSON.stringify(peaces))
         while (nPeaces.length < 3) {
             var randomnumber = Math.floor((Math.random() * 22) + 0);
             var found = false;
@@ -89,6 +87,7 @@ $(document).ready(function ($) {
         board.sort(function () {
             return .5 - Math.random();
         });
+        
         var nBreak = (nColumns - 1);
         var gamePage = "<div class=\"layout board-attention\" id=\"layout\">";
         $.each(board, function (i) {
@@ -157,16 +156,16 @@ $(document).ready(function ($) {
             }
             $(".total_points").text(nPoints.length);
             $(".total_clicks").text(nClicks);
-            log("nPoints.length " + nPoints.length)
-            log("nClicks " + nClicks)
+            console.log("nPoints.length " + nPoints.length)
+            console.log("nClicks " + nClicks)
         });
         $("#board").addClass("jumbotron");
         $("#peaces-logo").addClass("jumbotron");
 
-        log("gamePscicotest nTest" + nTest)
+        console.log("gamePscicotest nTest" + nTest)
     }
     function gameStop() {
-        log("stop");
+        console.log("stop");
         clearInterval(nTimeInterval);
         $("#board").hide();
 
@@ -267,7 +266,7 @@ $(document).ready(function ($) {
 
         clearTimeout(tr);
         tr = setTimeout(function () {
-            log(text)
+            console.log(text)
         }, 2000);
 
         try {

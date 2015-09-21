@@ -264,11 +264,10 @@ iframe{
     right: 1%;
     /* width: 70%; */
     cursor: pointer;
-    z-index: 10000000000000;
+    z-index: 10000000000;
 }
 .baloon-header-logger{
      font-size: 1em;
-     height: 35%;
      width: 100%;
      /* margin-top: 50%; */
      background-color: #0CF;
@@ -280,7 +279,7 @@ iframe{
      right: 5%;
      width: 20%;
      cursor: pointer;
-     z-index: 10000000000000;
+     z-index: 100;
 }
 .baloon-left {
      /* top: 45%; */

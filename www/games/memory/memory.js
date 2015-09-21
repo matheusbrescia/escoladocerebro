@@ -13,10 +13,8 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-    var bugs = false;
-    function log(t) {
-        console.log(t);
-    }
+    var bugs = true;
+     
     function gamePscicotest() {
         nTest++;
 
@@ -48,7 +46,7 @@ $(document).ready(function ($) {
         // clone_peaces.push(peaces[nTest]);
         //  log(JSON.stringify(board))
         // log(JSON.stringify(clone_peaces))
-        log(JSON.stringify(sub_clone_peaces))
+       // log(JSON.stringify(sub_clone_peaces))
         var nBreak = (nColumns - 1);
         var gamePage = "<div class=\"layout board-memory\" id=\"layout\">";
         $.each(board, function (i) {
@@ -81,10 +79,10 @@ $(document).ready(function ($) {
 
             $(".total_points").text(nPoints.length);
             $(".total_clicks").text(nClicks);
-            log("total_points " + nPoints.length)
-            log("total_clicks " + nClicks)
-            log("$(this).text() " + $(this).text())
-            log("peaces[nTest - 1] " + p[1])
+            console.log("total_points " + nPoints.length)
+            console.log("total_clicks " + nClicks)
+            console.log("$(this).text() " + $(this).text())
+            console.log("peaces[nTest - 1] " + p[1])
 
             if (nTest === nTestPeaces - 1) {
                 gameStop();
@@ -97,10 +95,10 @@ $(document).ready(function ($) {
         });
          $("#board").addClass("jumbotron");
         $("#peaces-logo").addClass("jumbotron");
-        log("gamePscicotest nTest" + nTest)
+        console.log("gamePscicotest nTest" + nTest)
     }
     function gameStop() {
-        log("stop");
+        console.log("stop");
         clearInterval(nTimeInterval);
         $("#board").hide();
         $(".peaces-logo").html("Fim do Teste");
@@ -111,9 +109,11 @@ $(document).ready(function ($) {
         for (var i = 0; i < nTestPeaces; i++) {
             peaces.push({"value": ("peaces_" + i), "state": false});
         }
+        console.log("PECAS:" + JSON.stringify(peaces))
         peaces.sort(function () {
             return .5 - Math.random();
         });
+        console.log("PECAS MISTURADAS:" + JSON.stringify(peaces))
         clone_peaces = peaces.slice();
         //log(JSON.stringify(peaces))
 
@@ -182,7 +182,7 @@ $(document).ready(function ($) {
 
         clearTimeout(tr);
         tr = setTimeout(function () {
-            log(text)
+            console.log(text)
         }, 2000);
 
         try {

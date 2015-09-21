@@ -41,7 +41,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
+body, html { -webkit-tap-highlight-color: rgba(0,0,0,0); }
  
 @font-face {
     font-family:"OCRastd";  
@@ -240,12 +240,4 @@ article .cnt{
      vertical-align:middle;
      /* margin-top: -20%; */
 }   
-// ┌────────────────────────────────────────────────────────────────────┐ \\
-// │ Escola do Cérebro 1.0.0 - Educational Game Library                 │ \\
-// ├────────────────────────────────────────────────────────────────────┤ \\
-// │ Copyright © 2013-2014 Cognisense Tecnologia Ltda                   │ \\
-// │ Copyright © 2014 EduSCADA Labs (http://eduscada.com)               │ \\
-// ├────────────────────────────────────────────────────────────────────┤ \\
-// │ Licensed under the MIT (http://cognisense.com.br/license.html)     │ \\
-// └────────────────────────────────────────────────────────────────────┘ \\
-
+.genius{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/como_jogar_genius.png" );} .genius_circle_black{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/genius_circle_black.png" );} .play{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/play.png" );} .genius_bg{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/genius_bg.png" );   background-size: 100%;} .easy{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/easy.png" );   background-size: 100% 100%;} .hard{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/hard.png" );} .como_jogar_genius{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/como_jogar_genius.png" );   background-size: 100% 100%;} .niveis_genius{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/niveis_genius.png" );   background-size: 100% 100%;} .medium{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/medium.png" );} .loading{   background-repeat:no-repeat; background-position: center center; background-image: url("../img/loading.png" );} 

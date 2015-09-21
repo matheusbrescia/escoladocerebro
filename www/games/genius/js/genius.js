@@ -1,11 +1,4 @@
-// ┌────────────────────────────────────────────────────────────────────┐ \\
-// │ Escola do Cérebro 1.0.0 - Educational Game Library                 │ \\
-// ├────────────────────────────────────────────────────────────────────┤ \\
-// │ Copyright © 2013-2014 Cognisense Tecnologia Ltda                   │ \\
-// │ Copyright © 2014 EduSCADA Labs (http://eduscada.com)               │ \\
-// ├────────────────────────────────────────────────────────────────────┤ \\
-// │ Licensed under the MIT (http://cognisense.com.br/license.html)     │ \\
-// └────────────────────────────────────────────────────────────────────┘ \\
+ 
 var currentIndex = 0;
 var currentId = "camera";
 
@@ -14,7 +7,7 @@ var levels = [4, 6, 8];
 var increment = 0;
 var incrementError = 0;
 var seeds = [];
-var tseed = 1000;
+var tseed = 1500;
 var ttrans = tseed * 2;
 
 var gameability = ["icons", "colors", "flat"];
@@ -146,7 +139,7 @@ $(document).ready(function () {
     $(".hard").click(function () {
         chooseLevel(2);
     });
-    d("game loaded");
+    console.log("game loaded");
 });
 
 function onAnimateComplete() {
@@ -187,7 +180,7 @@ function onAnimateComplete() {
         window.parent.saveLogObject(logObject);
     }
     catch (e) {
-        d(e);
+        console.log(e);
     }
 
     //feedback("Parabéns! Você completou essa fase!");
@@ -199,7 +192,7 @@ function next() {
     if (seeds.length === lives) {
         play = false;
         feedback("Fim de Jogo!<br> ");
-        onAnimateComplete();
+        
 
     } else {
         feedback("Memorize<br> " + (seeds.length + 1));
@@ -211,12 +204,14 @@ function next() {
         }, ttrans);
         increment = 0;
     }
-
-
+    if(seeds.length > 1){
+        onAnimateComplete();
+    }
+    
 }
 
 function evalClick(id) {
-    d("evalClick:" + id)
+    console.log("evalClick:" + id)
     if (play) {
         clickIntervals.push(new Date() - lastClickTime);
         lastClickTime = new Date();
@@ -225,7 +220,7 @@ function evalClick(id) {
             window.parent.setStat('numMoves', (moves) + 1);
         }
         catch (e) {
-            d(e);
+            console.log(e);
         }
         var obj = eval("circles." + id);
 
@@ -270,7 +265,7 @@ function evalClick(id) {
 
 
 function showSeed(id) {
-    d("showSeed:" + id)
+    console.log("showSeed:" + id)
     $("#movements").html("<h1> " + increment + "/" + seeds.length + "</h1>");
 
     var obj = eval("circles." + id);
@@ -287,7 +282,7 @@ function showSeed(id) {
         $("#ferromenu-controller,#nav li ." + obj.color).css("-moz-box-shadow", " 0px 0px 0px 0px " + obj.background);
         $("#ferromenu-controller,#nav li ." + obj.color).css("box-shadow", " 0px 0px 0px 0px " + obj.background);
 
-    }, tseed);
+    }, tseed/2);
 }
 
 function start() {
@@ -295,7 +290,7 @@ function start() {
     startTime = new Date();
     play = true;
     feedback("Memorize...");
-    d("start genius...")
+    console.log("start genius...")
     setInterval(function () {
         var endTime = new Date();
         duration = endTime - startTime;
@@ -304,7 +299,7 @@ function start() {
                 window.parent.setStat('runningTime', millisecondsToTime(duration));
             }
             catch (e) {
-                d(e);
+                console.log(e);
             }
         }
     }, 300);
@@ -343,14 +338,14 @@ function seed() {
     var rand = Math.floor(Math.random() * (mul));
     while (rand === seeds[increment]) {
         rand = Math.floor(Math.random() * (mul));
-        d("rand:" + rand)
+        console.log("rand:" + rand)
     }
     seeds.push(rand);
-    d("seeds:" + seeds)
+    console.log("seeds:" + seeds)
     seeds.sort(function () {
         return Math.random() - 0.5;
     });
-    d("seedssort:" + seeds)
+    console.log("seedssort:" + seeds)
     $.each(seeds, function (id, obj) {
         trigger = tseed * (id + 1);
         var tick;
@@ -454,8 +449,5 @@ function chooseLevel(lv) {
 
 
 }
-
-function d(v) {
-    console.log(v);
-}
+ 
  
