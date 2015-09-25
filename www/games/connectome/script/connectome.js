@@ -949,7 +949,8 @@ PipeGame.prototype.verifyGameComplete = function ()
         logObject['psico_motora'] = logObject.pontuacao * 1;
         logObject['logico_matematica'] = logObject.pontuacao * 3;
         logObject['linguagem'] = logObject.pontuacao * 1;
-
+        logObject['tentativas'] = instance.numMoves;
+        logObject['acertos'] = instance.clickIntervals.length ;
         //alert(JSON.stringify(logObject, null, 4));
 
         function onAnimateComplete()
@@ -996,9 +997,9 @@ BackgroundUtil.SetBackgroundImage = function (element, sourceName)
 {
     //console.log(sourceName+' -> '+B64Assets[sourceName])
     //console.log('SetBackgroundImage -> '+sourceName);
-     $(element).css('background-image', 'url(\''+ 'assets/'+sourceName+'.png' +'\')');
+    $(element).css('background-image', 'url(\'' + 'assets/' + sourceName + '.png' + '\')');
     var base = "data:image/png;base64,"
-  //  $(element).css('background-image', 'url(  B64Assets[sourceName]  )');
+    //  $(element).css('background-image', 'url(  B64Assets[sourceName]  )');
     $(element).css('background-size', '100% 100%');
 }
 

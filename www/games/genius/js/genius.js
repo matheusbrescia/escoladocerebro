@@ -1,4 +1,4 @@
- 
+
 var currentIndex = 0;
 var currentId = "camera";
 
@@ -175,7 +175,8 @@ function onAnimateComplete() {
     logObject['psico_motora'] = logObject.pontuacao * 3;
     logObject['logico_matematica'] = logObject.pontuacao * 1;
     logObject['linguagem'] = logObject.pontuacao * 1;
-
+    logObject['tentativas'] = moves;
+    logObject['acertos'] =clickIntervals.length;
     try {
         window.parent.saveLogObject(logObject);
     }
@@ -192,7 +193,7 @@ function next() {
     if (seeds.length === lives) {
         play = false;
         feedback("Fim de Jogo!<br> ");
-        
+
 
     } else {
         feedback("Memorize<br> " + (seeds.length + 1));
@@ -204,10 +205,10 @@ function next() {
         }, ttrans);
         increment = 0;
     }
-    if(seeds.length > 1){
+    if (seeds.length > 1) {
         onAnimateComplete();
     }
-    
+
 }
 
 function evalClick(id) {
@@ -282,7 +283,7 @@ function showSeed(id) {
         $("#ferromenu-controller,#nav li ." + obj.color).css("-moz-box-shadow", " 0px 0px 0px 0px " + obj.background);
         $("#ferromenu-controller,#nav li ." + obj.color).css("box-shadow", " 0px 0px 0px 0px " + obj.background);
 
-    }, tseed/2);
+    }, tseed / 2);
 }
 
 function start() {
@@ -449,5 +450,5 @@ function chooseLevel(lv) {
 
 
 }
- 
+
  

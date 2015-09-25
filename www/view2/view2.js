@@ -22,6 +22,7 @@ angular.module('myApp.view2', ['ngRoute'])
             $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
             $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
             $scope.measurements = JSON.parse(window.localStorage['org.escoladocerebro.measurements'] || '{}');
+             $scope.gameUrl = "games/index.html";
             $scope.show = function () {
                 $scope.hidden = "alert";
             };

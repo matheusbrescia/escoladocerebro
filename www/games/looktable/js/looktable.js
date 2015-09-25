@@ -53,7 +53,8 @@ function onAnimateComplete() {
     logObject['psico_motora'] = logObject.pontuacao * 3;
     logObject['logico_matematica'] = logObject.pontuacao * 1;
     logObject['linguagem'] = logObject.pontuacao * 1;
-
+    logObject['tentativas'] =  moves ;
+    logObject['acertos'] =clickIntervals.length;
     var consoleTimeout1;
     var text = "Parabéns! Seu tempo foi de:  " + duration + "";
     $('#console').text(text).addClass('busy');
@@ -96,7 +97,7 @@ function millisecondsToTime(milli) {
 
 function drawProgresse() {
     lastClickTime = startTime = inativeStart = new Date();
-    var w = $('#wrap_menu').width()/2;
+    var w = $('#wrap_menu').width() / 2;
     $('#wrap_progresse').html("<canvas id='progresse' width='" + w + "' height='" + w + "'></canvas> ");
     $('#progresse').ready(function () {
         var mainCanvas = document.getElementById('progresse');
@@ -223,7 +224,7 @@ function errou(theCell) {
 
 }
 
-function resumeLooktable( ) { 
+function resumeLooktable( ) {
     $('#wrap_menu').slideUp('slow', function () {
         $("#wrap_menu").html();
     });

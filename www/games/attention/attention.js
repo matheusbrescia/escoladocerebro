@@ -5,7 +5,7 @@ $(document).ready(function ($) {
     var nClicks = 0;
     var nTimeInterval = null;
     var nTimeToStart = 0;
-    var nTimeToTest = 20000;
+    var nTimeToTest = 22000;
     var nLevel = 1;
     var nPoints = [];
     var nPeaces = [];
@@ -13,15 +13,16 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
- 
+
     function gamePscicotest() {
+        $(".stage").fadeIn(2000);
         nPeaces = [];
         nTest++;
         var peaces = [];
         for (var i = 0; i < 22; i++) {
             peaces.push({"value": ("peaces_" + i), "state": false});
         }
-        console.log("PECAS: "+ JSON.stringify(peaces))
+        console.log("PECAS: " + JSON.stringify(peaces))
         while (nPeaces.length < 3) {
             var randomnumber = Math.floor((Math.random() * 22) + 0);
             var found = false;
@@ -61,20 +62,24 @@ $(document).ready(function ($) {
             }
         }
         if (nLevel == 1) {
-            peaces.splice(peaces[nPeaces[0]], 1);
+            peaces.splice(nPeaces[0], 1);
         }
         if (nLevel == 2) {
-            peaces.splice(peaces[nPeaces[0]], 1);
-            peaces.splice(peaces[nPeaces[1]], 1);
+            peaces.splice(nPeaces[0], 1);
+            peaces.splice(nPeaces[1], 1);
         }
         if (nLevel == 3) {
-            peaces.splice(peaces[nPeaces[0]], 1);
-            peaces.splice(peaces[nPeaces[1]], 1);
-            peaces.splice(peaces[nPeaces[2]], 1);
+            peaces.splice(nPeaces[0], 1);
+            peaces.splice(nPeaces[1], 1);
+            peaces.splice(nPeaces[2], 1);
         }
 
+        console.log("peaces[nPeaces[0]]: " + JSON.stringify(peaces[nPeaces[0]]));
+        console.log("nPeaces[0]: " + JSON.stringify(nPeaces[0]));
+        console.log("peaces: " + JSON.stringify(peaces));
         for (var i = 0; i < 70; i++) {
             if (nLevel == 1) {
+
                 board.push(peaces[Math.floor((Math.random() * 21) + 0)]);
             }
             if (nLevel == 2) {
@@ -87,7 +92,7 @@ $(document).ready(function ($) {
         board.sort(function () {
             return .5 - Math.random();
         });
-        
+
         var nBreak = (nColumns - 1);
         var gamePage = "<div class=\"layout board-attention\" id=\"layout\">";
         $.each(board, function (i) {
@@ -109,24 +114,24 @@ $(document).ready(function ($) {
 
         if (nLevel == 1) {
             $(".peaces-logo").html("");
-            
+
             $(".peaces-logo").append('<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div></div> ');
-             
+
         }
         if (nLevel == 2) {
             $(".peaces-logo").html("");
-          
+
             $(".peaces-logo").append('<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div></div> ');
             $(".peaces-logo").append('<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div></div> ');
-             
+
         }
         if (nLevel == 3) {
             $(".peaces-logo").html("");
-            
+
             $(".peaces-logo").append('<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><button type="button" data-toggle="button" id="cur_' + nPeaces[0] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[0] + '.png" </img></button></div></div> ');
             $(".peaces-logo").append('<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><button type="button" data-toggle="button" id="cur_' + nPeaces[1] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[1] + '.png" </img></button></div></div> ');
             $(".peaces-logo").append('<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><button type="button" data-toggle="button" id="cur_' + nPeaces[2] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + nPeaces[2] + '.png" </img></button></div></div> ');
-            
+
         }
 
         $("#board").html(gamePage);
@@ -178,6 +183,7 @@ $(document).ready(function ($) {
         $("#state").text(nLevel);
         gameRunner();
         nTimeInterval = setInterval(function () {
+            $(".stage").fadeOut();
             gameRunner();
         }, nTimeToTest);
     }
@@ -260,6 +266,8 @@ $(document).ready(function ($) {
         logObject['psico_motora'] = logObject.pontuacao * 1;
         logObject['logico_matematica'] = logObject.pontuacao * 1;
         logObject['linguagem'] = logObject.pontuacao * 1;
+        logObject['tentativas'] = nClicks;
+        logObject['acertos'] = nPoints.length;
 
         var tr;
         var text = "Parabéns! Seu tempo foi de:  " + duration + "";
@@ -278,7 +286,7 @@ $(document).ready(function ($) {
                         if (rjson !== null) {
                             var obj = JSON.parse(rjson);
                             console.log("Ranking OFF atualizado, jogue novamente!");
-                             
+
                         } else {
                             return false;
                         }

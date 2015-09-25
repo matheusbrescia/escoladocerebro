@@ -339,7 +339,7 @@ function initializeOnScreenButtons()
     rotateButton = $('<div style="position:absolute; background-image: url(\'rotate_button.png\');"></div>');
     rotateButton.css({'width': '114px', 'height': '114px', 'left': '25px', 'top': '125px'});
     gameUi.append(rotateButton);
-    rotateButton.on('mousedown',function () {
+    rotateButton.on('mousedown', function () {
         rotatePiece();
     });
 
@@ -378,7 +378,7 @@ function finalizeGame()
 {
     _isRunning = false;
 
-  //  alert('Game Finalized!');
+    //  alert('Game Finalized!');
 
     stats.log.time = _runningTime;
     stats.log.success = false;
@@ -393,7 +393,8 @@ function finalizeGame()
     stats.log['psico_motora'] = stats.log.pontuacao * 1;
     stats.log['logico_matematica'] = stats.log.pontuacao * 3;
     stats.log['linguagem'] = stats.log.pontuacao * 1;
-
+    stats.log['tentativas'] = stats.totalBlocks;
+    stats.log['acertos'] = stats.removedBlocks;
     sendLog();
 }
 

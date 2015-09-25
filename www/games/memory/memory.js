@@ -1,4 +1,4 @@
-$(document).ready(function ($) { 
+$(document).ready(function ($) {
     var nRows = 1;
     var nColumns = 6;
     var nTest = 0;
@@ -13,8 +13,8 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-    var bugs = true;
-     
+    var bugs = false;
+
     function gamePscicotest() {
         nTest++;
 
@@ -46,7 +46,7 @@ $(document).ready(function ($) {
         // clone_peaces.push(peaces[nTest]);
         //  log(JSON.stringify(board))
         // log(JSON.stringify(clone_peaces))
-       // log(JSON.stringify(sub_clone_peaces))
+        // log(JSON.stringify(sub_clone_peaces))
         var nBreak = (nColumns - 1);
         var gamePage = "<div class=\"layout board-memory\" id=\"layout\">";
         $.each(board, function (i) {
@@ -93,7 +93,7 @@ $(document).ready(function ($) {
             }
             gamePscicotest();
         });
-         $("#board").addClass("jumbotron");
+        $("#board").addClass("jumbotron");
         $("#peaces-logo").addClass("jumbotron");
         console.log("gamePscicotest nTest" + nTest)
     }
@@ -124,7 +124,7 @@ $(document).ready(function ($) {
         $(".teste_model").hide();
         $("#points").text(nPoints.length);
         $("#state").text(nLevel);
-        
+
         nClickIntervals.push(new Date() - nLastClickTime);
         nLastClickTime = new Date();
         gamePscicotest();
@@ -176,7 +176,8 @@ $(document).ready(function ($) {
         logObject['psico_motora'] = logObject.pontuacao * 1;
         logObject['logico_matematica'] = logObject.pontuacao * 1;
         logObject['linguagem'] = logObject.pontuacao * 1;
-
+        logObject['tentativas'] = nClicks;
+        logObject['acertos'] = nPoints.length;
         var tr;
         var text = "Parabéns! Seu tempo foi de:  " + duration + "";
 
@@ -189,7 +190,7 @@ $(document).ready(function ($) {
             window.parent.saveLogObject(logObject);
         }
         catch (e) {
-           $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
+            $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
                     .done(function (rjson) {
                         if (rjson !== null) {
                             var obj = JSON.parse(rjson);

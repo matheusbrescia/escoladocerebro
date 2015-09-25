@@ -14,19 +14,19 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-    var bugs = true;
-    
+    var bugs = false;
+
     function gameStart() {
         $("#points").text(nPoints.length);
         $("#state").text(nLevel);
         for (var i = 0; i < nTestPeaces; i++) {
             peacesA.push({"value": ("peaces_" + i), "state": false, "response": ("response_" + i)});
         }
-        peacesC = [{value:"p1",state:false,response:"bixos-04,bixos-02,bixos-03,bixos-01"},{value:"p2",state:false,response:"bixos-02,bixos-01,bixos-03,bixos-04"},{value:"p3",state:false,response:"bixos-01,bixos-02,bixos-03,bixos-04"},{value:"p4",state:false,response:"bixos-04,bixos-02,bixos-03,bixos-01"},{value:"p5",state:false,response:"bixos-04,bixos-02,bixos-03,bixos-01"},{value:"p6",state:false,response:"bixos-02,bixos-01,bixos-03,bixos-04"},{value:"p7",state:false,response:"bixos-01,bixos-02,bixos-03,bixos-04"},{value:"p8",state:false,response:"bixos-04,bixos-02,bixos-03,bixos-01"},{value:"p9",state:false,response:"bixos-02,bixos-01,bixos-03,bixos-04"},{value:"p10",state:false,response:"bixos-02,bixos-01,bixos-03,bixos-04"}];
+        peacesC = [{value: "p1", state: false, response: "bixos-04,bixos-02,bixos-03,bixos-01"}, {value: "p2", state: false, response: "bixos-02,bixos-01,bixos-03,bixos-04"}, {value: "p3", state: false, response: "bixos-01,bixos-02,bixos-03,bixos-04"}, {value: "p4", state: false, response: "bixos-04,bixos-02,bixos-03,bixos-01"}, {value: "p5", state: false, response: "bixos-04,bixos-02,bixos-03,bixos-01"}, {value: "p6", state: false, response: "bixos-02,bixos-01,bixos-03,bixos-04"}, {value: "p7", state: false, response: "bixos-01,bixos-02,bixos-03,bixos-04"}, {value: "p8", state: false, response: "bixos-04,bixos-02,bixos-03,bixos-01"}, {value: "p9", state: false, response: "bixos-02,bixos-01,bixos-03,bixos-04"}, {value: "p10", state: false, response: "bixos-02,bixos-01,bixos-03,bixos-04"}];
         peacesB = [{value: "pecas-38,pecas-40,pecas-39,pecas-45", response: "bixos-05,bixos-02,bixos-03,bixos-04"}, {value: "pecas-02,bixos-15,pecas-01,pecas-45", response: "pecas-43,pecas-23,pecas-24,pecas-25"}, {value: "bixos-02,bixos-03,bixos-05,pecas-45", response: "bixos-10,bixos-09,bixos-08,bixos-07"}, {value: "bixos-02,bixos-12,bixos-14,pecas-45", response: "bixos-10,bixos-06,bixos-13,bixos-03"}, {value: "pecas-08,pecas-04,pecas-07,pecas-45", response: "pecas-44,bixos-11,pecas-33,pecas-27"}, {value: "pecas-05,pecas-18,pecas-19,pecas-45", response: "pecas-20,pecas-35,pecas-21,pecas-31"}, {value: "pecas-09,pecas-10,pecas-11,pecas-45", response: "pecas-12,pecas-42,pecas-41,pecas-36"}, {value: "pecas-32,pecas-22,pecas-38,pecas-45", response: "pecas-06,pecas-40,pecas-17,pecas-26"}, {value: "pecas-17,pecas-13,pecas-16,pecas-45", response: "pecas-37,pecas-33,pecas-22,pecas-27"}, {value: "pecas-14,pecas-15,pecas-29,pecas-45", response: "pecas-30,pecas-28,pecas-34,pecas-03"}, {value: "pecas-14,pecas-09,pecas-41,pecas-45", response: "pecas-31,pecas-02,pecas-13,pecas-17"}, {value: "bixos-02,bixos-03,bixos-14,pecas-45", response: "bixos-07,pecas-04,pecas-05,pecas-17"}, {value: "pecas-04,pecas-08,pecas-44,pecas-45", response: "pecas-01,pecas-05,pecas-27,pecas-07"}, {value: "pecas-27,bixos-14,pecas-01,pecas-45", response: "pecas-44,pecas-30,bixos-09,pecas-18"}, {value: "pecas-18,pecas-20,pecas-35,pecas-45", response: "pecas-34,bixos-13,pecas-21,pecas-10"}, {value: "pecas-42,pecas-41,pecas-36,pecas-45", response: "pecas-09,pecas-02,bixos-11,pecas-26"}, {value: "bixos-12,bixos-03,bixos-06,pecas-45", response: "bixos-05,pecas-18,pecas-25,pecas-03"}, {value: "bixos-04,pecas-06,bixos-11,pecas-45", response: "bixos-07,pecas-07,pecas-05,pecas-01"}, {value: "pecas-17,pecas-10,pecas-38,pecas-45", response: "pecas-25,pecas-05,pecas-40,bixos-06"}, {value: "bixos-15,bixos-11,bixos-13,pecas-45", response: "bixos-08,bixos-03,bixos-10,bixos-09"}];
-        console.log("PECAS A:" +JSON.stringify(peacesA))
-        console.log("PECAS B:" +JSON.stringify(peacesB))
-        console.log("PECAS C:" +JSON.stringify(peacesC))
+        console.log("PECAS A:" + JSON.stringify(peacesA))
+        console.log("PECAS B:" + JSON.stringify(peacesB))
+        console.log("PECAS C:" + JSON.stringify(peacesC))
         if (bugs) {
 
         } else {
@@ -43,9 +43,9 @@ $(document).ready(function ($) {
 
         //  clone_peaces = peacesA.slice();
         //   clone_peaces = peacesA.slice();
-        console.log("PECAS A MISTURADAS:" +JSON.stringify(peacesA))
-        console.log("PECAS B MISTURADAS:" +JSON.stringify(peacesB))
-        console.log("PECAS C MISTURADAS:" +JSON.stringify(peacesC))
+        console.log("PECAS A MISTURADAS:" + JSON.stringify(peacesA))
+        console.log("PECAS B MISTURADAS:" + JSON.stringify(peacesB))
+        console.log("PECAS C MISTURADAS:" + JSON.stringify(peacesC))
     }
     function gamePscicotest() {
         var board = [];
@@ -222,7 +222,8 @@ $(document).ready(function ($) {
         logObject['psico_motora'] = logObject.pontuacao * 1;
         logObject['logico_matematica'] = logObject.pontuacao * 1;
         logObject['linguagem'] = logObject.pontuacao * 1;
-
+        logObject['tentativas'] = nPoints.length;
+        logObject['acertos'] =nClicks;
         var tr;
         var text = "Parabéns! Seu tempo foi de:  " + duration + "";
 

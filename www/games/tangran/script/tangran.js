@@ -71,7 +71,7 @@ var stats = {};
 $(function ()
 {
     body = $('body');
-	html = $('html');
+    html = $('html');
 
     gameDisplay = $('#game');
     var background = $('#background');
@@ -732,12 +732,12 @@ function onPieceDoubleClick(e)
     var piece = getPieceUnderPoint(e.pageX, e.pageY);
     if (!piece)
         return;
-	
-	rotatePiece(piece);
+
+    rotatePiece(piece);
 }
 
 function rotatePiece(piece)
-{	
+{
     if (piece.isRightPosition)
         return;
 
@@ -745,7 +745,7 @@ function rotatePiece(piece)
         return;
 
     var pieceDisplay = piece.display;
-	
+
     piece.isRotating = true;
 
     var deltaRotation = 45;
@@ -799,8 +799,10 @@ function onPieceMouseDown(e)
     if (piece.isRightPosition)
         return;
 
-	rotateTimeout = setTimeout(function(){ rotatePiece(piece); }, 1000);
-		
+    rotateTimeout = setTimeout(function () {
+        rotatePiece(piece);
+    }, 1000);
+
     var index = pieces.indexOf(piece);
     pieces.splice(index, 1);
     pieces.splice(0, 0, piece);
@@ -815,20 +817,21 @@ function onPieceMouseDown(e)
 
     function onMouseMove(e)
     {
-		var offset = gameDisplay.offset();
-		var clientX = e.pageX - offset.left;
-		var clientY = e.pageY - offset.top;
-		
-		if(clientX <= 0 || clientX >= 527 || clientY <= 0 || clientY >= 348) return;
-		
-		clearTimeout(rotateTimeout);
-	
+        var offset = gameDisplay.offset();
+        var clientX = e.pageX - offset.left;
+        var clientY = e.pageY - offset.top;
+
+        if (clientX <= 0 || clientX >= 527 || clientY <= 0 || clientY >= 348)
+            return;
+
+        clearTimeout(rotateTimeout);
+
         var x = parseFloat(pieceDisplay.css('left').replace('px', ''));
         var y = parseFloat(pieceDisplay.css('top').replace('px', ''));
 
         x += (e.pageX - lastX);
         y += (e.pageY - lastY);
-		
+
         pieceDisplay.css('left', x + 'px');
         pieceDisplay.css('top', y + 'px');
 
@@ -841,8 +844,8 @@ function onPieceMouseDown(e)
 
     function onMouseUp(e)
     {
-		clearTimeout(rotateTimeout);
-	
+        clearTimeout(rotateTimeout);
+
         html.off('mousemove', onMouseMove);
         html.off('mouseup', onMouseUp);
 
@@ -990,7 +993,8 @@ function verifyGameComplete(piece)
         stats.log['psico_motora'] = stats.log.pontuacao * 1;
         stats.log['logico_matematica'] = stats.log.pontuacao * 3;
         stats.log['linguagem'] = stats.log.pontuacao * 1;
-
+        stats.log['tentativas'] = stats.totalPieces;
+        stats.log['acertos'] = stats.pieceTimes.length;
         sendLog();
     }
 
@@ -1118,6 +1122,7 @@ function sendLog()
         stats.log.estabilidade = stats.log.estabilidade.toFixed(2);
     stats.log.gameId = "tangran";
     stats.log.timestamp = (new Date()).getTime();
+
     //console.log(stats.log);
     try {
         window.parent.saveLogObject(stats.log);
