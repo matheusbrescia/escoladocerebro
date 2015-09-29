@@ -949,8 +949,8 @@ PipeGame.prototype.verifyGameComplete = function ()
         logObject['psico_motora'] = logObject.pontuacao * 1;
         logObject['logico_matematica'] = logObject.pontuacao * 3;
         logObject['linguagem'] = logObject.pontuacao * 1;
-        logObject['tentativas'] = instance.numMoves;
-        logObject['acertos'] = instance.clickIntervals.length ;
+    //    logObject['tentativas'] = instance.numMoves;
+      //  logObject['acertos'] = instance.clickIntervals.length ;
         //alert(JSON.stringify(logObject, null, 4));
 
         function onAnimateComplete()

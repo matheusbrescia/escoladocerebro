@@ -54,7 +54,7 @@
                 <div class="baloon baloon-left  " > 
                     <div class="baloon-baloon" >   
                         <span class="baloon-label">  
-                            Nesse game você deve decidir o melhor padrão.
+                            Identifique o padrão e clique na alternativa que segue a sequência das imagens anteriores.
                         </span>
                         <button class="btn btn-primary btn-lg"  id="btn_start_test">COMEÇAR</button>
                     </div>  
@@ -67,7 +67,8 @@
                     <div class="baloon-baloon" >  
 
                         <span class="baloon-label">  
-                            Escolha o melhor padrão para a sequência. Você está pronto?
+                            
+                            Identifique o padrão e clique na alternativa que segue a sequência das imagens anteriores.
                         </span>
                         <button class="btn btn-xs btn-danger ">OKAY</button>
                     </div>  
@@ -81,7 +82,7 @@
                     <div class="baloon-baloon" >  
 
                         <span class="baloon-label">  
-                            Escolha o melhor padrão para a sequência. Você está pronto?
+                           Clique na alternativa que pertence ao mesmo grupo das imagens abaixo.
                         </span>
                         <button class="btn btn-xs btn-danger ">OKAY</button>
                     </div>  
@@ -119,9 +120,29 @@
             </div>
 
         </div>
-        <footer>
+        <a href="#" class="btn fa fa-close pull-right btn-margin"  data-toggle="modal" data-target="#confirm-delete"> </a><br>
 
-        </footer>
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                       
+                        <h4 class="modal-title" id="myModalLabel">Atenção!</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>Sair do teste? </p>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">NÃO</button>
+                        <a id="sair" class="btn btn-danger btn-ok" data-dismiss="modal">SIM</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </body>  
 </html>

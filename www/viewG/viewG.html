@@ -7,7 +7,7 @@
 
                 </span>
             </div>
-            <div class="trophy" ng-hide="{{!stateGamer}}" > 
+            <div class="trophy {{stateGamer}}"  > 
                 <img class="trophy-img" src="assets/img/icone_trofeu_teste.png" alt=""/>
                 <span class="trophy-label">  
 
@@ -28,7 +28,7 @@
         </div>
     </div> 
 </nav>
-<div class="testy" ng-hide="{{!stateGamer}}" ng-click="goPath('viewT')" > 
+<div class="testy {{stateGamer}}"  ng-click="goPath('viewT')" > 
     <img class="testy-img" src="assets/img/button_testes.png" alt=""/>
     <span class="testy-label">  
 

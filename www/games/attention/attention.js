@@ -61,21 +61,58 @@ $(document).ready(function ($) {
                 }
             }
         }
+        
         if (nLevel == 1) {
-            peaces.splice(nPeaces[0], 1);
+            $.each(peaces, function (i) {
+                if (peaces[i].value === ("peaces_" +nPeaces[0])) {
+                    peaces.splice(i, 1);
+                    return false;
+                }
+            });
+            //peaces.splice(nPeaces[0], 1);
         }
         if (nLevel == 2) {
-            peaces.splice(nPeaces[0], 1);
-            peaces.splice(nPeaces[1], 1);
+            $.each(peaces, function (i) {
+                if (peaces[i].value === ("peaces_" +nPeaces[0]) ) {
+                    peaces.splice(i, 1);
+                    return false;
+                }
+            });
+           
+           $.each(peaces, function (i) {
+                if ( peaces[i].value === ("peaces_" +nPeaces[1])) {
+                    peaces.splice(i, 1);
+                    return false;
+                }
+            });
         }
         if (nLevel == 3) {
-            peaces.splice(nPeaces[0], 1);
-            peaces.splice(nPeaces[1], 1);
-            peaces.splice(nPeaces[2], 1);
+           $.each(peaces, function (i) {
+                if (peaces[i].value === ("peaces_" +nPeaces[0])) {
+                    peaces.splice(i, 1);
+                    return false;
+                }
+            });
+            $.each(peaces, function (i) {
+                if ( peaces[i].value === ("peaces_" +nPeaces[1])) {
+                    peaces.splice(i, 1);
+                    return false;
+                }
+            });
+            $.each(peaces, function (i) {
+                if ( peaces[i].value === ("peaces_" +nPeaces[2])) {
+                    peaces.splice(i, 1);
+                    return false;
+                }
+            });
         }
 
         console.log("peaces[nPeaces[0]]: " + JSON.stringify(peaces[nPeaces[0]]));
+        console.log("peaces[nPeaces[1]]: " + JSON.stringify(peaces[nPeaces[1]]));
+        console.log("peaces[nPeaces[2]]: " + JSON.stringify(peaces[nPeaces[2]]));
         console.log("nPeaces[0]: " + JSON.stringify(nPeaces[0]));
+        console.log("nPeaces[1]: " + JSON.stringify(nPeaces[1]));
+        console.log("nPeaces[2]: " + JSON.stringify(nPeaces[2]));
         console.log("peaces: " + JSON.stringify(peaces));
         for (var i = 0; i < 70; i++) {
             if (nLevel == 1) {
@@ -278,7 +315,9 @@ $(document).ready(function ($) {
         }, 2000);
 
         try {
+           
             window.parent.saveLogObject(logObject);
+            //window.parent.close(logObject);
         }
         catch (e) {
             $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
@@ -335,4 +374,14 @@ $(document).ready(function ($) {
     });
     $(".teste_model").hide();
 
+    $("#sair").on("click", function () {
+        try {
+            window.parent.close = true; 
+        }
+        catch (e) {
+            console.log(e);
+        }
+        onAnimateComplete();
+    });
+ 
 });

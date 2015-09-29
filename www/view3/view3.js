@@ -56,13 +56,35 @@ angular.module('myApp.view3', ['ngRoute'])
 
                                 $timeout(function () {
                                     $scope.showAlert("Você tem " + $scope.dashboard.ngames + " dados no dashboard!");
-                                }, 5000);
+                                    if ($scope.measurements.length > 0) {
+                                        $scope.statePoints = true;
+                                        $.each($scope.measurements, function (key, value) {
+                                            //console.log('DashboardCtrl:' + key + ' = ' + value); 
+                                            var localData = JSON.parse(value);
+                                            console.log(localData);
+                                            //localData.playerId = $scope.user.playerId; 
+                                            $scope.points.push(localData);
+                                            $scope.statePoints = true;
+                                            $.each(localData, function (k, v) {
+                                                // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
+                                            });
+                                        });
+                                    } else {
+                                        $scope.statePoints = false;
+                                    }
+
+                                    if ($scope.dashboard.ngames > 0) {
+                                        $scope.stateGamer = true;
+                                    } else {
+                                        $scope.stateGamer = false;
+                                    }
+                                }, 1000);
                             } else {
                                 $scope.$apply(function () {
                                     $timeout(function () {
                                         $scope.showAlert("Sem dados no dashboard!");
 
-                                    }, 5000);
+                                    }, 1000);
 
                                 });
                             }
@@ -81,16 +103,13 @@ angular.module('myApp.view3', ['ngRoute'])
                 $.getJSON($scope.ec_query_players, {action: "dashboardbyall"})
                         .done(function (json) {
                             if (json !== null) {
-
                                 $scope.dashboardall = JSON.parse(json)[0];
-
                                 $scope.checkDash(player);
                             } else {
                                 $scope.$apply(function () {
                                     $timeout(function () {
                                         $scope.showAlert("Sem dados no dashboard!");
-
-                                    }, 5000);
+                                    }, 1000);
 
                                 });
                             }
@@ -110,17 +129,16 @@ angular.module('myApp.view3', ['ngRoute'])
                 var sampleWalker = 0;
                 var sampleLength = $scope.measurements.length;
 
-                if (sampleLength > 0) {
-
-                    $scope.showAlert("Sincronizando...");
-                } else {
-
+                if (sampleLength > 0) { 
+                    $scope.showAlert("Sincronizando " + sampleLength + " jogadas.");
+                } else { 
                     $scope.showAlert("Você não tem dados para sincronizar.");
                 }
                 $.each($scope.measurements, function (key, value) {
                     var lastSample = JSON.parse(value);
                     lastSample.playerId = $scope.user.playerId;
                     lastSample.adminId = $scope.user.adminId;
+                      console.log("Sincronizando..." + sampleWalker + " dados.");
                     $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(lastSample)})
                             .done(function (json) {
                                 if (json !== null) {
@@ -135,12 +153,22 @@ angular.module('myApp.view3', ['ngRoute'])
                                     }
                                     console.log("Sincronizando..." + sampleWalker + " dados.");
                                 } else {
-                                    $scope.showAlert("Aconteceu algum bug ao enviar os dados!");
+                                    $scope.$apply(function () {
+                                        $timeout(function () {
+                                             $scope.showAlert("Aconteceu algum bug ao enviar os dados!");
+                                        }, 1000); 
+                                    });
+                                   
                                     return false;
                                 }
                             })
                             .fail(function (jqxhr, textStatus, error) {
-                                $scope.showAlert("Você parece estar off-line!");
+                                $scope.$apply(function () {
+                                        $timeout(function () {
+                                             $scope.showAlert("Você parece estar off-line!");
+                                        }, 1000); 
+                                    });
+                                
                                 return false;
                             });
                 });
@@ -198,38 +226,15 @@ angular.module('myApp.view3', ['ngRoute'])
                 window.localStorage['org.escoladocerebro.dashboardall'] = JSON.stringify($scope.dashboardall);
                 $scope.showAlert("Nenhum jogador definido.");
             };
+
             if ($scope.user.playerId > 0) {
                 $scope.statePlayer = true;
-
                 $scope.checkDashAll($scope.user.playerId);
             } else {
                 $scope.statePlayer = false;
                 $scope.cleanUser();
             }
-            if ($scope.measurements.length > 0) {
-                $scope.statePoints = true;
-                $.each($scope.measurements, function (key, value) {
-                    //console.log('DashboardCtrl:' + key + ' = ' + value);
 
-                    var localData = JSON.parse(value);
-                    console.log(localData);
-                    //localData.playerId = $scope.user.playerId;
-                    
-                    $scope.points.push(localData);
-                    $scope.statePoints = true;
-                    $.each(localData, function (k, v) {
-                        // console.log('DashboardCtrl|localData:' + k + ' = ' + v);
-                    });
-                });
-            } else {
-                $scope.statePoints = false;
-            }
-
-            if ($scope.dashboard.ngames > 0) {
-                $scope.stateGamer = true;
-            } else {
-                $scope.stateGamer = false;
-            }
 
         })
         .directive('barssum', function ($parse) {

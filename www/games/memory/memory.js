@@ -187,7 +187,9 @@ $(document).ready(function ($) {
         }, 2000);
 
         try {
+             
             window.parent.saveLogObject(logObject);
+             
         }
         catch (e) {
             $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
@@ -237,4 +239,15 @@ $(document).ready(function ($) {
         }
     });
     $(".teste_model").hide();
+    $("#sair").on("click", function () {
+         try {
+            window.parent.close = true; 
+        }
+        catch (e) {
+            console.log(e);
+        }
+        onAnimateComplete();
+    });
+
+     
 });

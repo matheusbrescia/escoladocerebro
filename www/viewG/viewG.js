@@ -17,7 +17,7 @@ angular.module('myApp.viewG', ['ngRoute'])
             $scope.statePlayer = false;
             $scope.statePoints = false;
             $scope.stateSendPoints = false;
-            $scope.stateGamer = false;
+            $scope.stateGamer = "hidden";
             $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
             $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
             $scope.measurements = JSON.parse(window.localStorage['org.escoladocerebro.measurements'] || '{}');
@@ -95,9 +95,24 @@ angular.module('myApp.viewG', ['ngRoute'])
                                 $scope.dashboard = JSON.parse(json)[0];
                                 window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
 
-                                $timeout(function () {
-                                    $scope.showAlert("Você tem " + $scope.dashboard.ngames + " jogadas no dashboard!");
-                                }, 5000);
+                                $scope.$apply(function () {
+                                    $timeout(function () {
+                                        if ($scope.dashboard.ngames >= 50) {
+
+                                            $scope.stateGamer = "";
+                                            $scope.showAlert("Você tem " + $scope.dashboard.ngames + " jogadas no dashboard!");
+
+                                        } else {
+                                            $scope.stateGamer = "hidden";
+                                            $scope.showAlert("Você precisa jogar mais " + (50 - $scope.dashboard.ngames) + " para liberar os testes.");
+
+                                        }
+                                    }, 1000);
+
+                                });
+
+
+
                             } else {
                                 $scope.$apply(function () {
                                     $timeout(function () {
@@ -107,6 +122,7 @@ angular.module('myApp.viewG', ['ngRoute'])
 
                                 });
                             }
+
                         })
                         .fail(function (jqxhr, textStatus, error) {
                             $scope.$apply(function () {
@@ -122,24 +138,10 @@ angular.module('myApp.viewG', ['ngRoute'])
             if (Math.round($scope.user.idusers) > 0) {
                 $scope.statePlayer = true;
                 $scope.checkDash($scope.user.playerId);
-                $scope.showAlert("Escolha um caminho " + $scope.user.fullname + ".");
 
             } else {
                 $scope.statePlayer = false;
                 $scope.cleanUser();
             }
-            
-            if ($scope.dashboard.ngames >= 50) {
-                $scope.stateGamer = true; 
-            } else {
-                $scope.stateGamer = false;
-                $timeout(function () {
-                    $scope.showAlert("Você precisa jogar mais " + (50 - $scope.dashboard.ngames) + " para liberar os testes.");
-                }, 100);
-            }
-
-
-
-
         });
  

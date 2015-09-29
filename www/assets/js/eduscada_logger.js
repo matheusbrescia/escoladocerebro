@@ -1,10 +1,10 @@
-
+var close = false;
 function setStat(key, value) {
     var display = $('.stat_' + key + '_display');
     if (display.length > 0)
         display.html(value);//display.text(parseFloat(value).toFixed(0));
 
-}
+} 
 function playAgain(sample, message) {
    
     $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(sample.pontuacao || 0) + " pontos em " + Math.round(sample.time / 1000) + " segundos. " + message);
@@ -13,6 +13,9 @@ function playAgain(sample, message) {
         $("#baloon-header-logger").toggleClass("hidden");
         document.getElementById(sample.gameId).src = "games/" + sample.gameId + "/" + sample.gameId + ".html";
     });
+     
+     if(close)
+         location.reload(true);
      
     console.log(message);
 
