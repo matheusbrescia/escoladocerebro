@@ -3,7 +3,7 @@ $(document).ready(function ($) {
     var nColumns = 4;
     var nTest = 0;
     var nTestPeaces = 20;
-    var nFadeTime = 0;
+    var nFadeTime = 2000;
     var nClicks = 0;
     var nTimeInterval = null;
     var nLevel = 1;
@@ -50,7 +50,7 @@ $(document).ready(function ($) {
         peacesC = [
             {"value": "p1", "state": false, "response": "bixos-04,bixos-02,bixos-03,bixos-01"},
             {"value": "p2", "state": false, "response": "bixos-02,bixos-01,bixos-03,bixos-04"},
-            {"value": "p3", "state": false, "response": "bixos-01,bixos-02,bixos-03,bixos-04"},
+            {"value": "p3", "state": false, "response": "bixos-01,bixos-02,bixos-10,bixos-04"}, 
             {"value": "p11", "state": false, "response": "bixos-01,bixos-02,bixos-03,bixos-04"},
             {"value": "p12", "state": false, "response": "bixos-03,bixos-05,bixos-06,bixos-12"},
             {"value": "p13", "state": false, "response": "bixos-07,bixos-02,bixos-03,bixos-04"},
