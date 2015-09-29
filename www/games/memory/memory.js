@@ -14,6 +14,7 @@ $(document).ready(function ($) {
     var nLastClickTime = new Date();
     var nClickIntervals = [];
     var bugs = false;
+var finished = false;
 
     function gamePscicotest() {
         nTest++;
@@ -88,6 +89,7 @@ $(document).ready(function ($) {
                 gameStop();
                 $("#test_model_end").show();
                 nPlay = false;
+                finished = true;
                 onAnimateComplete();
                 return true;
             }
@@ -240,13 +242,18 @@ $(document).ready(function ($) {
     });
     $(".teste_model").hide();
     $("#sair").on("click", function () {
-         try {
-            window.parent.close = true; 
+        try {
+            window.parent.close = true;
+            if (finished) {
+                window.parent.closeModal();
+            } else {
+                onAnimateComplete();
+            }
         }
         catch (e) {
             console.log(e);
         }
-        onAnimateComplete();
+
     });
 
      

@@ -5,6 +5,9 @@ function setStat(key, value) {
         display.html(value);//display.text(parseFloat(value).toFixed(0));
 
 } 
+function closeModal() {
+     location.reload(true);
+ }
 function playAgain(sample, message) {
    
     $("#baloon-header-logger .baloon-label").text("Você fez " + Math.round(sample.pontuacao || 0) + " pontos em " + Math.round(sample.time / 1000) + " segundos. " + message);

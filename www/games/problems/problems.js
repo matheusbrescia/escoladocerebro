@@ -3,6 +3,7 @@ $(document).ready(function ($) {
     var nColumns = 4;
     var nTest = 0;
     var nTestPeaces = 20;
+    var nFadeTime = 0;
     var nClicks = 0;
     var nTimeInterval = null;
     var nLevel = 1;
@@ -14,7 +15,8 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-    var bugs = true;
+    var bugs = false;
+    var finished = false;
 
     function gameStart() {
         $("#points").text(nPoints.length);
@@ -63,15 +65,15 @@ $(document).ready(function ($) {
         if (bugs) {
 
         } else {
-            peacesA.sort(function () {
-                return .5 - Math.random();
-            });
-            peacesB.sort(function () {
-                return .5 - Math.random();
-            });
-            peacesC.sort(function () {
-                return .5 - Math.random();
-            });
+//            peacesA.sort(function () {
+//                return .5 - Math.random();
+//            });
+//            peacesB.sort(function () {
+//                return .5 - Math.random();
+//            });
+//            peacesC.sort(function () {
+//                return .5 - Math.random();
+//            });
         }
 
         //  clone_peaces = peacesA.slice();
@@ -99,7 +101,7 @@ $(document).ready(function ($) {
         }
 
         if (nTest >= nTestPeaces && nTest < nTestPeaces * 2) {
-            nLevel = 2;
+
             pecalogo = peacesB[nTest - nTestPeaces].value.split(",");
             pecaresponse = peacesB[nTest - nTestPeaces].response.split(",");
             $(".peaces-logo").html('');
@@ -113,7 +115,7 @@ $(document).ready(function ($) {
         }
 
         if (nTest >= nTestPeaces * 2) {
-            nLevel = 3;
+
             pecapier = peacesC[nTest - nTestPeaces * 2].value;
             pierresponse = peacesC[nTest - nTestPeaces * 2].response.split(",");
             $(".peaces-logo").html("");
@@ -126,13 +128,13 @@ $(document).ready(function ($) {
         for (var i = 0; i < 4; i++) {
             board.push(i + 1);
         }
-        if (bugs) {
-            console.log(JSON.stringify(board))
-        } else {
-            board.sort(function () {
-                return .5 - Math.random();
-            });
-        }
+//        if (bugs) {
+//            console.log(JSON.stringify(board))
+//        } else {
+//            board.sort(function () {
+//                 return .5 - Math.random();
+//            });
+//        }
         var gamePage = "<div class=\"layout board-problems\" id=\"layout\">";
 
         $.each(board, function (i) {
@@ -178,26 +180,33 @@ $(document).ready(function ($) {
             $(".total_points").text(nPoints.length);
             $(".total_clicks").text(nClicks);
             if (nTest === nTestPeaces) {
-                
+
                 nPlay = false;
                 $("#test_model_2").show();
                 gameStop();
             }
+            if (nTest === nTestPeaces * 2) {
+
+                nPlay = false;
+                $("#test_model_3").show();
+                gameStop();
+            }
 
             if (nTest === (nTestPeaces * 2 + 10)) {
-                
+                $("#teste_model_3_title").addClass("hidden");
                 $("#test_model_end").show();
                 nPlay = false;
                 gameStop();
+                finished = true;
                 onAnimateComplete();
-                return true; 
+                return true;
             }
 
             console.log("nTest" + nTest);
             console.log("total_points " + nPoints.length);
             console.log("total_clicks " + nClicks);
             console.log("$(this).text() " + $(this).text());
-            $(".stage").fadeOut(2000, function () {
+            $(".stage").fadeOut(nFadeTime, function () {
                 gamePscicotest();
             });
 
@@ -275,13 +284,11 @@ $(document).ready(function ($) {
 
         clearTimeout(tr);
         tr = setTimeout(function () {
-            console.log(text)
-        }, 2000);
+            console.log(text);
+        }, nFadeTime);
 
         try {
-
             window.parent.saveLogObject(logObject);
-
         }
         catch (e) {
             $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
@@ -325,6 +332,11 @@ $(document).ready(function ($) {
         nLevel = 2;
         gamePlayerOkayDude();
     });
+    $("#test_model_3 button").on("click", function () {
+          $("#teste_model_3_title").removeClass("hidden");
+        nLevel = 3;
+        gamePlayerOkayDude();
+    });
     $(".btn-toggle .btn").on("click", function () {
         $(".btn-toggle .btn").toggleClass("active")
         if ($(this).text() == "TESTE") {
@@ -347,11 +359,16 @@ $(document).ready(function ($) {
     $("#sair").on("click", function () {
         try {
             window.parent.close = true;
+            if (finished) {
+                window.parent.closeModal();
+            } else {
+                onAnimateComplete();
+            }
         }
         catch (e) {
             console.log(e);
         }
-        onAnimateComplete();
+
     });
 
 });

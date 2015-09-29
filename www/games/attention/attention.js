@@ -13,6 +13,7 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
+var finished = false;
 
     function gamePscicotest() {
         $(".stage").fadeIn(2000);
@@ -126,6 +127,7 @@ $(document).ready(function ($) {
                 board.push(peaces[Math.floor((Math.random() * 19) + 0)]);
             }
         }
+        console.log("board: " + JSON.stringify(board));
         board.sort(function () {
             return .5 - Math.random();
         });
@@ -245,7 +247,7 @@ $(document).ready(function ($) {
             gameStop();
             $("#test_model_end").show();
             nPlay = false;
-
+            finished = true;
             $(".peaces-logo").html("Fim do Teste");
             onAnimateComplete();
             return true;
@@ -376,12 +378,17 @@ $(document).ready(function ($) {
 
     $("#sair").on("click", function () {
         try {
-            window.parent.close = true; 
+            window.parent.close = true;
+            if (finished) {
+                window.parent.closeModal();
+            } else {
+                onAnimateComplete();
+            }
         }
         catch (e) {
             console.log(e);
         }
-        onAnimateComplete();
+
     });
  
 });
