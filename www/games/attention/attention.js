@@ -13,7 +13,7 @@ $(document).ready(function ($) {
     var nStartTime = new Date();
     var nLastClickTime = new Date();
     var nClickIntervals = [];
-var finished = false;
+    var finished = false;
 
     function gamePscicotest() {
         $(".stage").fadeIn(2000);
@@ -62,10 +62,10 @@ var finished = false;
                 }
             }
         }
-        
+
         if (nLevel == 1) {
             $.each(peaces, function (i) {
-                if (peaces[i].value === ("peaces_" +nPeaces[0])) {
+                if (peaces[i].value === ("peaces_" + nPeaces[0])) {
                     peaces.splice(i, 1);
                     return false;
                 }
@@ -74,34 +74,34 @@ var finished = false;
         }
         if (nLevel == 2) {
             $.each(peaces, function (i) {
-                if (peaces[i].value === ("peaces_" +nPeaces[0]) ) {
+                if (peaces[i].value === ("peaces_" + nPeaces[0])) {
                     peaces.splice(i, 1);
                     return false;
                 }
             });
-           
-           $.each(peaces, function (i) {
-                if ( peaces[i].value === ("peaces_" +nPeaces[1])) {
+
+            $.each(peaces, function (i) {
+                if (peaces[i].value === ("peaces_" + nPeaces[1])) {
                     peaces.splice(i, 1);
                     return false;
                 }
             });
         }
         if (nLevel == 3) {
-           $.each(peaces, function (i) {
-                if (peaces[i].value === ("peaces_" +nPeaces[0])) {
+            $.each(peaces, function (i) {
+                if (peaces[i].value === ("peaces_" + nPeaces[0])) {
                     peaces.splice(i, 1);
                     return false;
                 }
             });
             $.each(peaces, function (i) {
-                if ( peaces[i].value === ("peaces_" +nPeaces[1])) {
+                if (peaces[i].value === ("peaces_" + nPeaces[1])) {
                     peaces.splice(i, 1);
                     return false;
                 }
             });
             $.each(peaces, function (i) {
-                if ( peaces[i].value === ("peaces_" +nPeaces[2])) {
+                if (peaces[i].value === ("peaces_" + nPeaces[2])) {
                     peaces.splice(i, 1);
                     return false;
                 }
@@ -317,7 +317,7 @@ var finished = false;
         }, 2000);
 
         try {
-           
+
             window.parent.saveLogObject(logObject);
             //window.parent.close(logObject);
         }
@@ -390,5 +390,5 @@ var finished = false;
         }
 
     });
- 
+
 });

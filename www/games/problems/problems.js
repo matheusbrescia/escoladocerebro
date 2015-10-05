@@ -128,13 +128,13 @@ $(document).ready(function ($) {
         for (var i = 0; i < 4; i++) {
             board.push(i + 1);
         }
-//        if (bugs) {
-//            console.log(JSON.stringify(board))
-//        } else {
-//            board.sort(function () {
-//                 return .5 - Math.random();
-//            });
-//        }
+        if (bugs) {
+            console.log(JSON.stringify(board))
+        } else {
+            board.sort(function () {
+                 return .5 - Math.random();
+            });
+        }
         var gamePage = "<div class=\"layout board-problems\" id=\"layout\">";
 
         $.each(board, function (i) {
