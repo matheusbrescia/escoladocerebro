@@ -19,7 +19,7 @@ angular.module('myApp.viewT', ['ngRoute'])
             $scope.statePlayer = false;
             $scope.statePoints = false;
             $scope.stateSendPoints = false;
-            $scope.title = "Escolha um Teste";
+            $scope.title = "Escola um Jogo de Avaliação";
             $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
             $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
             $scope.measurements = JSON.parse(window.localStorage['org.escoladocerebro.measurements'] || '{}');

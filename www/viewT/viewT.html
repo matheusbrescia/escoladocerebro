@@ -16,12 +16,14 @@
 
 <section class="view view-T">
     <div class="row"> 
+
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <div class="thumbnail">
                 <a class="item item-avatar" href="#/viewT" ng-click="checkPsicotest('attention')">
                     <img src="assets/img/icon_teste_1.png" alt=""/> 
+
                 </a>
-                <div class="caption"> </div>
+                <div class="caption"> Avalie sua Atenção </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -29,7 +31,7 @@
                 <a class="item item-avatar" href="#/viewT" ng-click="checkPsicotest('memory')">
                     <img src="assets/img/icon_teste_2.png" alt=""/> 
                 </a> 
-                <div class="caption"> </div>
+                <div class="caption"> Avalie sua Memória</div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -37,11 +39,11 @@
                 <a class="item item-avatar" href="#/viewT" ng-click="checkPsicotest('problems')">
                     <img src="assets/img/icon_teste_3.png" alt=""/> 
                 </a>
-                <div class="caption"> </div>
+                <div class="caption"> Avalia sua capacidade de Resolução de Problemas</div>
             </div>
         </div> 
+    </div> 
 
-    </div>  
 
 </section>
 
@@ -50,7 +52,7 @@
 <div class="modal fade" id="modal_psicotest" tabindex="-1" role="dialog"   aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
-             
+
             <div class="modal-body">
                 <iframe iframe-onload="iframeLoadedCallBack()" id="{{gameId}}" src="{{gameUrl}}"></iframe> 
             </div>

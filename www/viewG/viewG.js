@@ -97,7 +97,7 @@ angular.module('myApp.viewG', ['ngRoute'])
 
                                 $scope.$apply(function () {
                                     $timeout(function () {
-                                        if ($scope.dashboard.ngames >= 50) {
+                                        if (($scope.dashboard.ngames >= 50) || ($scope.dashboard.ngames == 0)) {
 
                                             $scope.stateGamer = "";
                                             $scope.showAlert("Você tem " + $scope.dashboard.ngames + " jogadas no dashboard!");

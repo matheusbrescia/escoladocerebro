@@ -149,11 +149,16 @@ angular.module('myApp.viewL', ['ngRoute'])
                                             $scope.showAlert("Bem Vindo, " + $scope.user.login);
                                             $scope.checkDash($scope.user.playerId);
 
-                                            if (state === "checkin") {
-                                                $timeout(function () {
+                                            if (state === "register") {
+                                                $timeout(function () { 
+                                                    $location.path("view5");
+                                                }, 100);
 
+                                            }
+                                            if (state === "checkin") {
+                                                $timeout(function () { 
                                                     $location.path("viewG");
-                                                }, 500);
+                                                }, 100);
 
                                             }
                                         });
@@ -200,7 +205,7 @@ angular.module('myApp.viewL', ['ngRoute'])
                                 if (Math.round(obj[0].idusers) > 0) {
                                     $scope.$apply(function () {
                                         $scope.showAlert("Logando... ");
-                                        $scope.checkUser("silent");
+                                        $scope.checkUser("register");
                                     });
 
                                 } else {

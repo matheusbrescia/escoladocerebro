@@ -1,16 +1,11 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" >    
-            <div class="trophy"> 
-                <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>
-                <span class="trophy-label">  
 
-                </span>
-            </div>
-            <div class="trophy {{stateGamer}}"  > 
+            <div class="trophy {{stateGamer}}" ng-click="goPath('viewT')" > 
                 <img class="trophy-img" src="assets/img/icone_trofeu_teste.png" alt=""/>
-                <span class="trophy-label">  
-
+                <span class="trophy-label center">  
+                    Avaliação 
                 </span>
             </div>
 
@@ -22,18 +17,20 @@
             </span>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar">  
-            <span class="h1">  
-                {{dashboard.ngames}} 
-            </span>
+            <div class="trophy"> 
+                <span class="h1">  
+                    {{dashboard.ngames}} 
+                </span>
+                <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>
+                <span class="trophy-label">  
+                    Jogadas
+                </span>
+            </div>
+
         </div>
     </div> 
 </nav>
-<div class="testy {{stateGamer}}"  ng-click="goPath('viewT')" > 
-    <img class="testy-img" src="assets/img/button_testes.png" alt=""/>
-    <span class="testy-label">  
 
-    </span>
-</div>
 
 <section class="view view-g container" >  
     <div class="row">       
@@ -60,4 +57,10 @@
             {{message}}                         
         </span>
     </div> 
+    <div class="testy {{stateGamer}}"  ng-click="goPath('viewT')" > 
+        <img class="testy-img" src="assets/img/button_testes.png" alt=""/>
+        <span class="testy-label">  
+            Jogo de Avaliação Liberado
+        </span>
+    </div>
 </div>
