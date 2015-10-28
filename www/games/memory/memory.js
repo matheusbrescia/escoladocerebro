@@ -14,7 +14,7 @@ $(document).ready(function ($) {
     var nLastClickTime = new Date();
     var nClickIntervals = [];
     var bugs = false;
-var finished = false;
+    var finished = false;
 
     function gamePscicotest() {
         nTest++;
@@ -189,9 +189,9 @@ var finished = false;
         }, 2000);
 
         try {
-             
+
             window.parent.saveLogObject(logObject);
-             
+
         }
         catch (e) {
             $.getJSON("https://escoladocerebro.org/eduscada/c/index.php/ec_log_games", {log: JSON.stringify(logObject)})
@@ -256,5 +256,5 @@ var finished = false;
 
     });
 
-     
+
 });

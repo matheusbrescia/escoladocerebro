@@ -29,7 +29,7 @@ angular.module('myApp.viewH', ['ngRoute'])
                 
                 $scope.statePlayer = false;
                 $scope.user = {
-                    playerId: 0,
+                    idusers: 0,
                     adminId: 0,
                     adminPass: '',
                     adminLogin: '',
@@ -41,7 +41,7 @@ angular.module('myApp.viewH', ['ngRoute'])
                     serie: '',
                     chamada: '',
                     escola: '',
-                    idusers: 0,
+                    playerId: 0,
                     day: '',
                     city: '',
                     state: '',
@@ -67,9 +67,9 @@ angular.module('myApp.viewH', ['ngRoute'])
 
             };
 
-            if ($scope.user.playerId > 0) {
+            if ($scope.user.idusers > 0) {
                 $scope.statePlayer = true;
-                console.log("statePlayer:" + $scope.user.playerId);
+                console.log("statePlayer:" + $scope.user.idusers);
             } else {
                 $scope.statePlayer = false;
                 $scope.cleanUser();
@@ -80,7 +80,7 @@ angular.module('myApp.viewH', ['ngRoute'])
                 console.log("stateMeasurements:" + $scope.measurements.length);
             } else {
                 $scope.stateMeasurements = false;
-                $scope.cleanUser();
+                //$scope.cleanUser();
             }
             $timeout(function () {
                 $scope.hidden = "";
@@ -89,4 +89,5 @@ angular.module('myApp.viewH', ['ngRoute'])
 
 
         });
+ 
  

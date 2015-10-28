@@ -81,24 +81,21 @@ angular.module('myApp.viewG', ['ngRoute'])
                 $scope.showAlert("Nenhum jogador definido.");
 
             };
-            $scope.goPath = function (view) {
-
-                $location.path(view);
-
+            $scope.goPath = function (view) { 
+                $location.path(view); 
             };
             $scope.checkDash = function (player) {
 
                 $.getJSON($scope.ec_query_players, {action: "dashboardbyuser", idusers: player})
                         .done(function (json) {
-                            if (json !== null) {
-
+                            if (json !== null) { 
                                 $scope.dashboard = JSON.parse(json)[0];
                                 window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
 
                                 $scope.$apply(function () {
                                     $timeout(function () {
-                                        if (($scope.dashboard.ngames >= 50) || ($scope.dashboard.ngames == 0)) {
-
+                                        //    if (($scope.dashboard.ngames >= 50)) {
+                                        if ((true)) {
                                             $scope.stateGamer = "";
                                             $scope.showAlert("Você tem " + $scope.dashboard.ngames + " jogadas no dashboard!");
 
@@ -107,37 +104,31 @@ angular.module('myApp.viewG', ['ngRoute'])
                                             $scope.showAlert("Você precisa jogar mais " + (50 - $scope.dashboard.ngames) + " para liberar os testes.");
 
                                         }
-                                    }, 1000);
-
-                                });
-
-
-
+                                    }, 1000); 
+                                }); 
                             } else {
                                 $scope.$apply(function () {
                                     $timeout(function () {
-                                        $scope.showAlert("Sem jogadas no dashboard!");
-
-                                    }, 5000);
-
+                                        $scope.stateGamer = ""; 
+                                        $scope.showAlert("Sem jogadas no dashboard!"); 
+                                    }, 100); 
                                 });
                             }
 
                         })
                         .fail(function (jqxhr, textStatus, error) {
                             $scope.$apply(function () {
-
+                                $scope.stateGamer = ""; 
                                 $scope.showAlert("Você parece estar OFF-LINE!");
-                            });
-
+                            }); 
                         });
 
             };
-            console.log('$scope.user.playerId :' + $scope.user.playerId);
+            console.log('$scope.user.idusers :' + $scope.user.idusers);
 
             if (Math.round($scope.user.idusers) > 0) {
                 $scope.statePlayer = true;
-                $scope.checkDash($scope.user.playerId);
+                $scope.checkDash($scope.user.idusers);
 
             } else {
                 $scope.statePlayer = false;

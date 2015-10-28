@@ -11,14 +11,17 @@ angular.module('myApp.viewT', ['ngRoute'])
 
         .controller('ViewTCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
             BackgroundService.setCurrentBg("view-T-background");
-
+            $scope.ec_query_players = 'https://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
             $scope.hidden = "hidden";
             $scope.off = "hidden";
             $scope.message = "Bem vindo!";
             $scope.points = [];
             $scope.statePlayer = false;
             $scope.statePoints = false;
-            $scope.stateSendPoints = false;
+            $scope.stateAttention = false;
+            $scope.stateMemory = "";
+            $scope.stateProblems = "";
+            $scope.stateSendPoints = "";
             $scope.title = "Escola um Jogo de Avaliação";
             $scope.user = JSON.parse(window.localStorage['org.escoladocerebro.user'] || '{}');
             $scope.dashboard = JSON.parse(window.localStorage['org.escoladocerebro.dashboard'] || '{}');
@@ -48,12 +51,8 @@ angular.module('myApp.viewT', ['ngRoute'])
 
             };
             $scope.closeAlert = function (txt) {
-
                 $scope.hidden = "hidden";
-
             };
-
-
             $scope.iframeLoadedCallBack = function () {
 
 
@@ -113,18 +112,107 @@ angular.module('myApp.viewT', ['ngRoute'])
                 $scope.showAlert("Nenhum jogador definido.");
             };
 
-            if ($scope.user.playerId > 0) {
+            $scope.checkDash = function (player) {
+                console.log('$scope.user.idusers :' + $scope.user.idusers);
+                $.getJSON($scope.ec_query_players, {action: "dashboardbyuser", idusers: player})
+                        .done(function (json) {
+                            if (json !== null) {
+                                $scope.dashboard = JSON.parse(json)[0];
+                                window.localStorage['org.escoladocerebro.dashboard'] = JSON.stringify($scope.dashboard);
+
+                                $scope.$apply(function () {
+                                    $timeout(function () {
+                                        //    if (($scope.dashboard.ngames >= 50)) {
+                                        if ($scope.dashboard.ngames > 0) {
+                                            $scope.stateGamer = true;
+                                            console.log("$scope.dashboard.ngames " + $scope.dashboard.ngames)
+                                        } else {
+                                            $scope.stateGamer = false;
+                                        }
+
+                                        if ($scope.dashboard.n_attention < 2 || (Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention) >= 50)) {
+                                            $scope.stateAttention = "";
+                                            console.log("$scope.dashboard.n_attention " + $scope.dashboard.n_attention)
+                                            console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention))
+                                        } else {
+                                            $scope.stateAttention = "hidden";
+                                        }
+
+                                        if ($scope.dashboard.n_memory < 1 || (Math.round($scope.dashboard.ngames - $scope.dashboard.n_memory) >= 50)) {
+                                            $scope.stateMemory = "";
+                                            console.log("$scope.dashboard.n_memory " + $scope.dashboard.n_memory)
+                                            console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.n_memory))
+                                        } else {
+                                            $scope.stateMemory = "hidden";
+                                        }
+
+                                        if ($scope.dashboard.n_problems < 1 || (Math.round($scope.dashboard.ngames - $scope.dashboard.n_problems) >= 50)) {
+                                            $scope.stateProblems = "";
+                                            console.log("$scope.dashboard.n_problems " + $scope.dashboard.n_problems)
+                                            console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.n_problems))
+                                        } else {
+                                            $scope.stateProblems = "hidden";
+                                        }
+                                    }, 100);
+                                });
+                            } else {
+                                $scope.$apply(function () {
+                                    $timeout(function () {
+                                        $scope.stateGamer = "";
+                                        $scope.showAlert("Sem jogadas no dashboard!");
+                                    }, 100);
+                                });
+                            }
+
+                        })
+                        .fail(function (jqxhr, textStatus, error) {
+                            $scope.$apply(function () {
+                                $scope.stateGamer = "";
+                                $scope.showAlert("Você parece estar OFF-LINE!");
+                            });
+                        });
+
+            };
+
+
+            if (Math.round($scope.user.idusers) > 0) {
                 $scope.statePlayer = true;
+                $scope.checkDash($scope.user.idusers);
 
             } else {
                 $scope.statePlayer = false;
                 $scope.cleanUser();
             }
 
-
             if ($scope.dashboard.ngames > 0) {
                 $scope.stateGamer = true;
+                console.log("$scope.dashboard.ngames " + $scope.dashboard.ngames)
             } else {
                 $scope.stateGamer = false;
             }
+
+            if ($scope.dashboard.n_attention < 2 || (Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention) >= 50)) {
+                $scope.stateAttention = "";
+                console.log("$scope.dashboard.n_attention " + $scope.dashboard.n_attention)
+                console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention))
+            } else {
+                $scope.stateAttention = "hidden";
+            }
+
+            if ($scope.dashboard.n_memory < 1 || (Math.round($scope.dashboard.ngames - $scope.dashboard.n_memory) >= 50)) {
+                $scope.stateMemory = "";
+                console.log("$scope.dashboard.n_memory " + $scope.dashboard.n_memory)
+                console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.n_memory))
+            } else {
+                $scope.stateMemory = "hidden";
+            }
+
+            if ($scope.dashboard.n_problems < 1 || (Math.round($scope.dashboard.ngames - $scope.dashboard.n_problems) >= 50)) {
+                $scope.stateProblems = "";
+                console.log("$scope.dashboard.n_problems " + $scope.dashboard.n_problems)
+                console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.n_problems))
+            } else {
+                $scope.stateProblems = "hidden";
+            }
+
         }); 

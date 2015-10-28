@@ -34,10 +34,9 @@ html,body {
 .layout .row  {
     text-align:center;
     margin:0 auto;
-    
     width: 100%;
-    /* padding: 5% 0% 5% 0%; */
-    /* margin-left: 24%; */
+    padding: 5% 0% 5% 0%;
+    margin: 0 auto;
 }
 .board .btn:hover{
     background:transparent;
@@ -102,7 +101,7 @@ nav.navbar.navbar-default {
     
 
     height: 100%;
-}
+margin: 2%;}
 .badge{
     color: #00CCFF;  
     background: transparent;  
@@ -114,7 +113,7 @@ nav.navbar.navbar-default {
     background: #413466;
     border: 1px #8676b5 solid;
     font-size: 1em;
-    /* padding: 0; */
+    /* padding: 26px; */
 }
 .time img{
    width: 32px;
@@ -166,6 +165,7 @@ nav.navbar.navbar-default {
     /* min-width: 32px; */
     /* min-height: 32px; */
     padding: 2%;
+    /* margin-left: 2px; */
     border:0px;
     /* background:transparent; */
 }
@@ -175,11 +175,16 @@ nav.navbar.navbar-default {
 }
 .board-attention .row{
   padding: 2px 0% 2px 0%;
-  margin-left: 7%;
+  /* margin-left: 7%; */
 }
 .board-attention .btn{
   width: 48px;
   height: 48px;
+  /* margin-left: 50%; */
+  /* margin-right: 50%; */
+}
+.col-sm-1 {
+    margin-left: 1%;
 }
 .board-problems .row{
   padding: 5% 0% 5% 0%;

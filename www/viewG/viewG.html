@@ -1,19 +1,14 @@
 <nav class="nav"> 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right-bar" >    
+            <button class="btn fa trophy-img {{stateGamer}} card-3" ng-click="goPath('viewT')">AVALIAÇÃO</button> 
 
-            <div class="trophy {{stateGamer}}" ng-click="goPath('viewT')" > 
-                <img class="trophy-img" src="assets/img/icone_trofeu_teste.png" alt=""/>
-                <span class="trophy-label center">  
-                    Avaliação 
-                </span>
-            </div>
 
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 title"> 
             <img class="title-img" src="assets/img/title.png" alt=""/>
             <span class="title-label">  
-                Escola do Cérebro 
+                Escola um caminho para ir! 
             </span>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-bar">  
@@ -21,9 +16,9 @@
                 <span class="h1">  
                     {{dashboard.ngames}} 
                 </span>
-                <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>
+                <!--                <img class="trophy-img" src="assets/img/icone_trofeu.png" alt=""/>-->
                 <span class="trophy-label">  
-                    Jogadas
+                    JOGADAS
                 </span>
             </div>
 
@@ -35,16 +30,24 @@
 <section class="view view-g container" >  
     <div class="row">       
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view3')"> 
-
+            <span class="title-label">  
+                DASHBOARD
+            </span>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view5')"> 
-
+            <span class="title-label">  
+                PERFIL
+            </span>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view1')">    
-
+            <span class="title-label">  
+                GAMES
+            </span>
         </div> 
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 h100" ng-click="goPath('view4')">       
-
+            <span class="title-label">  
+                RANKING
+            </span>
         </div> 
     </div>  
 </section> 
@@ -57,10 +60,6 @@
             {{message}}                         
         </span>
     </div> 
-    <div class="testy {{stateGamer}}"  ng-click="goPath('viewT')" > 
-        <img class="testy-img" src="assets/img/button_testes.png" alt=""/>
-        <span class="testy-label">  
-            Jogo de Avaliação Liberado
-        </span>
-    </div>
+    <button class="btn fa trophy-img {{stateGamer}} card-3" ng-click="goPath('viewT')">AVALIAÇÃO</button> 
+
 </div>
