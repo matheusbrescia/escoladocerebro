@@ -57,14 +57,17 @@ var levels =
 
 var pieces;
 var level;
+var draggingPiece;
 
-var colors = ['#c33', '#3c3', '#33c', '#cc3', '#c3c', '#3cc'];
+var colors = [ ['#c33','#a66'], ['#3c3','#6a6'], ['#33c','#66a'], ['#cc3','#aa6'], ['#c3c','#a6a'], ['#3cc','#6aa']];
 
 var ticksPerSecond = 20;
 
 var tangramWidth = 140;
 var tangramHeight = 140;
 var canvasMargin = 10;
+
+var numFixedPieces;
 
 var stats = {};
 
@@ -101,8 +104,8 @@ function showHelpScreen()
     btPlay.css('position', 'absolute');
     btPlay.attr('id', 'btPlay');
     btPlay.css('cursor', 'pointer');
-    btPlay.left(50);
-    btPlay.top(250);
+    btPlay.left(195);
+    btPlay.top(262);
     btPlay.width(138);
     btPlay.height(41);
     gameHelp.append(btPlay);
@@ -377,7 +380,7 @@ var _timer;
 function initializeGame(levelId)
 {
     gameDisplay.empty();
-
+	
     initializePieces();
     initializeLevel(levelId);
 
@@ -402,13 +405,87 @@ function initializeGame(levelId)
 
     setNumMoves(_numMoves);
     setRunningTime(_runningTime);
+	
+	gameDisplay.on('mousemove', onMouseMove);
+	
+	var btRestart = $('<div></div>');
+    btRestart.css('position', 'absolute');
+    btRestart.attr('id', 'btRestart');
+    btRestart.css('cursor', 'pointer');
+    btRestart.css('left', '10px');
+    btRestart.css('bottom', '10px');
+    btRestart.css('z-index', '9999');
+    btRestart.width(140);
+    btRestart.height(43);
+    gameDisplay.append(btRestart);
+    //btEasy.css('background-image','url("assets/easy.png")');
+    BackgroundUtil.SetBackgroundImage(btRestart, 'restart');
+	
+    btRestart.on('mouseup', function ()
+    {
+		restartLevel();
+    });
 }
 
 function initializeLevel(levelId)
 {
     level = levels[levelId];
+	level.centerX += 93/2;
+	level.left += 93/2;
+		
     drawLevel();
     //oldDrawLevel();
+	
+	numFixedPieces = (2 - levelDifficulty);
+	console.log(numFixedPieces)
+	for(var i = 0; i < numFixedPieces; i++)
+	{
+		var piece;
+		do { piece = pieces[Math.floor(Math.random()*pieces.length)]; }
+		while(piece.isRightPosition);
+		
+		piece.isFixed = true;
+		
+		var lPiece = getLevelPieceById(piece.id);
+		
+		function getLevelPieceById(pieceId)
+		{
+			for (var i = 0; i < level.pieces.length; i++)
+				if (level.pieces[i].pieceId == pieceId)
+					return level.pieces[i];
+			return null;
+		}
+		
+		var tx = level.x + lPiece.x + level.centerX - piece.canvasSize / 2;
+		var ty = level.y + lPiece.y + level.centerY - piece.canvasSize / 2;
+		var tr = lPiece.rotation;
+		
+		piece.rotation = tr;
+		
+		piece.display.css({'left': (tx+'px'), 'top': (ty+'px')});
+		//var y = parseInt(piece.display.css('top').replace('px', '')) + piece.canvasSize / 2;
+		//var rotation = piece.rotation;
+
+		drawPiece(piece);
+
+		piece.isRightPosition = true;
+	}
+}
+
+function restartLevel()
+{
+	for(var i = 0; i < pieces.length; i++)
+	{
+		var piece = pieces[i];
+		if(piece.isFixed) continue;
+		
+		piece.display.css('top', piece.restartPosition.top+'px');
+		piece.display.css('left', piece.restartPosition.left+'px');
+		piece.rotation = 0;
+		drawPiece(piece);
+		
+		piece.isRightPosition = false;
+	}
 }
 
 function initializePieces()
@@ -469,8 +546,8 @@ function initializePieces()
         canvas[0].height = canvasSize;
         piece.canvasSize = canvasSize;
 
-        var left = ((minPoint[0] * tangramWidth) - canvasMargin / 2) - dx;
-        var top = ((minPoint[1] * tangramHeight) - canvasMargin / 2) - dy;
+        var left = ((minPoint[0] * tangramWidth) - canvasMargin / 2) - dx + 63;
+        var top = ((minPoint[1] * tangramHeight) - canvasMargin / 2) - dy + 29;
         canvas.css('left', left + 'px');
         canvas.css('top', top + 'px');
 
@@ -489,15 +566,21 @@ function initializePieces()
 
         canvas.on('mousedown', onPieceMouseDown);
         canvas.on('dblclick', onPieceDoubleClick);
-
-        pieces.push(piece);
+		
+		pieces.push(piece);
+		
+		piece.restartPosition = 
+		{
+			left: left,
+			top: top,
+		}
 
         drawPiece(piece);
 
         function getAny(array) {
             return array[Math.floor(Math.random() * array.length)];
         }
-    }
+    }	
 }
 
 function drawLevel()
@@ -524,7 +607,7 @@ function drawLevel()
     var context = canvas[0].getContext('2d');
     context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    var cx = level.centerX + 93;
+    var cx = level.centerX;
     var cy = level.centerY;
 
     var points = level.points;
@@ -546,9 +629,9 @@ function drawLevel()
 
     context.closePath();
     context.lineWidth = 1;
-    context.fillStyle = '#999';
+    context.fillStyle = '#384574';
     context.fill();
-    context.strokeStyle = '#999';
+    context.strokeStyle = '#384574';
     context.stroke();
 }
 /*
@@ -657,7 +740,7 @@ function drawPiece(piece)
 
     context.closePath();
     //context.lineWidth = 3;
-    context.fillStyle = piece.color;
+    context.fillStyle = piece.color[piece.isMouseOver ? 1 : 0];
     context.fill();
     //context.strokeStyle = 'blue';
     //context.stroke();    
@@ -798,7 +881,7 @@ function onPieceMouseDown(e)
 
     if (piece.isRightPosition)
         return;
-
+		
     rotateTimeout = setTimeout(function () {
         rotatePiece(piece);
     }, 1000);
@@ -842,10 +925,14 @@ function onPieceMouseDown(e)
         lastY = e.pageY;
     }
 
+	draggingPiece = piece;
+	
     function onMouseUp(e)
     {
         clearTimeout(rotateTimeout);
-
+		
+		draggingPiece = null;
+		
         html.off('mousemove', onMouseMove);
         html.off('mouseup', onMouseUp);
 
@@ -862,6 +949,35 @@ function onPieceMouseDown(e)
 
         verifyGameComplete(piece);
     }
+}
+
+function onMouseMove(e)
+{
+	if(draggingPiece) return;
+
+	var piece = getPieceUnderPoint(e.pageX, e.pageY);
+	
+	var overPiece = null;
+	for (var i = 0; i < pieces.length; i++)
+	{
+		var p = pieces[i];
+		if(p.isMouseOver)
+			overPiece = p;
+	}
+	
+	if(piece == overPiece) return;
+	
+	if(overPiece)
+	{
+		overPiece.isMouseOver = false;
+		drawPiece(overPiece);
+	}
+	
+	if(piece && !piece.isRightPosition)
+	{
+		piece.isMouseOver = true;
+		drawPiece(piece);
+	}
 }
 
 function verifyGameComplete(piece)
@@ -892,6 +1008,8 @@ function verifyGameComplete(piece)
     var tr = lPiece.rotation;
     var distance = Math.sqrt(Math.pow(x - tx, 2) + Math.pow(y - ty, 2));
 
+	console.log(distance)
+	
     var cond1 = (rotation == tr && distance < 10);
     var cond2 = false;
 
@@ -934,7 +1052,7 @@ function verifyGameComplete(piece)
         stats.pieceTimes.push(pieceTime);
 
         var gameTime = (timeNow - stats.initializedTime) / 1000;
-        stats.log.acuracia = (stats.totalPieces / 7);
+        stats.log.acuracia = (stats.totalPieces / (7-numFixedPieces));
         stats.log.velocidade = (stats.totalPieces / gameTime);
         stats.log.estabilidade = (1 / desvpad(stats.pieceTimes));
 

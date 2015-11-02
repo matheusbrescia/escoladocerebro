@@ -22,12 +22,12 @@ $(document).ready(function ($) {
         var board = [];
         board.push(peaces[nTest - 1]);
         board.push(peaces[nTest]);
-        var p = peaces[nTest].value.split("_");
-        $(".peaces-logo").html("");
-        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="../../assets/img/pattern_2/ts' + p[1] + '.png" </img></button></div>');
+
+        $(".peaces-logo").html('<span class="baloon-label">  Memorize este objeto e clique nele quando aparecer na próxima tela. </span>');
+        $(".peaces-logo").append('<button type="button" data-toggle="button" id="cur_' + peaces[nTest].value + '" class="btn btn-primary ">   <img src="../../assets/img/pattern_2/ts' + peaces[nTest].value.split("_")[1] + '.png" </img></button></div>');
 
         clone_peaces.splice(0, 1);
-        // clone_peaces.splice(0, 1);
+
         var sub_clone_peaces = clone_peaces.slice();
         for (var i = 0; i < 4; i++) {
             var tmp = Math.floor((Math.random() * (sub_clone_peaces.length - 1)) + 0);
@@ -44,12 +44,12 @@ $(document).ready(function ($) {
         }
 
         clone_peaces.push(peaces[nTest - 1]);
-        // clone_peaces.push(peaces[nTest]);
-        //  log(JSON.stringify(board))
-        // log(JSON.stringify(clone_peaces))
-        // log(JSON.stringify(sub_clone_peaces))
+
+         console.log(JSON.stringify(board))
+         console.log(JSON.stringify(clone_peaces))
+         console.log(JSON.stringify(sub_clone_peaces))
         var nBreak = (nColumns - 1);
-        var gamePage = "<div class=\"layout board-memory\" id=\"layout\">";
+        var gamePage = "<div class=\"layout board-memory hidden\" id=\"layout\">";
         $.each(board, function (i) {
             var str = board[i].value;
             var res = str.split("_");
@@ -68,12 +68,12 @@ $(document).ready(function ($) {
         gamePage += " </div>";
         $("#board").html(gamePage);
         $(".btn-board").on("click", function (e) {
-            var p = peaces[nTest - 1].value.split("_");
+            // var p = peaces[nTest - 1].value.split("_");
             nClicks++;
             $(this).prop('disabled', true);
             nClickIntervals.push(new Date() - nLastClickTime);
             nLastClickTime = new Date();
-            if (p[1] == $(this).text()) {
+            if (peaces[nTest - 1].value.split("_")[1] == $(this).text()) {
                 nPoints.push($(this).text());
                 $("#points").text(nPoints.length);
             }
@@ -92,6 +92,9 @@ $(document).ready(function ($) {
                 finished = true;
                 onAnimateComplete();
                 return true;
+            }
+            if (nTest === 2) {
+
             }
             gamePscicotest();
         });

@@ -176,7 +176,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'ViewHTabCtrl'
                 });
             }])
-        .controller('ViewHTabCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
+        .controller('ViewHTabCtrl',['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
 
             BackgroundService.setCurrentBg("view-h-background");
             $scope.hidden = "hidden";
@@ -255,7 +255,7 @@ angular.module('myApp', ['ngRoute'])
             }, 100);
 
 
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/viewL', {
@@ -263,7 +263,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'ViewLTabCtrl'
                 });
             }])
-        .controller('ViewLTabCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
+        .controller('ViewLTabCtrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-l-background");
             $scope.points = [];
             $scope.statePlayer = false;
@@ -504,7 +504,7 @@ angular.module('myApp', ['ngRoute'])
             $timeout(function () {
 
             }, 500);
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/viewT', {
@@ -512,7 +512,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'ViewTCtrl'
                 });
             }])
-        .controller('ViewTCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
+        .controller('ViewTCtrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-T-background");
             $scope.ec_query_players = 'https://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
             $scope.hidden = "hidden";
@@ -633,7 +633,7 @@ angular.module('myApp', ['ngRoute'])
                                             $scope.stateGamer = false;
                                         }
 
-                                        if ($scope.dashboard.n_attention < 2 || (Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention) >= 50)) {
+                                        if ($scope.dashboard.n_attention < 1 || (Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention) >= 50)) {
                                             $scope.stateAttention = "";
                                             console.log("$scope.dashboard.n_attention " + $scope.dashboard.n_attention)
                                             console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention))
@@ -694,7 +694,7 @@ angular.module('myApp', ['ngRoute'])
                 $scope.stateGamer = false;
             }
 
-            if ($scope.dashboard.n_attention < 2 || (Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention) >= 50)) {
+            if ($scope.dashboard.n_attention < 1 || (Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention) >= 50)) {
                 $scope.stateAttention = "";
                 console.log("$scope.dashboard.n_attention " + $scope.dashboard.n_attention)
                 console.log("$scope.dashboard.n_attention " + Math.round($scope.dashboard.ngames - $scope.dashboard.ngames_attention))
@@ -718,7 +718,7 @@ angular.module('myApp', ['ngRoute'])
                 $scope.stateProblems = "hidden";
             }
 
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/viewG', {
@@ -726,7 +726,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'ViewGTabCtrl'
                 });
             }])
-        .controller('ViewGTabCtrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
+        .controller('ViewGTabCtrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-g-background");
             $scope.ec_query_players = 'https://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
             $scope.hidden = "hidden";
@@ -851,7 +851,7 @@ angular.module('myApp', ['ngRoute'])
                 $scope.statePlayer = false;
                 $scope.cleanUser();
             }
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view6', {
@@ -859,7 +859,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'View6Ctrl'
                 });
             }])
-        .controller('View6Ctrl', function ($scope, $location, $timeout, SettingsService, BackgroundService) {
+        .controller('View6Ctrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-2-background");
             $scope.hidden = "hidden";
             $scope.off = "hidden";
@@ -1061,7 +1061,7 @@ angular.module('myApp', ['ngRoute'])
             }, 5000);
 
 
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view5', {
@@ -1069,7 +1069,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'View5TabCtrl'
                 });
             }])
-        .controller('View5TabCtrl', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
+        .controller('View5TabCtrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-5-background");
 
             $scope.hidden = "hidden";
@@ -1518,7 +1518,7 @@ angular.module('myApp', ['ngRoute'])
             }
 
 
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view4', {
@@ -1526,7 +1526,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'RankingCtrl'
                 });
             }])
-        .controller('RankingCtrl', function ($scope, $http, SettingsService, $location, $timeout, BackgroundService) {
+        .controller('RankingCtrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-4-background");
             $scope.dashUrl = "games/ranking/ranking.html";
             $scope.hidden = "hidden";
@@ -1697,7 +1697,7 @@ angular.module('myApp', ['ngRoute'])
             } else {
                 $scope.stateGamer = false;
             }
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view3', {
@@ -1705,7 +1705,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'DashboardCtrl'
                 });
             }])
-        .controller('DashboardCtrl', function ($scope, SettingsService, $timeout, $location, BackgroundService) {
+        .controller('DashboardCtrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService',  function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-3-background");
 
             $scope.ec_query_players = 'https://escoladocerebro.org/eduscada/c/index.php/ec_query_players';
@@ -1932,8 +1932,8 @@ angular.module('myApp', ['ngRoute'])
             }
 
 
-        })
-        .directive('barssum', function ($parse) {
+        }])
+        .directive('barssum', ['$parse',function ($parse) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -2000,8 +2000,8 @@ angular.module('myApp', ['ngRoute'])
                     }
                 }
             };
-        })
-        .directive('barsavg', function ($parse) {
+        }])
+        .directive('barsavg', ['$parse',function ($parse) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -2024,8 +2024,8 @@ angular.module('myApp', ['ngRoute'])
                             });
                 }
             };
-        })
-        .directive("sparklinechart", function () {
+        }])
+        .directive("sparklinechart", [function () {
 
             return {
                 restrict: "E",
@@ -2062,7 +2062,7 @@ angular.module('myApp', ['ngRoute'])
                     };
                 }
             };
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view2', {
@@ -2070,7 +2070,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'View2Ctrl'
                 });
             }])
-        .controller('View2Ctrl', function ($scope, $location, $timeout, SettingsService, BackgroundService) {
+        .controller('View2Ctrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-2-background");
             $scope.hidden = "hidden";
             $scope.off = "hidden";
@@ -2212,7 +2212,7 @@ angular.module('myApp', ['ngRoute'])
             };
 
 
-        })
+        }])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view1', {
@@ -2220,7 +2220,7 @@ angular.module('myApp', ['ngRoute'])
                     controller: 'View1Ctrl'
                 });
             }])
-        .controller('View1Ctrl', function ($scope, $timeout, $location, SettingsService, BackgroundService) {
+        .controller('View1Ctrl', ['$scope', '$http', 'SettingsService', '$timeout', '$location', 'BackgroundService', function ($scope, $http, SettingsService, $timeout, $location, BackgroundService) {
             BackgroundService.setCurrentBg("view-1-background");
             $scope.hidden = "hidden";
             $scope.off = "hidden";
@@ -2341,5 +2341,5 @@ angular.module('myApp', ['ngRoute'])
             $timeout(function () {
 
             }, 300);
-        })
+        }])
         ;

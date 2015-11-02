@@ -1,0 +1,11 @@
+{
+     "android": {
+         "release": {
+             "keystore": "/home/diego/Documents/cognisense.keystore",
+             "storePassword": "123456",
+             "alias": "br.com.cognisense",
+             "password" : "123456",
+             "keystoreType": ""
+         }
+     }
+ }
