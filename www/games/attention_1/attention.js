@@ -5,7 +5,7 @@ $(document).ready(function ($) {
     var nClicks = 0;
     var nTimeInterval = null;
     var nTimeToStart = 0;
-    var nTimeToTest = 2200;
+    var nTimeToTest = 5000;
     var nLevel = 1;
     var nPoints = [];
     var nPeaces = [];
@@ -15,24 +15,30 @@ $(document).ready(function ($) {
     var nClickIntervals = [];
     var finished = false;
     var peaces = [
-        {"value": "0"}, 
-        {"value": "18|2"}, 
-        {"value": "21|1|2"}, 
-        {"value": "11|1|2|2"}, 
-        {"value": "3|8|18|19|20"}, 
-        {"value": "3|8|18|19|20|13"}, 
-        {"value": "3|8|18|19|20|1|10"}
+        {"value": "0"},
+        {"value": "0"},
+        {"value": "1|2"},
+        {"value": "1|2"},
+        {"value": "3|4|5"},
+        {"value": "3|4|5"},
+        {"value": "6|7|8|9"},
+        {"value": "10|11|12|13|14"},
+        {"value": "15|16|17|18|19|20"},
+        {"value": "1|2|3|4|5|6|7"}
     ];
     var board = [
-        {value: "0|1|2|19|3"}, 
-        {value: "0|1|2|19|3"}, 
-        {value: "3|8|18|19|20|15|18|3"}, 
-        {value: "3|8|18|19|20|15|18|3"}, 
-        {value: "3|8|18|19|20|15|18|3|17|6"}, 
-        {value: "3|8|18|19|20|15|18|3|17|6"}, 
-        {value: "3|8|18|19|20|15|18|3|17|6|3|15"}
+        {value: "0|1|2|3|4"},
+        {value: "0|1|2|3|4"},
+        {value: "1|2|3|4|5"},
+        {value: "1|2|3|4|5"},
+        {value: "3|4|5|6|7|8|9|10"},
+        {value: "3|4|5|6|7|8|9|10"},
+        {value: "6|7|8|9|10|11|12|13"},
+        {value: "10|11|12|13|14|15|16|17|18|19"},
+        {value: "15|16|17|18|19|20|21|0|1|2"},
+        {value: "1|2|3|4|5|6|7|8|9|10|11|12"}
     ];
- 
+
     function gamePscicotest() {
         $(".stage").fadeIn(2000);
         nPeaces = [];
@@ -61,7 +67,7 @@ $(document).ready(function ($) {
         var resp = strp.split("|");
         $(".peaces-logo").html("");
         $.each(resp, function (i) {
-                          $(".peaces-logo").append('<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><button type="button" data-toggle="button" id="cur_' + resp[i] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + resp[i] + '.png" </img></button></div></div> ');
+            $(".peaces-logo").append('<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><button type="button" data-toggle="button" id="cur_' + resp[i] + '" class="btn btn-primary col-xs-4 col-sm-4 col-md-4 col-lg-4 center-block">   <img src="../../assets/img/pattern_1/ts' + resp[i] + '.png" </img></button></div></div> ');
 
 //            if (nLevel == 1) { 
 //                $(".peaces-logo").append('<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><button type="button" data-toggle="button" id="cur_' + resp[i] + '" class="btn btn-primary col-xs-5 col-sm-5 col-md-5 col-lg-5 center-block">   <img src="../../assets/img/pattern_1/ts' + resp[i] + '.png" </img></button></div></div> ');
@@ -80,12 +86,17 @@ $(document).ready(function ($) {
             $(this).prop('disabled', true);
             nClickIntervals.push(new Date() - nLastClickTime);
             nLastClickTime = new Date();
-
+            var strp = peaces[nTest].value;
+            var resp = strp.split("|");
             if (nLevel == 1) {
-                if (strp == $(this).text()) {
-                    nPoints.push($(this).text());
-                    $("#points").text(nPoints.length);
-                }
+                $.each(resp, function (i) {
+                    console.log(resp[i])
+//                    if (resp[i] == $(this).text()) {
+//                        nPoints.push($(this).text());
+//                        $("#points").text(nPoints.length);
+//                    }
+                });
+
             }
             if (nLevel == 2) {
                 if ((resp[0] == $(this).text()) || (resp[1] == $(this).text())) {
@@ -106,8 +117,9 @@ $(document).ready(function ($) {
         });
         $("#board").addClass("jumbotron");
         $("#peaces-logo").addClass("jumbotron");
-        nTest++;
+     
         console.log("gamePscicotest nTest" + nTest)
+           nTest++;
     }
     function gameStop() {
         console.log("stop");
@@ -129,7 +141,7 @@ $(document).ready(function ($) {
     }
     function gameRunner() {
 
-        if (nTest == 5 && nLevel < 2) {
+        if (nTest == peaces.length && nLevel < 2) {
             gameStop();
             $("#test_model_2").show();
             nLevel = 2;

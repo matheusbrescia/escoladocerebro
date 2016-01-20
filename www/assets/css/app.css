@@ -209,6 +209,18 @@ iframe{
            border:0px; 
            margin:auto; 
 }
+.label-dashboard{
+    position:absolute;
+    top: 10%;
+    }
+.label-perfil{ position:absolute;
+    top: 30%;}
+.label-games{ position:absolute;
+    top: 30%;}
+.label-ranking{ position:absolute;
+    top: 30%;}
+
+
 
 .testy {
     /* width: 25%; */ text-align:center; 
